@@ -1,0 +1,26 @@
+{
+  "name": "@sudoo/kara",
+  "version": "0.0.0",
+  "description": ":anchor: \"It's as simple as that.\"",
+  "main": "dist/index.js",
+  "directories": {
+    "doc": "docs",
+    "test": "test"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sudodotdog/kara.git"
+  },
+  "keywords": [
+    "terminal"
+  ],
+  "author": "WMXPY",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/sudodotdog/kara/issues"
+  },
+  "homepage": "https://github.com/sudodotdog/kara#readme"
+}

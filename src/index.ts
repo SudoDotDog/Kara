@@ -1,6 +1,6 @@
 import { Box } from './box/box';
 
-const box = new Box();
+const box = Box.instance;
 
 box.canvas.draw(123 + '');
 box.canvas.replace('345');

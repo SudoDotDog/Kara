@@ -1,6 +1,6 @@
 /**
  * @author WMXPY
- * @namespace Box
+ * @namespace Kara
  * @description Box
  */
 

@@ -1,4 +1,4 @@
-import { Box } from './box/box';
+import { Box } from './box';
 
 const box = Box.instance;
 

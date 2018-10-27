@@ -1,6 +1,6 @@
 # Paths
-build := typescript/tsconfig.main.build.json
-dev := typescript/tsconfig.main.dev.json
+main_build := webpack/webpack.main.build.json
+main_dev := webpack/webpack.main.dev.json
 
 # NPX functions
 ifeq ($(OS), Windows_NT)
@@ -13,23 +13,12 @@ else
 	webpack := node_modules/.bin/webpack
 endif
 
-kara: dev
-
-build:
-	@echo "[INFO] Building for production"
-	@$(tsc) --p $(build)
-
-dev:
-	@echo "[INFO] Building for development"
-	@$(tsc) --p $(dev)
+kara: electron
 
 electron:
 	@echo "[INFO] Starting electron development"
-	@$(webpack) --config webpack/webpack.main.dev.js
+	@$(webpack) --config $(main_dev)
 	@electron app
-
-run: dev
-	@node docs/test.js
 
 tests:
 	@echo "[INFO] Testing with Mocha"

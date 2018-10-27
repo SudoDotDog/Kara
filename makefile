@@ -1,6 +1,6 @@
 # Paths
-build := typescript/tsconfig.build.json
-dev := typescript/tsconfig.dev.json
+build := typescript/tsconfig.main.build.json
+dev := typescript/tsconfig.main.dev.json
 
 # NPX functions
 ifeq ($(OS), Windows_NT)

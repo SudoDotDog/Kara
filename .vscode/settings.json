@@ -2,7 +2,13 @@
     "cSpell.words": [
         "codecov",
         "connor",
-        "sudoo"
+        "ifeq",
+        "pasteandmatchstyle",
+        "selectall",
+        "setx",
+        "submenu",
+        "sudoo",
+        "togglefullscreen"
     ],
     "tslint.configFile": "typescript/tslint.json"
 }

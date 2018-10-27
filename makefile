@@ -13,13 +13,16 @@ endif
 
 kara: dev
 
+build:
+	@echo "[INFO] Building for production"
+	@$(tsc) --p $(build)
+
 dev:
 	@echo "[INFO] Building for development"
 	@$(tsc) --p $(dev)
 
-build:
-	@echo "[INFO] Building for production"
-	@$(tsc) --p $(build)
+electron:
+	@echo "[INFO] Starting electron development"
 
 run: dev
 	@node docs/test.js
@@ -43,7 +46,7 @@ endif
 	@nyc $(mocha)
 
 install:
-	@echo "[INFO] Installing Dependences"
+	@echo "[INFO] Installing Dependencies"
 	@npm install
 	@npm install --only=dev
 
@@ -56,7 +59,3 @@ else
 	@rm -rf .nyc_output
 	@rm -rf coverage
 endif
-
-publish: install build
-	@echo "[INFO] Publishing package"
-	@npm publish --access=public

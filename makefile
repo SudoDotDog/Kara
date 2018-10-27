@@ -6,9 +6,11 @@ dev := typescript/tsconfig.dev.json
 ifeq ($(OS), Windows_NT)
 	tsc := .\node_modules\.bin\tsc
 	mocha := .\node_modules\.bin\mocha
+	webpack := .\node_modules\.bin\webpack
 else
 	tsc := node_modules/.bin/tsc
 	mocha := node_modules/.bin/mocha
+	webpack := node_modules/.bin/webpack
 endif
 
 kara: dev
@@ -23,6 +25,8 @@ dev:
 
 electron:
 	@echo "[INFO] Starting electron development"
+	@$(webpack) --config webpack/webpack.main.dev.js
+	@electron app
 
 run: dev
 	@node docs/test.js

@@ -17,6 +17,10 @@ lib-cov
 # Coverage directory used by tools like istanbul
 coverage
 
+# electron double package
+app/main
+app/renderer
+
 # temp
 dist
 temp

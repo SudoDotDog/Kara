@@ -1,0 +1,50 @@
+{
+	"name": "kara",
+	"version": "0.0.0",
+	"description": ":anchor: \"It's as simple as that.\"",
+	"main": "main/bundle.js",
+	"private": true,
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/sudodotdog/kara.git"
+	},
+	"keywords": [
+		"terminal"
+	],
+	"author": "WMXPY",
+	"license": "MIT",
+	"bugs": {
+		"url": "https://github.com/sudodotdog/kara/issues"
+	},
+	"homepage": "https://github.com/sudodotdog/kara#readme",
+	"build": {
+		"productName": "kara",
+		"appId": "dog.sudo.kara",
+		"copyright": "Copyright © 2018 WMXPY",
+		"files": [
+			"main",
+			"renderer",
+			"package.json",
+			"lib",
+			"renderer/index.html"
+		],
+		"directories": {
+			"buildResources": "/../"
+		},
+		"mac": {
+			"target": "dmg",
+			"type": "distribution",
+			"category": "efficiency",
+			"icon": "../public/logo.png"
+		},
+		"win": {
+			"target": "nsis",
+			"icon": "../public/logo.png"
+		},
+		"linux": {
+			"target": "AppImage",
+			"category": "efficiency",
+			"icon": "../public/logo.png"
+		}
+	}
+}

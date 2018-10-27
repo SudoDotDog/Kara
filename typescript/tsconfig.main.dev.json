@@ -5,17 +5,18 @@
         "downlevelIteration": true,
         "emitDecoratorMetadata": true,
         "experimentalDecorators": true,
-        "inlineSourceMap": true,
         "lib": [
+            "dom",
+            "es5",
+            "es2015",
             "es2016",
-            "es6"
+            "es2017"
         ],
         "module": "commonjs",
         "moduleResolution": "node",
         "noImplicitAny": true,
         "noImplicitReturns": true,
         "noImplicitThis": true,
-        "outDir": "../dist",
         "removeComments": true,
         "resolveJsonModule": true,
         "strict": true,
@@ -27,6 +28,7 @@
         "test"
     ],
     "include": [
-        "../src/main/**/*"
+        "src/config/**/*",
+        "src/main/**/*"
     ]
 }

@@ -1,24 +1,44 @@
 # Paths
-main_build := webpack/webpack.main.build.json
-main_dev := webpack/webpack.main.dev.json
+main_build := webpack/webpack.main.build.js
+main_dev := webpack/webpack.main.dev.js
+renderer_build := webpack/webpack.renderer.build.js
+renderer_dev := webpack/webpack.renderer.dev.js
 
 # NPX functions
 ifeq ($(OS), Windows_NT)
 	tsc := .\node_modules\.bin\tsc
 	mocha := .\node_modules\.bin\mocha
 	webpack := .\node_modules\.bin\webpack
+	webpack_dev_server := .\node_modules\.bin\webpack-dev-server
 else
 	tsc := node_modules/.bin/tsc
 	mocha := node_modules/.bin/mocha
 	webpack := node_modules/.bin/webpack
+	webpack_dev_server := .\node_modules\.bin\webpack-dev-server
 endif
 
-kara: electron
+kara: dev
+
+dev: renderer electron
+
+build: renderer-build electron-build
+
+renderer:
+	@echo "[INFO] Starting renderer development"
+	@$(webpack_dev_server) --config $(renderer_dev)
+
+renderer-build:
+	@echo "[INFO] Starting renderer production build"
+	@$(webpack) --config $(renderer_build)
 
 electron:
 	@echo "[INFO] Starting electron development"
 	@$(webpack) --config $(main_dev)
 	@electron app
+
+electron-build:
+	@echo "[INFO] Starting electron production build"
+	@$(webpack) --config $(main_build)
 
 tests:
 	@echo "[INFO] Testing with Mocha"

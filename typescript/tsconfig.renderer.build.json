@@ -5,6 +5,7 @@
         "downlevelIteration": true,
         "emitDecoratorMetadata": true,
         "experimentalDecorators": true,
+        "jsx": "react",
         "lib": [
             "dom",
             "es5",
@@ -29,6 +30,6 @@
     ],
     "include": [
         "src/config/**/*",
-        "src/main/**/*"
+        "src/renderer/**/*"
     ]
 }

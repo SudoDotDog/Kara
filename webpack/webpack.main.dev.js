@@ -9,7 +9,7 @@ const webpack = require('webpack');
 
 const BUILD_DIR = path.resolve(__dirname, '..', 'app', 'main');
 const APP_DIR = path.resolve(__dirname, '..', 'src', 'main');
-const TSCONFIG_DIR = path.resolve(__dirname, 'tsconfig.main.dev.json');
+const TSCONFIG_DIR = path.resolve(__dirname, '..', 'typescript', 'tsconfig.main.dev.json');
 
 let config = {
     devtool: 'cheap-module-eval-source-map',
@@ -18,13 +18,13 @@ let config = {
     target: "electron-main",
     output: {
         filename: "bundle.js",
-        path: BUILD_DIR
+        path: BUILD_DIR,
     },
     node: {
-        __dirname: false
+        __dirname: false,
     },
     resolve: {
-        extensions: [".ts"]
+        extensions: [".ts"],
     },
     module: {
         rules: [{
@@ -32,16 +32,16 @@ let config = {
             use: [{
                 loader: 'awesome-typescript-loader',
                 options: {
-                    configFileName: TSCONFIG_DIR
-                }
-            }]
-        }]
+                    configFileName: TSCONFIG_DIR,
+                },
+            }],
+        }],
     },
     plugins: [
         new webpack.DefinePlugin({
-            'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'development')
-        })
-    ]
+            'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'development'),
+        }),
+    ],
 };
 
 module.exports = config;

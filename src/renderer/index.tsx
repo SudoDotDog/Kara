@@ -11,7 +11,6 @@ import { HashRouter } from "react-router-dom";
 import Hello from "./hello";
 
 declare const module: any;
-declare const declear: any;
 
 window.ondragover = (e) => {
     e.preventDefault();

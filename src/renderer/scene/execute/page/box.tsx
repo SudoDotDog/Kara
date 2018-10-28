@@ -5,7 +5,7 @@
  */
 
 import * as React from "react";
-import * as styles from '../../../style/global.sass';
+import * as styles from '../../../style/scene/execute.sass';
 
 export interface IProps {
 
@@ -15,7 +15,6 @@ export class Box extends React.Component<IProps, {}> {
 
     public constructor(props: IProps) {
         console.log(styles);
-        console.log(styles.abb);
         super(props);
     }
 

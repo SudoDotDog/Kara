@@ -39,16 +39,23 @@ let config = {
             },
             {
                 test: /\.sass$/,
-                use: [
-                    'style-loader',
-                    {
-                        loader: 'css-loader',
-                        query: {
+                use: [{
+                        loader: 'typings-for-css-modules-loader',
+                        options: {
                             modules: true,
-                            localIdentName: '[name]_[local]__[hash:base64:5]',
+                            namedExport: true,
+                            camelCase: true,
+                            minimize: true,
+                            sass: true,
+                            localIdentName: "[name]_[local]__[hash:base64:5]"
                         },
                     },
-                    'sass-loader',
+                    {
+                        loader: 'sass-loader',
+                        options: {
+                            outputStyle: 'expanded',
+                        },
+                    },
                 ],
             },
             {

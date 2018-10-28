@@ -45,16 +45,26 @@ let config = {
             },
             {
                 test: /\.sass$/,
-                use: [
-                    'style-loader',
+                use: [{
+                        loader: 'style-loader',
+                    },
                     {
-                        loader: 'css-loader',
-                        query: {
+                        loader: 'typings-for-css-modules-loader',
+                        options: {
                             modules: true,
-                            localIdentName: '[name]_[local]__[hash:base64:5]',
+                            namedExport: true,
+                            camelCase: true,
+                            sass: true,
+                            localIdentName: "[name]_[local]__[hash:base64:5]"
                         },
                     },
-                    'sass-loader',
+                    {
+                        loader: 'sass-loader',
+                        options: {
+                            outputStyle: 'expanded',
+                            sourceMap: true,
+                        },
+                    },
                 ],
             },
             {
@@ -65,6 +75,7 @@ let config = {
         ]
     },
     plugins: [
+        new webpack.WatchIgnorePlugin([/css\.d\.ts$/]),
         new HtmlWebpackPlugin({
             chunks: ['index'],
             title: 'Kara',
@@ -82,7 +93,7 @@ let config = {
     ],
     devServer: {
         hot: true,
-        contentBase: path.resolve(__dirname, 'app', 'renderer'),
+        contentBase: BUILD_DIR,
         publicPath: '/',
         port: 8082,
         inline: true,

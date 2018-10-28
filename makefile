@@ -73,10 +73,15 @@ else
 endif
 	@nyc $(mocha)
 
-install:
+install: install-dep install-dev
+
+install-dev:
+	@echo "[INFO] Installing dev Dependencies"
+	@npm install --only=dev
+
+install-dep:
 	@echo "[INFO] Installing Dependencies"
 	@npm install
-	@npm install --only=dev
 
 clean:
 ifeq ($(OS), Windows_NT)

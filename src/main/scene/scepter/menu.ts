@@ -1,6 +1,6 @@
 /**
  * @author WMXPY
- * @namespace Main
+ * @namespace Scene_Scepter
  * @description Menu template
  */
 

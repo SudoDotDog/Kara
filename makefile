@@ -33,6 +33,11 @@ renderer-build:
 
 electron:
 	@echo "[INFO] Starting electron development"
+ifeq ($(OS), Windows_NT)
+	@-setx NODE_ENV development
+else
+	@-export NODE_ENV=development
+endif
 	@$(webpack) --config $(main_dev)
 	@electron app
 

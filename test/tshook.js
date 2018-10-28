@@ -1,6 +1,7 @@
 /**
  * @author WMXPY
- * @namespace TS-HOOK
+ * @namespace Hook
+ * @description TS-Hook
  */
 
 const ts_node = require("ts-node");
@@ -9,5 +10,5 @@ process.env = Object.assign(process.env, {
     NODE_ENV: 'test'
 });
 ts_node.register({
-    project: 'typescript/tsconfig.main.test.json'
+    project: 'typescript/tsconfig.test.json'
 });

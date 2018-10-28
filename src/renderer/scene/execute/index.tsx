@@ -11,6 +11,8 @@ import { HashRouter } from "react-router-dom";
 import { mockWindow } from "../../util/window";
 import Hello from "./hello";
 
+import '../../style/common/global.sass';
+
 declare const module: any;
 mockWindow(window);
 

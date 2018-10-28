@@ -5,7 +5,7 @@
  */
 
 import * as React from "react";
-import * as styles from '../../../style/scene/execute.sass';
+import * as styles from '../../../style/scene/execute/execute.sass';
 
 export class Box extends React.Component<{}, {}> {
 

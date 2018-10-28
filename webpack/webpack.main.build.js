@@ -23,7 +23,7 @@ const config = {
         __dirname: false,
     },
     resolve: {
-        extensions: [".ts"],
+        extensions: [".js", ".ts"],
     },
     module: {
         rules: [{

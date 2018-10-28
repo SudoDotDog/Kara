@@ -5,8 +5,10 @@
  */
 
 import { app } from "electron";
+import { registerConnor } from "./declare/error";
 import { Scepter } from "./scene/scepter/scepter";
 
+registerConnor();
 const scepterScene = Scepter.createInstance();
 
 app.on("ready", () => {

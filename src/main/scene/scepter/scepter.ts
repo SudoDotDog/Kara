@@ -4,13 +4,14 @@
  * @description Scepter
  */
 
+import Connor, { ErrorCreationFunction } from 'connor';
 import { BrowserWindow, Menu } from 'electron';
 import Config from '../../../config/config';
+import { ERROR_CODE, MODULE_NAME } from '../../declare/error';
 import { IScene } from '../../declare/scene';
 import { menuTemplate } from './menu';
 
 export class Scepter implements IScene {
-
 
     public static createInstance(): IScene {
 
@@ -31,10 +32,12 @@ export class Scepter implements IScene {
     private static _instance: IScene | undefined;
 
     private _browserWindow: BrowserWindow | null;
+    private _error: ErrorCreationFunction;
 
     private constructor() {
 
         this._browserWindow = null;
+        this._error = Connor.getErrorCreator(MODULE_NAME);
     }
 
     public create(): IScene {
@@ -81,7 +84,6 @@ export class Scepter implements IScene {
         windows.loadURL(Config.scepter.prodURL);
         const menu = Menu.buildFromTemplate(menuTemplate);
         Menu.setApplicationMenu(menu);
-        windows.webContents.openDevTools();
         return windows;
     }
 
@@ -95,6 +97,7 @@ export class Scepter implements IScene {
             backgroundColor: Config.backgroundColor,
         });
         windows.loadURL(Config.scepter.devURL);
+        windows.webContents.openDevTools();
         return windows;
     }
 
@@ -103,6 +106,6 @@ export class Scepter implements IScene {
         if (this._browserWindow) {
             return this._browserWindow;
         }
-        throw new Error('123');
+        throw this._error(ERROR_CODE.WINDOW_NOT_FOUND, 'Scepter');
     }
 }

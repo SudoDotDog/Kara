@@ -6,22 +6,26 @@
 
 import { expect } from 'chai';
 import * as React from "react";
-import { create, ReactTestRenderer } from 'react-test-renderer'; // ES6
+import { create, ReactTestRenderer, ReactTestRendererJSON } from 'react-test-renderer'; // ES6
 import { Box } from '../../../../src/renderer/scene/execute/page/box';
 
 describe('Given a <Box /> Component', (): void => {
 
     const render = (): ReactTestRenderer => create(<Box />);
+    const renderToJson = (): ReactTestRendererJSON => render().toJSON() as ReactTestRendererJSON;
 
     it('should be able to render', async (): Promise<void> => {
 
         const component: ReactTestRenderer = render();
+
         expect(component.root.type).to.be.equal(Box);
     });
 
-    // it('should be a div', async (): Promise<void> => {
+    it('should be a div', async (): Promise<void> => {
 
-    //     const component: ReactTestRenderer = render();
-    //     expect(component.root.children[0]).to.be.equal('ttt');
-    // });
+        const json: ReactTestRendererJSON = renderToJson();
+
+        expect(json.type).to.be.equal('div');
+        expect(json.props.className).to.be.equal('title');
+    });
 });

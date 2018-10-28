@@ -65,5 +65,26 @@
 		"webpack": "^4.23.1",
 		"webpack-cli": "^3.1.2",
 		"webpack-dev-server": "^3.1.10"
+	},
+	"nyc": {
+		"extension": [
+			".ts",
+			".tsx"
+		],
+		"include": [
+			"src/**/*.ts",
+			"src/**/*.tsx"
+		],
+		"instrument": true,
+		"reporter": [
+			"json",
+			"text-summary"
+		],
+		"report-dir": "coverage",
+		"require": [
+			"./test/tshook.js",
+			"./test/mock.ts"
+		],
+		"sourceMap": true
 	}
 }

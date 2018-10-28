@@ -5,18 +5,17 @@
  */
 
 import * as React from "react";
-import * as styles from '../../../style/scene/execute/execute.sass';
+import * as styleExecute from '../../../style/scene/execute/execute.sass';
 
 export class Box extends React.Component<{}, {}> {
 
     public constructor(props: {}) {
-        console.log(styles);
         super(props);
     }
 
     public render(): any {
         return (
-            <div>
+            <div className={styleExecute.title}>
                 <div></div>
                 <div>123</div>
             </div>

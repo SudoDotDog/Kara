@@ -1,5 +1,6 @@
 {
     "cSpell.words": [
+        "WMXPY",
         "codecov",
         "connor",
         "devtool",
@@ -10,7 +11,8 @@
         "setx",
         "submenu",
         "sudoo",
-        "togglefullscreen"
+        "togglefullscreen",
+        "tshook"
     ],
     "tslint.configFile": "typescript/tslint.json"
 }

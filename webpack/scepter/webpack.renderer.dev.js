@@ -4,12 +4,13 @@
  * @description Scepter Renderer Development
  */
 
-const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const path = require('path');
 const webpack = require('webpack');
 
-const BUILD_DIR = path.resolve(__dirname, '..', '..', 'app', 'renderer', 'scene', 'scepter');
 const APP_DIR = path.resolve(__dirname, '..', '..', 'src', 'renderer', 'scene', 'scepter');
+const BUILD_DIR = path.resolve(__dirname, '..', '..', 'app', 'renderer', 'scene', 'scepter');
+const COMMON_SASS_DIR = path.resolve(__dirname, '..', '..', 'src', 'renderer', 'style', 'common');
 const PUBLIC_DIR = path.resolve(__dirname, '..', '..', 'public', 'template.html');
 const RENDERER_TSCONFIG_DIR = path.resolve(__dirname, '..', '..', 'typescript', 'tsconfig.renderer.dev.json');
 
@@ -45,16 +46,45 @@ let config = {
             },
             {
                 test: /\.sass$/,
-                use: [
-                    'style-loader',
+                exclude: COMMON_SASS_DIR,
+                use: [{
+                        loader: 'style-loader',
+                    },
                     {
-                        loader: 'css-loader',
-                        query: {
+                        loader: 'typings-for-css-modules-loader',
+                        options: {
                             modules: true,
-                            localIdentName: '[name]_[local]__[hash:base64:5]',
+                            namedExport: true,
+                            camelCase: true,
+                            sass: true,
+                            localIdentName: "[name]_[local]__[hash:base64:5]"
                         },
                     },
-                    'sass-loader',
+                    {
+                        loader: 'sass-loader',
+                        options: {
+                            outputStyle: 'expanded',
+                            sourceMap: true,
+                        },
+                    },
+                ],
+            },
+            {
+                test: /\.sass$/,
+                include: COMMON_SASS_DIR,
+                use: [{
+                        loader: 'style-loader',
+                    },
+                    {
+                        loader: 'css-loader',
+                    },
+                    {
+                        loader: 'sass-loader',
+                        options: {
+                            outputStyle: 'expanded',
+                            sourceMap: true,
+                        },
+                    },
                 ],
             },
             {
@@ -65,6 +95,7 @@ let config = {
         ]
     },
     plugins: [
+        new webpack.WatchIgnorePlugin([/css\.d\.ts$/]),
         new HtmlWebpackPlugin({
             chunks: ['index'],
             title: 'Kara',

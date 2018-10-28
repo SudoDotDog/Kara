@@ -4,13 +4,13 @@
  * @description Execute Renderer Development
  */
 
-const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const path = require('path');
 const webpack = require('webpack');
 
+const APP_DIR = path.resolve(__dirname, '..', '..', 'src', 'renderer', 'scene', 'execute');
 const BUILD_DIR = path.resolve(__dirname, '..', '..', 'app', 'renderer', 'scene', 'execute');
 const COMMON_SASS_DIR = path.resolve(__dirname, '..', '..', 'src', 'renderer', 'style', 'common');
-const APP_DIR = path.resolve(__dirname, '..', '..', 'src', 'renderer', 'scene', 'execute');
 const PUBLIC_DIR = path.resolve(__dirname, '..', '..', 'public', 'template.html');
 const RENDERER_TSCONFIG_DIR = path.resolve(__dirname, '..', '..', 'typescript', 'tsconfig.renderer.dev.json');
 

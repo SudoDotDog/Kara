@@ -1,28 +1,34 @@
 /**
  * @author WMXPY
  * @namespace Webpack
- * @description Renderer Production
+ * @description Execute Renderer Development
  */
 
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const webpack = require('webpack');
 
-const BUILD_DIR = path.resolve(__dirname, '..', 'app', 'renderer');
-const APP_DIR = path.resolve(__dirname, '..', 'src', 'renderer');
-const PUBLIC_DIR = path.resolve(__dirname, '..', 'public', 'template.html');
-const RENDERER_TSCONFIG_DIR = path.resolve(__dirname, '..', 'typescript', 'tsconfig.renderer.dev.json');
+const BUILD_DIR = path.resolve(__dirname, '..', '..', 'app', 'renderer', 'scene', 'execute');
+const APP_DIR = path.resolve(__dirname, '..', '..', 'src', 'renderer', 'scene', 'execute');
+const PUBLIC_DIR = path.resolve(__dirname, '..', '..', 'public', 'template.html');
+const RENDERER_TSCONFIG_DIR = path.resolve(__dirname, '..', '..', 'typescript', 'tsconfig.renderer.dev.json');
 
 let config = {
-    devtool: 'cheap-source-map',
-    target: 'electron-renderer',
-    mode: 'production',
+    devtool: 'cheap-module-eval-source-map',
+    target: "electron-renderer",
+    mode: "development",
     entry: {
-        index: APP_DIR + "/index.tsx",
+        index: [
+            'react-hot-loader/patch',
+            'webpack-dev-server/client',
+            'webpack/hot/only-dev-server',
+            APP_DIR + "/index.tsx",
+        ],
     },
     output: {
         filename: "[name].bundle.js",
         path: BUILD_DIR,
+        publicPath: '/',
     },
     resolve: {
         extensions: [".ts", ".tsx", ".js", ".json", ".css", ".sass"],
@@ -43,14 +49,14 @@ let config = {
                     'style-loader',
                     'css-loader',
                     'sass-loader',
-                ],
+                ]
             },
             {
                 enforce: "pre",
                 test: /\.js$/,
                 loader: "source-map-loader",
             },
-        ],
+        ]
     },
     plugins: [
         new HtmlWebpackPlugin({
@@ -60,9 +66,22 @@ let config = {
             filename: 'index.html',
         }),
         new webpack.DefinePlugin({
-            'process.env.NODE_ENV': 'production',
+            'process.env.NODE_ENV': JSON.stringify('development'),
         }),
+        new webpack.LoaderOptionsPlugin({
+            debug: true
+        }),
+        new webpack.HotModuleReplacementPlugin(),
+        new webpack.NamedModulesPlugin(),
     ],
+    devServer: {
+        hot: true,
+        contentBase: path.resolve(__dirname, 'app', 'renderer'),
+        publicPath: '/',
+        port: 8080,
+        inline: true,
+        historyApiFallback: true
+    },
 };
 
 module.exports = config;

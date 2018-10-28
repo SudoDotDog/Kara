@@ -76,12 +76,12 @@ export class Scepter implements IScene {
             width: 1350,
             height: 1020,
             show: false,
-            frame: false,
             backgroundColor: Config.backgroundColor,
         });
-        windows.loadURL(Config.prodURL);
+        windows.loadURL(Config.scepter.prodURL);
         const menu = Menu.buildFromTemplate(menuTemplate);
         Menu.setApplicationMenu(menu);
+        windows.webContents.openDevTools();
         return windows;
     }
 
@@ -92,11 +92,9 @@ export class Scepter implements IScene {
             width: 1850,
             height: 1020,
             show: false,
-            frame: false,
             backgroundColor: Config.backgroundColor,
         });
-        windows.loadURL(Config.devURL);
-        windows.webContents.openDevTools();
+        windows.loadURL(Config.scepter.devURL);
         return windows;
     }
 

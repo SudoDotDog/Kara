@@ -3,9 +3,16 @@
  * @fileoverview Config
  */
 
+console.log(__dirname);
 export default {
     isDebug: true,
     backgroundColor: 'white',
-    devURL: 'http://localhost:8080',
-    prodURL: `file://${__dirname}/../renderer/index.html`,
+    scepter: {
+        devURL: 'http://localhost:8080',
+        prodURL: `file://${__dirname}/../renderer/scene/scepter/index.html`,
+    },
+    execute: {
+        devURL: 'http://localhost:8080',
+        prodURL: `file://${__dirname}/../renderer/scene/execute/index.html`,
+    },
 };

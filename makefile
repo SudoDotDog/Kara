@@ -1,8 +1,10 @@
 # Paths
 main_build := webpack/webpack.main.build.js
 main_dev := webpack/webpack.main.dev.js
-renderer_build := webpack/webpack.renderer.build.js
-renderer_dev := webpack/webpack.renderer.dev.js
+renderer_scepter_build := webpack/scepter/webpack.renderer.build.js
+renderer_scepter_dev := webpack/scepter/webpack.renderer.dev.js
+renderer_execute_build := webpack/execute/webpack.renderer.build.js
+renderer_execute_dev := webpack/execute/webpack.renderer.dev.js
 
 # NPX functions
 ifeq ($(OS), Windows_NT)
@@ -19,17 +21,17 @@ endif
 
 kara: dev
 
-dev: renderer electron
+dev: r-scepter electron
 
 build: renderer-build electron-build
 
-renderer:
+r-scepter:
 	@echo "[INFO] Starting renderer development"
-	@$(webpack_dev_server) --config $(renderer_dev)
+	@$(webpack_dev_server) --config $(renderer_scepter_dev)
 
-renderer-build:
+r-scepter-build:
 	@echo "[INFO] Starting renderer production build"
-	@$(webpack) --config $(renderer_build)
+	@$(webpack) --config $(renderer_scepter_build)
 
 electron:
 	@echo "[INFO] Starting electron development"

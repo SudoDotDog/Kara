@@ -41,7 +41,13 @@ let config = {
                 test: /\.sass$/,
                 use: [
                     'style-loader',
-                    'css-loader',
+                    {
+                        loader: 'css-loader',
+                        query: {
+                            modules: true,
+                            localIdentName: '[name]_[local]__[hash:base64:5]',
+                        },
+                    },
                     'sass-loader',
                 ],
             },

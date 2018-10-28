@@ -76,9 +76,12 @@ export class Execute implements IScene {
 
         const windows: BrowserWindow = new BrowserWindow({
 
-            width: 750,
-            height: 300,
+            width: 600,
+            height: 100,
+            x: 30,
+            y: 30,
             show: false,
+            frame: false,
             backgroundColor: Config.backgroundColor,
         });
         windows.loadURL(Config.execute.prodURL);
@@ -91,8 +94,10 @@ export class Execute implements IScene {
 
         const windows: BrowserWindow = new BrowserWindow({
 
-            width: 750,
-            height: 300,
+            width: 600,
+            height: 100,
+            x: 30,
+            y: 30,
             show: false,
             backgroundColor: Config.backgroundColor,
         });

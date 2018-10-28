@@ -6,6 +6,7 @@
 
 import * as React from "react";
 import { Route } from "react-router-dom";
+import { Box } from "./page/box";
 
 class Hello extends React.Component<{}, {}> {
 
@@ -16,7 +17,7 @@ class Hello extends React.Component<{}, {}> {
     public render(): any {
         return (
             <React.Fragment>
-                <Route path="/" exact component={() => <div>123</div>} />
+                <Route path="/" exact component={Box} />
             </React.Fragment>
         );
     }

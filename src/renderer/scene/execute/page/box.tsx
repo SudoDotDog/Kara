@@ -7,13 +7,9 @@
 import * as React from "react";
 import * as styles from '../../../style/scene/execute.sass';
 
-export interface IProps {
+export class Box extends React.Component<{}, {}> {
 
-}
-
-export class Box extends React.Component<IProps, {}> {
-
-    public constructor(props: IProps) {
+    public constructor(props: {}) {
         console.log(styles);
         super(props);
     }

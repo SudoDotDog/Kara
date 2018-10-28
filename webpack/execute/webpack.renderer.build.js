@@ -4,8 +4,11 @@
  * @description Execute Renderer Production
  */
 
-const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
+const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const path = require('path');
 const webpack = require('webpack');
 
 const BUILD_DIR = path.resolve(__dirname, '..', '..', 'app', 'renderer', 'scene', 'execute');
@@ -17,6 +20,25 @@ let config = {
     devtool: 'cheap-source-map',
     target: 'electron-renderer',
     mode: 'production',
+    optimization: {
+        minimizer: [
+            new UglifyJsPlugin({
+                cache: true,
+                parallel: true,
+            }),
+            new OptimizeCSSAssetsPlugin({}),
+        ],
+        splitChunks: {
+            cacheGroups: {
+                styles: {
+                    name: 'styles',
+                    test: /\.css$/,
+                    chunks: 'all',
+                    enforce: true,
+                },
+            },
+        },
+    },
     entry: {
         index: APP_DIR + "/index.tsx",
     },
@@ -40,6 +62,9 @@ let config = {
             {
                 test: /\.sass$/,
                 use: [{
+                        loader: MiniCssExtractPlugin.loader,
+                    },
+                    {
                         loader: 'typings-for-css-modules-loader',
                         options: {
                             modules: true,
@@ -66,6 +91,12 @@ let config = {
         ],
     },
     plugins: [
+        new MiniCssExtractPlugin({
+            // Options similar to the same options in webpackOptions.output
+            // both options are optional
+            filename: "[name].css",
+            chunkFilename: "[id].css"
+        }),
         new HtmlWebpackPlugin({
             chunks: ['index'],
             title: 'Kara',

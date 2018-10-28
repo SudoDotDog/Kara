@@ -78,7 +78,7 @@ let config = {
         hot: true,
         contentBase: path.resolve(__dirname, 'app', 'renderer'),
         publicPath: '/',
-        port: 8080,
+        port: 8082,
         inline: true,
         historyApiFallback: true
     },

@@ -26,12 +26,20 @@ dev: r-scepter electron
 build: renderer-build electron-build
 
 r-scepter:
-	@echo "[INFO] Starting renderer development"
+	@echo "[INFO] Starting scepter renderer development"
 	@$(webpack_dev_server) --config $(renderer_scepter_dev)
 
 r-scepter-build:
-	@echo "[INFO] Starting renderer production build"
+	@echo "[INFO] Starting scepter renderer production build"
 	@$(webpack) --config $(renderer_scepter_build)
+
+r-execute:
+	@echo "[INFO] Starting execute renderer development"
+	@$(webpack_dev_server) --config $(renderer_execute_dev)
+
+r-execute-build:
+	@echo "[INFO] Starting execute renderer production build"
+	@$(webpack) --config $(renderer_execute_build)
 
 electron:
 	@echo "[INFO] Starting electron development"

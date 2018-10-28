@@ -6,10 +6,10 @@
 
 import { app } from "electron";
 import { registerConnor } from "./declare/error";
-import { Scepter } from "./scene/scepter/scepter";
+import { Execute } from "./scene/execute/execute";
 
 registerConnor();
-const scepterScene = Scepter.createInstance();
+const scepterScene = Execute.createInstance();
 
 app.on("ready", () => {
     scepterScene.create();

@@ -1,0 +1,35 @@
+/**
+ * @author WMXPY
+ * @namespace Style_Scene
+ * @description Execute
+ */
+    
+@import '../../../common/color.sass'
+
+.title
+    align-items: center
+    color: $white
+    display: flex
+    flex-direction: row
+    height: 100%
+    .title-left
+        background-color: $red
+        display: flex
+        height: 100%
+        div
+            padding: 5px
+            align-self: flex-end
+    .title-right
+        background-color: $navy
+        display: flex
+        height: 100%
+        overflow: hidden
+        transition: 1s all ease-out
+        width: 0
+        div
+            align-self: center
+            font-family: $font
+            font-size: 45px
+            padding: 5px
+        &.title-right-full-size
+            width: 100%

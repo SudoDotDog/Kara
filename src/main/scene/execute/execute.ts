@@ -5,7 +5,7 @@
  */
 
 import Connor, { ErrorCreationFunction } from 'connor';
-import { BrowserWindow, Menu } from 'electron';
+import { BrowserWindow, BrowserWindowConstructorOptions, Menu } from 'electron';
 import Config from '../../../config/config';
 import { ERROR_CODE, MODULE_NAME } from '../../declare/error';
 import { IScene } from '../../declare/scene';
@@ -74,16 +74,7 @@ export class Execute implements IScene {
 
     private _createBrowserWindow(): BrowserWindow {
 
-        const windows: BrowserWindow = new BrowserWindow({
-
-            width: 600,
-            height: 100,
-            x: 30,
-            y: 30,
-            show: false,
-            frame: false,
-            backgroundColor: Config.backgroundColor,
-        });
+        const windows: BrowserWindow = new BrowserWindow(this._getWindowSetting());
         windows.loadURL(Config.execute.prodURL);
         const menu = Menu.buildFromTemplate(menuTemplate);
         Menu.setApplicationMenu(menu);
@@ -92,18 +83,32 @@ export class Execute implements IScene {
 
     private _createDebugBrowserWindow(): BrowserWindow {
 
-        const windows: BrowserWindow = new BrowserWindow({
-
-            width: 600,
-            height: 100,
-            x: 30,
-            y: 30,
-            show: false,
-            backgroundColor: Config.backgroundColor,
-        });
+        const windows: BrowserWindow = new BrowserWindow(this._getWindowSetting());
         windows.loadURL(Config.execute.devURL);
         windows.webContents.openDevTools();
         return windows;
+    }
+
+    private _getWindowSetting(): BrowserWindowConstructorOptions {
+
+        return {
+
+            width: 600,
+            height: 80,
+
+            x: 30,
+            y: 30,
+            show: false,
+            frame: false,
+            transparent: true,
+
+            alwaysOnTop: true,
+            resizable: false,
+            fullscreenable: false,
+            movable: false,
+            maximizable: false,
+            minimizable: false,
+        };
     }
 
     private _getBrowserWindow(): BrowserWindow {

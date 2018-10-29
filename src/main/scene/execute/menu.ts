@@ -20,15 +20,8 @@ export const menuTemplate: any = [
         ],
     },
     {
-        label: 'View',
-        submenu: [
-            { role: 'togglefullscreen' },
-        ],
-    },
-    {
         role: 'window',
         submenu: [
-            { role: 'minimize' },
             { role: 'close' },
         ],
     },

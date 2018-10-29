@@ -14,7 +14,7 @@ class Hello extends React.Component<{}, {}> {
         super(props);
     }
 
-    public render(): any {
+    public render(): JSX.Element {
         return (
             <React.Fragment>
                 <Route path="/" exact component={Box} />

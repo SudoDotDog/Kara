@@ -20,12 +20,11 @@ const reduceCounter: Reducer<IStore, ICounterReducerAction> = (state: IStore | u
     },
 });
 
-export const setCounter = (number: number) => (dispatch: Dispatch<ICounterReducerAction>) => {
-
-    dispatch({
+export const setCounter = (number: number): ICounterReducerAction => {
+    return {
         type: EXECUTE_ACTIONS.COUNTER,
         number,
-    });
+    };
 };
 
 const Actions = {
@@ -35,7 +34,6 @@ const Actions = {
 export const boxReducer: Reducer<any, any> = (store: IBoxStore = getInitBoxStore(), action: Action<EXECUTE_ACTIONS>): IStore => {
 
     const reducer: Reducer<any, any> | undefined = Actions[action.type];
-    console.log(action, reducer);
     return reducer ? reducer(store, action) : store;
 };
 

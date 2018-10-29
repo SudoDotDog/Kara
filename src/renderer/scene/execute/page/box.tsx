@@ -13,7 +13,7 @@ import { IStore } from "../store/store";
 
 export interface IProps {
     counter: number;
-    setCounter: (number: number) => DispatchCreator<ICounterReducerAction>;
+    setCounter: (number: number) => any;
 }
 
 export interface IState {
@@ -41,7 +41,6 @@ export class Box extends React.Component<IProps, IState> {
     public constructor(props: IProps) {
 
         super(props);
-        console.log(props);
         props.setCounter(15);
     }
 

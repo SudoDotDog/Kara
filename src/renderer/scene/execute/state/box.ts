@@ -4,14 +4,20 @@
  * @description Reducer
  */
 
-import { Action, Dispatch, Reducer } from 'redux';
-import { EXECUTE_ACTIONS } from '../store/actions';
-import { IStore } from '../store/store';
+import { Action, Reducer } from 'redux';
+import { EXECUTE_ACTIONS, IStore } from './store';
+
+// Store
+export interface IBoxStore {
+
+    readonly counter: number;
+}
 
 export interface ICounterReducerAction extends Action<EXECUTE_ACTIONS> {
     number: number;
 }
 
+// Reducer
 const reduceCounter: Reducer<IStore, ICounterReducerAction> = (state: IStore | undefined, action: ICounterReducerAction): IStore => ({
 
     ...state as IStore,
@@ -20,29 +26,14 @@ const reduceCounter: Reducer<IStore, ICounterReducerAction> = (state: IStore | u
     },
 });
 
+export const boxReducers = {
+    [EXECUTE_ACTIONS.COUNTER]: reduceCounter,
+};
+
+// Action
 export const setCounter = (number: number): ICounterReducerAction => {
     return {
         type: EXECUTE_ACTIONS.COUNTER,
         number,
     };
 };
-
-const Actions = {
-    [EXECUTE_ACTIONS.COUNTER]: reduceCounter,
-};
-
-export const boxReducer: Reducer<any, any> = (store: IBoxStore = getInitBoxStore(), action: Action<EXECUTE_ACTIONS>): IStore => {
-
-    const reducer: Reducer<any, any> | undefined = Actions[action.type];
-    return reducer ? reducer(store, action) : store;
-};
-
-export interface IBoxStore {
-
-    readonly counter: number;
-}
-
-export const getInitBoxStore: () => IBoxStore = () => ({
-
-    counter: 0,
-});

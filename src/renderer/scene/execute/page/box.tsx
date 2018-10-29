@@ -6,10 +6,9 @@
 
 import * as React from "react";
 import { connect } from "react-redux";
-import { DispatchCreator } from '../../../declare/type';
 import * as styleExecute from '../../../style/scene/execute/page/execute.sass';
-import { ICounterReducerAction, setCounter } from "../state/box";
-import { IStore } from "../store/store";
+import { setCounter } from "../state/box";
+import { IStore } from "../state/store";
 
 export interface IProps {
     counter: number;
@@ -41,7 +40,6 @@ export class Box extends React.Component<IProps, IState> {
     public constructor(props: IProps) {
 
         super(props);
-        props.setCounter(15);
     }
 
     public componentDidMount() {
@@ -62,7 +60,8 @@ export class Box extends React.Component<IProps, IState> {
                     styleExecute.titleRight,
                     this.state.fullSized && styleExecute.titleRightFullSize,
                 ].join(' ')}>
-                    <div>Kara</div>
+                    <div>{this.props.counter}</div>
+                    <button onClick={this.props.setCounter.bind(this, this.props.counter + 1)}>+</button>
                 </div>
             </div>
         );

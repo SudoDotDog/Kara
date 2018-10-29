@@ -12,18 +12,27 @@ ifeq ($(OS), Windows_NT)
 	mocha := .\node_modules\.bin\mocha
 	webpack := .\node_modules\.bin\webpack
 	webpack_dev_server := .\node_modules\.bin\webpack-dev-server
+	electron_builder := ../node_modules/.bin/electron-builder
 else
 	tsc := node_modules/.bin/tsc
 	mocha := node_modules/.bin/mocha
 	webpack := node_modules/.bin/webpack
-	webpack_dev_server := .\node_modules\.bin\webpack-dev-server
+	webpack_dev_server := node_modules/.bin/webpack-dev-server
+	electron_builder := node_modules/.bin/electron-builder
 endif
 
 kara: dev
 
 dev: r-scepter electron
 
+pack: build
+
+electron-builder:
+	@cd app && $(electron_builder)
+
 build: renderer-build electron-build
+
+renderer-build: r-scepter-build r-execute-build
 
 r-scepter:
 	@echo "[INFO] Starting scepter renderer development"

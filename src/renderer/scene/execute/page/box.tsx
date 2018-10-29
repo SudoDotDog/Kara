@@ -5,23 +5,44 @@
  */
 
 import * as React from "react";
+import { connect } from "react-redux";
+import { DispatchCreator } from '../../../declare/type';
 import * as styleExecute from '../../../style/scene/execute/page/execute.sass';
+import { ICounterReducerAction, setCounter } from "../state/box";
+import { IStore } from "../store/store";
+
+export interface IProps {
+    counter: number;
+    setCounter: (number: number) => DispatchCreator<ICounterReducerAction>;
+}
 
 export interface IState {
 
     fullSized: boolean;
 }
 
-export class Box extends React.Component<{}, IState> {
+
+const mapStateBoxCareAbout = (store: IStore): Partial<IProps> => ({
+    counter: store.box.counter,
+});
+
+const mapDispatchBoxCareAbout: Partial<IProps> = {
+    setCounter,
+};
+
+@(connect(mapStateBoxCareAbout, mapDispatchBoxCareAbout) as any)
+export class Box extends React.Component<IProps, IState> {
 
     public readonly state = {
 
         fullSized: false,
     };
 
-    public constructor(props: {}) {
+    public constructor(props: IProps) {
 
         super(props);
+        console.log(props);
+        props.setCounter(15);
     }
 
     public componentDidMount() {

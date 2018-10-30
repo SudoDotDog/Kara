@@ -5,15 +5,19 @@
  */
 
 import { expect } from 'chai';
+import * as Chance from 'chance';
 import { shallow, ShallowWrapper } from 'enzyme';
 import * as React from "react";
+import * as Sinon from 'sinon';
 import { Box, IBoxProps } from '../../../../src/renderer/scene/execute/page/box';
 
 describe('Given a <Box /> Component', (): void => {
 
+    const chance: Chance.Chance = new Chance('renderer-scene-page-box');
+
     const getDefaultProps = (): IBoxProps => ({
-        counter: 0,
-        setCounter: () => { },
+        counter: chance.natural(),
+        setCounter: Sinon.stub(),
     });
 
     const render = (props: IBoxProps = getDefaultProps()) => {

@@ -6,8 +6,8 @@ node_js:
  - '9'
 
 install:
- - npm install
- - npm install --only=dev
+ - yarn install
+ - yarn install --only=dev
  - npm install codecov nyc -g
 
 script:

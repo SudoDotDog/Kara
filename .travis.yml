@@ -2,12 +2,13 @@ language:
  - node_js
 
 node_js:
- - '7'
+ - '8'
  - '9'
+ - '10'
 
 install:
- - npm install
- - npm install --only=dev
+ - yarn install
+ - yarn install --only=dev
  - npm install codecov nyc -g
 
 script:

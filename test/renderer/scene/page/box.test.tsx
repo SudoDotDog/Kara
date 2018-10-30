@@ -5,27 +5,36 @@
  */
 
 import { expect } from 'chai';
+import * as Chance from 'chance';
+import { shallow, ShallowWrapper } from 'enzyme';
 import * as React from "react";
-import { create, ReactTestRenderer, ReactTestRendererJSON } from 'react-test-renderer'; // ES6
-import { Box } from '../../../../src/renderer/scene/execute/page/box';
+import * as Sinon from 'sinon';
+import { Box, IBoxProps } from '../../../../src/renderer/scene/execute/page/box';
 
 describe('Given a <Box /> Component', (): void => {
 
-    const render = (): ReactTestRenderer => create(<Box />);
-    const renderToJson = (): ReactTestRendererJSON => render().toJSON() as ReactTestRendererJSON;
+    const chance: Chance.Chance = new Chance('renderer-scene-page-box');
 
-    it('should be able to render', async (): Promise<void> => {
-
-        const component: ReactTestRenderer = render();
-
-        expect(component.root.type).to.be.equal(Box);
+    const getDefaultProps = (): IBoxProps => ({
+        counter: chance.natural(),
+        setCounter: Sinon.stub(),
     });
 
-    it('should be a div', async (): Promise<void> => {
+    const render = (props: IBoxProps = getDefaultProps()) => {
+        return shallow(<Box {...props} />);
+    };
 
-        const json: ReactTestRendererJSON = renderToJson();
+    it('should be able to render', (): void => {
 
-        expect(json.type).to.be.equal('div');
-        expect(json.props.className).to.be.equal('title');
+        const component: ShallowWrapper = render();
+
+        expect(component.type()).to.be.equal('div');
+    });
+
+    it('should have a correct class name', (): void => {
+
+        const component: ShallowWrapper = render();
+
+        expect(component.prop('className')).to.be.equal('title');
     });
 });

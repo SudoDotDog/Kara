@@ -83,7 +83,10 @@ export class Execute implements IScene {
 
     private _createDebugBrowserWindow(): BrowserWindow {
 
-        const windows: BrowserWindow = new BrowserWindow(this._getWindowSetting());
+        const windows: BrowserWindow = new BrowserWindow({
+            ...this._getWindowSetting(),
+            alwaysOnTop: false,
+        });
         windows.loadURL(Config.execute.devURL);
         windows.webContents.openDevTools();
         return windows;

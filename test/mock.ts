@@ -4,7 +4,16 @@
  * @description Sass-Hook
  */
 
+import { configure } from 'enzyme';
+import * as Adapter from 'enzyme-adapter-react-16';
 import * as sass from 'node-sass';
+
+const registerEnzyme = () => {
+
+    configure({
+        adapter: new Adapter(),
+    });
+};
 
 const registerSass = () => {
 
@@ -32,3 +41,4 @@ const registerSass = () => {
 };
 
 registerSass();
+registerEnzyme();

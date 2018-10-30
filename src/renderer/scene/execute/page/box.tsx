@@ -10,34 +10,33 @@ import * as styleExecute from '../../../style/scene/execute/page/execute.sass';
 import { setCounter } from "../state/box";
 import { IStore } from "../state/store";
 
-export interface IProps {
+export interface IBoxProps {
     counter: number;
     setCounter: (number: number) => any;
 }
 
-export interface IState {
+export interface IBoxState {
 
     fullSized: boolean;
 }
 
 
-const mapStateBoxCareAbout = (store: IStore): Partial<IProps> => ({
+const mapStateBoxCareAbout = (store: IStore): Partial<IBoxProps> => ({
     counter: store.box.counter,
 });
 
-const mapDispatchBoxCareAbout: Partial<IProps> = {
+const mapDispatchBoxCareAbout: any = {
     setCounter,
 };
 
-@(connect(mapStateBoxCareAbout, mapDispatchBoxCareAbout) as any)
-export class Box extends React.Component<IProps, IState> {
+export class Box extends React.Component<IBoxProps, IBoxState> {
 
     public readonly state = {
 
         fullSized: false,
     };
 
-    public constructor(props: IProps) {
+    public constructor(props: IBoxProps) {
 
         super(props);
     }
@@ -67,3 +66,5 @@ export class Box extends React.Component<IProps, IState> {
         );
     }
 }
+
+export const ConnectedBox = connect(mapStateBoxCareAbout, mapDispatchBoxCareAbout)(Box);

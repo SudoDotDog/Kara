@@ -9,11 +9,10 @@ import * as ReactDOM from "react-dom";
 import { AppContainer } from "react-hot-loader";
 import { Provider } from 'react-redux';
 import { HashRouter } from "react-router-dom";
-import { Store } from "redux";
 import '../../style/common/global.sass';
 import { mockWindow } from "../../util/window";
 import Hello from "./hello";
-import { getStore, IStore } from "./state/store";
+import { getStore } from "./state/store";
 
 declare const module: any;
 mockWindow(window);

@@ -86,11 +86,11 @@ install: install-dep install-dev
 
 install-dev:
 	@echo "[INFO] Installing dev Dependencies"
-	@npm install --only=dev
+	@yarn --only=dev
 
 install-dep:
 	@echo "[INFO] Installing Dependencies"
-	@npm install
+	@yarn
 
 clean:
 ifeq ($(OS), Windows_NT)

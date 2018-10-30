@@ -24,14 +24,14 @@ describe('Given a <Box /> Component', (): void => {
         return shallow(<Box {...props} />);
     };
 
-    it('should be able to render', async (): Promise<void> => {
+    it('should be able to render', (): void => {
 
         const component: ShallowWrapper = render();
 
         expect(component.type()).to.be.equal('div');
     });
 
-    it('should have a correct class name', async (): Promise<void> => {
+    it('should have a correct class name', (): void => {
 
         const component: ShallowWrapper = render();
 

@@ -1,7 +1,7 @@
 /**
  * @author WMXPY
- * @namespace Redux
- * @description Redux Store
+ * @namespace Util
+ * @description Redux
  */
 
 import { AnyAction, createStore, Store } from "redux";

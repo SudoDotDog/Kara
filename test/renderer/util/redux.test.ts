@@ -4,9 +4,9 @@
  * @description Redux Test
  */
 
+import { Redux } from '#R^util/redux';
 import { expect } from 'chai';
 import * as Chance from 'chance';
-import { Redux } from '../../../src/renderer/util/redux';
 
 describe('Given a {Redux} class', (): void => {
 

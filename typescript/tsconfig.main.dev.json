@@ -19,6 +19,7 @@
         "noImplicitReturns": true,
         "noImplicitThis": true,
         "paths": {
+            "#P/*": ["provide/*"],
             "#R^style/*": ["renderer/style/*"],
             "#R^util/*": ["renderer/util/*"],
             "#R~execute/*": ["renderer/scene/execute/*"]

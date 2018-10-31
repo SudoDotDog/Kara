@@ -101,8 +101,10 @@ export class Execute implements IScene {
 
             x: 30,
             y: 30,
-            show: false,
+
             frame: false,
+            hasShadow: false,
+            show: false,
             transparent: true,
 
             alwaysOnTop: true,

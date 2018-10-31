@@ -18,6 +18,7 @@ export interface IBoxProps {
 
 export interface IBoxState {
 
+    typed: string;
     fullSized: boolean;
 }
 
@@ -36,6 +37,7 @@ export class Box extends React.Component<IBoxProps, IBoxState> {
 
     public readonly state = {
 
+        typed: '',
         fullSized: false,
     };
 
@@ -46,6 +48,7 @@ export class Box extends React.Component<IBoxProps, IBoxState> {
 
     public componentDidMount() {
 
+        document.addEventListener('keydown', this._handleKeyDown.bind(this));
         setImmediate(() => this.setState({
             fullSized: true,
         }));
@@ -62,11 +65,19 @@ export class Box extends React.Component<IBoxProps, IBoxState> {
                     styleExecute.titleRight,
                     this.state.fullSized && styleExecute.titleRightFullSize,
                 ].join(' ')}>
-                    <div>{this.props.counter}</div>
-                    <button onClick={this.props.setCounter.bind(this, this.props.counter + 1)}>+</button>
+                    <div>{this.state.typed}</div>
                 </div>
             </div>
         );
+    }
+
+    private _handleKeyDown(event: KeyboardEvent) {
+
+        const typed = this.state.typed + event.key;
+        this.setState({
+            typed,
+        });
+        return;
     }
 }
 

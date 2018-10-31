@@ -47,6 +47,7 @@ const registerBinding = () => {
     const src: string = Path.join(__dirname, '..', 'src');
 
     ModuleAlias.addAliases({
+        "#P": Path.join(src, 'provide'),
         "#R^style": Path.join(src, 'renderer', 'style'),
         "#R^util": Path.join(src, 'renderer', 'util'),
         "#R~execute": Path.join(src, 'renderer', 'scene', 'execute'),

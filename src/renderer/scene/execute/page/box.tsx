@@ -11,6 +11,7 @@ import * as React from "react";
 import { connect } from "react-redux";
 
 export interface IBoxProps {
+
     counter: number;
     setCounter: (number: number) => any;
 }
@@ -22,10 +23,12 @@ export interface IBoxState {
 
 
 const mapStateBoxCareAbout = (store: IStore): Partial<IBoxProps> => ({
+
     counter: store.box.counter,
 });
 
 const mapDispatchBoxCareAbout: any = {
+
     setCounter,
 };
 

@@ -20,6 +20,6 @@
         "tshook"
     ],
     "tslint.configFile": "typescript/tslint.json",
-    "javascript.preferences.importModuleSpecifier": "non-relative",
-    "typescript.preferences.importModuleSpecifier": "non-relative"
+    "javascript.preferences.importModuleSpecifier": "auto",
+    "typescript.preferences.importModuleSpecifier": "auto"
 }

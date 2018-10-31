@@ -4,11 +4,12 @@
  * @description Box Test
  */
 
+import { Box, IBoxProps } from '#R~execute/page/box';
 import { expect } from 'chai';
 import * as Chance from 'chance';
 import { shallow, ShallowWrapper } from 'enzyme';
 import * as React from "react";
-import { Box, IBoxProps } from '../../../../src/renderer/scene/execute/page/box';
+import { Sandbox } from '../../../mock/sandbox/sandbox';
 
 describe('Given a <Box /> Component', (): void => {
 
@@ -16,7 +17,7 @@ describe('Given a <Box /> Component', (): void => {
 
     const getDefaultProps = (): IBoxProps => ({
         counter: chance.natural(),
-        setCounter: () => 1,
+        setCounter: new Sandbox().func(),
     });
 
     const render = (props: IBoxProps = getDefaultProps()) => {

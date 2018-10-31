@@ -2,6 +2,7 @@
     "compileOnSave": false,
     "compilerOptions": {
         "alwaysStrict": true,
+        "baseUrl": "./src",
         "downlevelIteration": true,
         "emitDecoratorMetadata": true,
         "experimentalDecorators": true,
@@ -18,6 +19,9 @@
         "noImplicitAny": true,
         "noImplicitReturns": true,
         "noImplicitThis": true,
+        "paths": {
+            "#R~execute/*": ["renderer/scene/execute/*"]
+        },
         "removeComments": true,
         "resolveJsonModule": true,
         "strict": true,

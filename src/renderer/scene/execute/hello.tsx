@@ -4,9 +4,9 @@
  * @description Hello
  */
 
+import { ConnectedBox } from "#R~execute/page/box";
 import * as React from "react";
 import { Route } from "react-router-dom";
-import { ConnectedBox } from "./page/box";
 
 class Hello extends React.Component<{}, {}> {
 

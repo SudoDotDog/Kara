@@ -23,6 +23,7 @@ const config = {
         __dirname: false,
     },
     resolve: {
+        alias: require('./alias'),
         extensions: [".js", ".ts"],
     },
     module: {

@@ -32,6 +32,7 @@ let config = {
         publicPath: '/',
     },
     resolve: {
+        alias: require('../alias'),
         extensions: [".ts", ".tsx", ".js", ".json", ".css", ".sass"],
     },
     module: {

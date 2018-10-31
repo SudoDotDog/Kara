@@ -6,16 +6,18 @@
 
 import { configure } from 'enzyme';
 import * as Adapter from 'enzyme-adapter-react-16';
+import * as ModuleAlias from 'module-alias';
 import * as sass from 'node-sass';
+import * as Path from 'path';
 
-const registerEnzyme = () => {
+const registerEnzyme = (): void => {
 
     configure({
         adapter: new Adapter(),
     });
 };
 
-const registerSass = () => {
+const registerSass = (): void => {
 
     require.extensions['.sass'] = (module: NodeModule, filename: string) => {
         const css: string = sass.renderSync({
@@ -40,5 +42,14 @@ const registerSass = () => {
     };
 };
 
+const registerBinding = () => {
+
+    const src: string = Path.join(__dirname, '..', 'src');
+    ModuleAlias.addAliases({
+        "#R~execute": Path.join(src, 'renderer', 'scene', 'execute'),
+    });
+};
+
 registerSass();
 registerEnzyme();
+registerBinding();

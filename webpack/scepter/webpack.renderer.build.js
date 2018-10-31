@@ -48,6 +48,7 @@ let config = {
         path: BUILD_DIR,
     },
     resolve: {
+        alias: require('../alias'),
         extensions: [".ts", ".tsx", ".js", ".json", ".css", ".sass"],
     },
     module: {

@@ -1,5 +1,6 @@
 {
     "compilerOptions": {
+        "baseUrl": "../src",
         "emitDecoratorMetadata": true,
         "experimentalDecorators": true,
         "jsx": "react",
@@ -14,6 +15,9 @@
         "moduleResolution": "node",
         "noImplicitAny": true,
         "noImplicitReturns": true,
+        "paths": {
+            "#R~execute/*": ["renderer/scene/execute/*"]
+        },
         "sourceMap": true,
         "strict": true,
         "target": "es6"

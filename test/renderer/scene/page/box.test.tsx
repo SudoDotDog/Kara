@@ -8,7 +8,6 @@ import { expect } from 'chai';
 import * as Chance from 'chance';
 import { shallow, ShallowWrapper } from 'enzyme';
 import * as React from "react";
-import * as Sinon from 'sinon';
 import { Box, IBoxProps } from '../../../../src/renderer/scene/execute/page/box';
 
 describe('Given a <Box /> Component', (): void => {
@@ -17,7 +16,7 @@ describe('Given a <Box /> Component', (): void => {
 
     const getDefaultProps = (): IBoxProps => ({
         counter: chance.natural(),
-        setCounter: Sinon.stub(),
+        setCounter: () => 1,
     });
 
     const render = (props: IBoxProps = getDefaultProps()) => {

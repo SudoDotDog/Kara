@@ -9,6 +9,7 @@ import * as Adapter from 'enzyme-adapter-react-16';
 import * as ModuleAlias from 'module-alias';
 import * as sass from 'node-sass';
 import * as Path from 'path';
+import { MockDocument } from '../test/renderer/mock/document';
 
 const registerEnzyme = (): void => {
 
@@ -54,6 +55,12 @@ const registerBinding = () => {
     });
 };
 
+const registerGlobal = () => {
+
+    (global as any).document = MockDocument.instance;
+};
+
 registerSass();
 registerEnzyme();
 registerBinding();
+registerGlobal();

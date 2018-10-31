@@ -48,6 +48,7 @@ export class Box extends React.Component<IBoxProps, IBoxState> {
 
     public componentDidMount() {
 
+        document.addEventListener('keydown', this._handleKeyDown.bind(this));
         setImmediate(() => this.setState({
             fullSized: true,
         }));

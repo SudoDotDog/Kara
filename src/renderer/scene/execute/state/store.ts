@@ -4,8 +4,8 @@
  * @description Store
  */
 
+import { Redux } from "#R^util/redux";
 import { Store } from "redux";
-import { Redux } from "../../../util/redux";
 import { boxReducers, IBoxStore } from './box';
 
 export enum EXECUTE_ACTIONS {

@@ -4,15 +4,15 @@
  * @description Index
  */
 
+import '#R^style/common/global.sass';
+import { mockWindow } from '#R^util/window';
+import Hello from '#R~execute/hello';
+import { getStore } from '#R~execute/state/store';
 import * as React from "react";
 import * as ReactDOM from "react-dom";
 import { AppContainer } from "react-hot-loader";
 import { Provider } from 'react-redux';
 import { HashRouter } from "react-router-dom";
-import '../../style/common/global.sass';
-import { mockWindow } from "../../util/window";
-import Hello from "./hello";
-import { getStore } from "./state/store";
 
 declare const module: any;
 mockWindow(window);

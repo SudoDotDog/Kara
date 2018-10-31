@@ -45,7 +45,10 @@ const registerSass = (): void => {
 const registerBinding = () => {
 
     const src: string = Path.join(__dirname, '..', 'src');
+
     ModuleAlias.addAliases({
+        "#R^style": Path.join(src, 'renderer', 'style'),
+        "#R^util": Path.join(src, 'renderer', 'util'),
         "#R~execute": Path.join(src, 'renderer', 'scene', 'execute'),
     });
 };

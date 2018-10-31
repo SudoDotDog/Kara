@@ -16,6 +16,8 @@
         "noImplicitAny": true,
         "noImplicitReturns": true,
         "paths": {
+            "#R^style/*": ["renderer/style/*"],
+            "#R^util/*": ["renderer/util/*"],
             "#R~execute/*": ["renderer/scene/execute/*"]
         },
         "sourceMap": true,

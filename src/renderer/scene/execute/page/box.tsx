@@ -4,11 +4,11 @@
  * @description Box
  */
 
+import * as styleExecute from '#R^style/scene/execute/page/execute.sass';
+import { setCounter } from '#R~execute/state/box';
+import { IStore } from '#R~execute/state/store';
 import * as React from "react";
 import { connect } from "react-redux";
-import * as styleExecute from '../../../style/scene/execute/page/execute.sass';
-import { setCounter } from "../state/box";
-import { IStore } from "../state/store";
 
 export interface IBoxProps {
     counter: number;

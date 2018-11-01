@@ -41,4 +41,15 @@ export class Provider {
         this._commandMap.set(command.command, command);
         return this;
     }
+
+    public match(command: string): ICommand | null {
+
+        if (this._commandMap.has(command)) {
+
+            const content: ICommand = this._commandMap.get(command) as ICommand;
+            return content;
+        }
+
+        return null;
+    }
 }

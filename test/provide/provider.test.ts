@@ -4,6 +4,7 @@
  * @description Provider Test
  */
 
+import { COMMAND_DECLARE_TYPE } from '#P/declare';
 import { Provider } from '#P/provider';
 import { expect } from 'chai';
 import * as Chance from 'chance';
@@ -25,7 +26,12 @@ describe('Given a {Provider} class', (): void => {
         const clazz: Provider = Provider.instance;
         clazz.register({
             command: chance.string(),
-            script: chance.string(),
+            name: chance.string(),
+            description: chance.string(),
+            declare: {
+                type: COMMAND_DECLARE_TYPE.SCRIPT,
+                script: chance.string(),
+            },
         });
 
         expect(clazz).to.be.lengthOf(1);

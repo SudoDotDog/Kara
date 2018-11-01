@@ -96,7 +96,7 @@ export class Execute implements IScene {
 
         return {
 
-            width: 600,
+            width: 480,
             height: 80,
 
             x: 30,

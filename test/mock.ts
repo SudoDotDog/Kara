@@ -10,6 +10,7 @@ import * as ModuleAlias from 'module-alias';
 import * as sass from 'node-sass';
 import * as Path from 'path';
 import { MockDocument } from './mock/document';
+import { MockWindow } from './mock/window';
 
 const registerEnzyme = (): void => {
 
@@ -58,6 +59,7 @@ const registerBinding = () => {
 const registerGlobal = () => {
 
     (global as any).document = MockDocument.instance;
+    (global as any).window = MockWindow.instance;
 };
 
 registerSass();

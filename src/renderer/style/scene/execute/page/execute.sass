@@ -5,31 +5,35 @@
  */
     
 @import '../../../common/color.sass'
+@import '../../../common/mixin.sass'
 
 .title
-    align-items: center
-    color: $white
     display: flex
     flex-direction: row
+    align-items: center
+
+    color: $white
     height: 100%
     .title-left
-        background-color: $red
+        flex: 1
         display: flex
+
+        @include background-opacity($red, .5);
         height: 100%
         div
-            padding: 5px
             align-self: flex-end
     .title-right
-        background-color: $navy
+        flex: 7
         display: flex
+
+        @include background-opacity($navy, .9);
         height: 100%
         overflow: hidden
         transition: 1s all ease-out
         width: 0
         div
             align-self: center
-            font-family: $font
             font-size: 45px
-            padding: 5px
+            padding: 15px
         &.title-right-full-size
             width: 100%

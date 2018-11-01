@@ -4,6 +4,7 @@
  * @description Box
  */
 
+import { initProvider } from '#P/init';
 import * as styleExecute from '#R^style/scene/execute/page/execute.sass';
 import { setCounter } from '#R~execute/state/box/box';
 import { IStore } from '#R~execute/state/declare';
@@ -44,6 +45,7 @@ export class Box extends React.Component<IBoxProps, IBoxState> {
     public constructor(props: IBoxProps) {
 
         super(props);
+        initProvider();
     }
 
     public componentDidMount() {

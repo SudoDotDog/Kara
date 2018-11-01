@@ -31,6 +31,11 @@ export class Provider {
         return this._commandMap.size;
     }
 
+    public isEmpty(): boolean {
+
+        return this._commandMap.size === 0;
+    }
+
     public register(command: ICommand): Provider {
 
         this._commandMap.set(command.command, command);

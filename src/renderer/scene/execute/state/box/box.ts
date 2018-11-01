@@ -21,6 +21,7 @@ export const boxReducers = {
 };
 
 export const setCounter = (number: number): ICounterReducerAction => {
+
     return {
         type: EXECUTE_ACTIONS.COUNTER,
         number,

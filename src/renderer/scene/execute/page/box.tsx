@@ -13,14 +13,14 @@ import { connect } from "react-redux";
 
 export interface IBoxProps {
 
-    counter: number;
-    setCounter: (number: number) => any;
+    readonly counter: number;
+    readonly setCounter: (number: number) => any;
 }
 
 export interface IBoxState {
 
-    typed: string;
-    fullSized: boolean;
+    readonly current: string;
+    readonly fullSized: boolean;
 }
 
 
@@ -38,22 +38,33 @@ export class Box extends React.Component<IBoxProps, IBoxState> {
 
     public readonly state = {
 
-        typed: '',
+        current: '',
         fullSized: false,
     };
 
     public constructor(props: IBoxProps) {
 
         super(props);
+
         initProvider();
+
+        this._handleKeyDown = this._handleKeyDown.bind(this);
+        this._handleKeyPress = this._handleKeyPress.bind(this);
     }
 
-    public componentDidMount() {
+    public componentDidMount(): void {
 
-        // document.addEventListener('keydown', this._handleKeyDown.bind(this));
+        document.addEventListener('keydown', this._handleKeyDown);
+        document.addEventListener('keypress', this._handleKeyPress);
         setImmediate(() => this.setState({
             fullSized: true,
         }));
+    }
+
+    public componentWillUnmount(): void {
+
+        document.removeEventListener('keydown', this._handleKeyDown);
+        document.addEventListener('keypress', this._handleKeyPress);
     }
 
     public render(): JSX.Element {
@@ -67,20 +78,29 @@ export class Box extends React.Component<IBoxProps, IBoxState> {
                     styleExecute.titleRight,
                     this.state.fullSized && styleExecute.titleRightFullSize,
                 ].join(' ')}>
-                    <div>{this.props.counter}</div>
+                    <div>{this.state.current}</div>
                 </div>
             </div>
         );
     }
 
-    // private _handleKeyDown(event: KeyboardEvent) {
+    private _handleKeyDown(event: KeyboardEvent): void {
 
-    //     const typed = this.state.typed + event.key;
-    //     this.setState({
-    //         typed,
-    //     });
-    //     return;
-    // }
+        if (event.key === 'Escape') {
+            this.setState({
+                current: '',
+            });
+        }
+        return;
+    }
+
+    private _handleKeyPress(event: KeyboardEvent): void {
+
+        this.setState({
+            current: this.state.current + event.key,
+        });
+        return;
+    }
 }
 
 export const ConnectedBox = connect(mapStateBoxCareAbout, mapDispatchBoxCareAbout)(Box);

@@ -96,7 +96,7 @@ export class Box extends React.Component<IBoxProps, IBoxState> {
 
     private _handleKeyPress(event: KeyboardEvent): void {
 
-        const current =  this.state.current + event.key;
+        const current = this.state.current + event.key;
 
         this.setState({
             current,

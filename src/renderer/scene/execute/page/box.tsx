@@ -5,8 +5,8 @@
  */
 
 import * as styleExecute from '#R^style/scene/execute/page/execute.sass';
-import { setCounter } from '#R~execute/state/box';
-import { IStore } from '#R~execute/state/store';
+import { setCounter } from '#R~execute/state/box/box';
+import { IStore } from '#R~execute/state/declare';
 import * as React from "react";
 import { connect } from "react-redux";
 
@@ -48,7 +48,7 @@ export class Box extends React.Component<IBoxProps, IBoxState> {
 
     public componentDidMount() {
 
-        document.addEventListener('keydown', this._handleKeyDown.bind(this));
+        // document.addEventListener('keydown', this._handleKeyDown.bind(this));
         setImmediate(() => this.setState({
             fullSized: true,
         }));
@@ -65,20 +65,20 @@ export class Box extends React.Component<IBoxProps, IBoxState> {
                     styleExecute.titleRight,
                     this.state.fullSized && styleExecute.titleRightFullSize,
                 ].join(' ')}>
-                    <div>{this.state.typed}</div>
+                    <div>{this.props.counter}</div>
                 </div>
             </div>
         );
     }
 
-    private _handleKeyDown(event: KeyboardEvent) {
+    // private _handleKeyDown(event: KeyboardEvent) {
 
-        const typed = this.state.typed + event.key;
-        this.setState({
-            typed,
-        });
-        return;
-    }
+    //     const typed = this.state.typed + event.key;
+    //     this.setState({
+    //         typed,
+    //     });
+    //     return;
+    // }
 }
 
 export const ConnectedBox = connect(mapStateBoxCareAbout, mapDispatchBoxCareAbout)(Box);

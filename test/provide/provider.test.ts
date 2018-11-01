@@ -26,12 +26,13 @@ describe('Given a {Provider} class', (): void => {
         const clazz: Provider = Provider.instance;
         clazz.register({
             command: chance.string(),
-            name: chance.string(),
             description: chance.string(),
             declare: {
                 type: COMMAND_DECLARE_TYPE.SCRIPT,
                 script: chance.string(),
             },
+            key: chance.string(),
+            name: chance.string(),
         });
 
         expect(clazz).to.be.lengthOf(1);

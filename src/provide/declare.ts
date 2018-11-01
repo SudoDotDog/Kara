@@ -7,9 +7,10 @@
 export interface ICommand {
 
     command: string;
-    name: string;
     description: string;
     declare: COMMAND_DECLARE;
+    key: string;
+    name: string;
 }
 
 export enum COMMAND_DECLARE_TYPE {

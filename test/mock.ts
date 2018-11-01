@@ -7,7 +7,7 @@
 import { configure } from 'enzyme';
 import * as Adapter from 'enzyme-adapter-react-16';
 import * as ModuleAlias from 'module-alias';
-import * as sass from 'node-sass';
+import * as Sass from 'node-sass';
 import * as Path from 'path';
 import { MockDocument } from './mock/document';
 import { MockWindow } from './mock/window';
@@ -22,7 +22,7 @@ const registerEnzyme = (): void => {
 const registerSass = (): void => {
 
     require.extensions['.sass'] = (module: NodeModule, filename: string) => {
-        const css: string = sass.renderSync({
+        const css: string = Sass.renderSync({
             file: filename,
         }).css.toString();
 

@@ -5,6 +5,7 @@
  */
 
 import { ICommand } from "#P/declare";
+import { _String } from '@sudoo/bark';
 
 export class Provider {
 
@@ -19,37 +20,65 @@ export class Provider {
         return this._instance;
     }
 
-    private _commandMap: Map<string, ICommand>;
+    private _commandMap: {
+        [key: string]: ICommand;
+    };
 
     private constructor() {
 
-        this._commandMap = new Map<string, ICommand>();
+        this._commandMap = Object.create(null);
     }
 
     public get length(): number {
 
-        return this._commandMap.size;
+        return Object.keys(this._commandMap).length;
+    }
+
+    public clean(): Provider {
+
+        this._commandMap = Object.create(null);
+        return this;
     }
 
     public isEmpty(): boolean {
 
-        return this._commandMap.size === 0;
+        return this.length === 0;
     }
 
     public register(command: ICommand): Provider {
 
-        this._commandMap.set(command.command, command);
+        this._commandMap[command.command] = command;
         return this;
     }
 
     public match(command: string): ICommand | null {
 
-        if (this._commandMap.has(command)) {
+        if (Boolean(this._commandMap[command])) {
 
-            const content: ICommand = this._commandMap.get(command) as ICommand;
+            const content: ICommand = this._commandMap[command];
             return content;
         }
 
         return null;
+    }
+
+    public nearest(command: string): ICommand | null {
+
+        if (this.isEmpty()) return null;
+
+        return Object.keys(this._commandMap).reduce<any>(
+            (nearest: { command: ICommand; length: number; }, key: string) => {
+
+                const current: ICommand = this._commandMap[key];
+                const distance: number = _String.similar(command, current.command);
+                if (distance < nearest.length) {
+
+                    return {
+                        command: current,
+                        length: distance,
+                    };
+                }
+                return nearest;
+            }, { command: null, length: Infinity }).command;
     }
 }

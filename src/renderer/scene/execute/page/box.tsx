@@ -23,7 +23,6 @@ export interface IBoxState {
     readonly fullSized: boolean;
 }
 
-
 const mapStateBoxCareAbout = (store: IStore): Partial<IBoxProps> => ({
 
     counter: store.box.counter,

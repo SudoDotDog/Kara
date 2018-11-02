@@ -82,15 +82,13 @@ else
 endif
 	@nyc $(mocha)
 
-install: install-dep install-dev
-
-install-dev:
+install:
 	@echo "[INFO] Installing dev Dependencies"
-	@yarn install --only=dev
+	@yarn install --production=false
 
-install-dep:
+install-prod:
 	@echo "[INFO] Installing Dependencies"
-	@yarn install
+	@yarn install --production=true
 
 clean:
 ifeq ($(OS), Windows_NT)

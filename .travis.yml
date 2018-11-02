@@ -7,11 +7,11 @@ node_js:
  - '10'
 
 install:
- - yarn install
- - yarn install --only=dev
+ - make install
  - npm install codecov nyc -g
 
 script:
+ - make build
  - nyc mocha
 
 after_success:

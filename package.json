@@ -41,7 +41,7 @@
 		"@types/enzyme-adapter-react-16": "^1.0.3",
 		"@types/mocha": "^5.2.5",
 		"@types/module-alias": "^2.0.0",
-		"@types/node": "^10.12.1",
+		"@types/node": "^10.12.2",
 		"@types/node-sass": "^3.10.32",
 		"@types/react": "^16.4.18",
 		"@types/react-dom": "^16.0.9",

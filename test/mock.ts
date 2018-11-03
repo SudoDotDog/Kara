@@ -50,6 +50,7 @@ const registerBinding = () => {
 
     ModuleAlias.addAliases({
         "#P": Path.join(src, 'provide'),
+        "#R^components": Path.join(src, 'renderer', 'components'),
         "#R^style": Path.join(src, 'renderer', 'style'),
         "#R^util": Path.join(src, 'renderer', 'util'),
         "#R~execute": Path.join(src, 'renderer', 'scene', 'execute'),

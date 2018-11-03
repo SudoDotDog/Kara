@@ -4,8 +4,8 @@
  * @description Execute
  */
     
-@import '../../../common/color.sass'
-@import '../../../common/mixin.sass'
+@import '../../common/color.sass'
+@import '../../common/mixin.sass'
 
 .title
     display: flex
@@ -27,12 +27,8 @@
 
         @include background-opacity($navy, .9);
         height: 100%
-        overflow: hidden
+        // overflow: hidden
         transition: 1s all ease-out
         width: 0
-        div
-            align-self: center
-            font-size: 45px
-            padding: 15px
         &.title-right-full-size
             width: 100%

@@ -21,6 +21,7 @@
         "noImplicitThis": true,
         "paths": {
             "#P/*": ["provide/*"],
+            "#R^components/*": ["renderer/components/*"],
             "#R^style/*": ["renderer/style/*"],
             "#R^util/*": ["renderer/util/*"],
             "#R~execute/*": ["renderer/scene/execute/*"]

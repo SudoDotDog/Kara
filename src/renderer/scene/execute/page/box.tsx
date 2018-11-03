@@ -4,7 +4,7 @@
  * @description Box
  */
 
-import * as styleExecute from '#R^style/scene/execute/page/execute.sass';
+import * as styleExecute from '#R^style/scene/execute/execute.sass';
 import { Panel } from '#R~execute/components/panel';
 import { setCounter } from '#R~execute/state/box/box';
 import { IStore } from '#R~execute/state/declare';

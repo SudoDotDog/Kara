@@ -12,6 +12,7 @@ const buildPath = (...path) => {
 
 module.exports = {
     "#P": buildPath('provide'),
+    "#R^components": buildPath('renderer', 'components'),
     "#R^style": buildPath('renderer', 'style'),
     "#R^util": buildPath('renderer', 'util'),
     "#R~execute": buildPath("renderer", "scene", "execute"),

@@ -6,8 +6,9 @@
 
 import { ICommand } from "#P/declare";
 import { Provider } from "#P/provider";
+import { EmptyElement } from "#R^components/empty";
+import * as panelStyles from '#R^style/scene/execute/panel.sass';
 import * as React from "react";
-import { EmptyElement } from "renderer/components/empty";
 
 const NearestTooltip = (props: {
     current: string;
@@ -17,7 +18,7 @@ const NearestTooltip = (props: {
     const nearest: ICommand | null = provider.nearest(props.current);
 
     if (nearest) {
-        return (<div>Press Enter for "{nearest.command}"</div>);
+        return (<div className={panelStyles.tooltip}>Press Enter for "{nearest.command}"</div>);
     }
     return (<EmptyElement />);
 };
@@ -26,8 +27,8 @@ export const Panel = (props: {
     current: string;
 }): JSX.Element => {
 
-    return (<div>
-        <div>{props.current}</div>
+    return (<div className={panelStyles.panel}>
+        <div className={panelStyles.field}>{props.current}</div>
         <NearestTooltip current={props.current} />
     </div>);
 };

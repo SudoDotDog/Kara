@@ -6,5 +6,5 @@
 
 export const EmptyElement = (): JSX.Element => {
 
-    return undefined as any as JSX.Element;
+    return null as any as JSX.Element;
 };

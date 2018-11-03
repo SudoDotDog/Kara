@@ -13,9 +13,11 @@ import * as ReactDOM from "react-dom";
 import { AppContainer } from "react-hot-loader";
 import { Provider } from 'react-redux';
 import { HashRouter } from "react-router-dom";
+import { initRendererSceneExecuteErrorDictionary } from './declare/error';
 
 declare const module: any;
 mockWindow(window);
+initRendererSceneExecuteErrorDictionary();
 
 const render: (App: any) => void = (App: any): void => {
 

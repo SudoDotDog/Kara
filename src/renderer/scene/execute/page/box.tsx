@@ -4,7 +4,9 @@
  * @description Box
  */
 
+import { ICommand } from '#P/declare';
 import { initProvider } from '#P/init';
+import { Provider } from '#P/provider';
 import * as styleExecute from '#R^style/scene/execute/page/execute.sass';
 import { setCounter } from '#R~execute/state/box/box';
 import { IStore } from '#R~execute/state/declare';
@@ -47,6 +49,8 @@ export class Box extends React.Component<IBoxProps, IBoxState> {
 
         initProvider();
 
+        this._renderNearest = this._renderNearest.bind(this);
+
         this._handleKeyDown = this._handleKeyDown.bind(this);
         this._handleKeyPress = this._handleKeyPress.bind(this);
     }
@@ -78,9 +82,21 @@ export class Box extends React.Component<IBoxProps, IBoxState> {
                     this.state.fullSized && styleExecute.titleRightFullSize,
                 ].join(' ')}>
                     <div>{this.state.current}</div>
+                    {this._renderNearest()}
                 </div>
             </div>
         );
+    }
+
+    private _renderNearest(): JSX.Element | undefined {
+
+        const provider: Provider = Provider.instance;
+        const nearest: ICommand | null = provider.nearest(this.state.current);
+
+        if (nearest) {
+            return (<div>Press Enter for "{nearest.command}"</div>);
+        }
+        return undefined;
     }
 
     private _handleKeyDown(event: KeyboardEvent): void {

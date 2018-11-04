@@ -45,6 +45,17 @@ export class Restorable {
         this._restoreFunction = restore;
     }
 
+    public called(): string[] {
+
+        return this._called;
+    }
+
+    public thenReturn(returnWith: any): Restorable {
+
+        this._returnWith = returnWith;
+        return this;
+    }
+
     public restore(): Restorable {
 
         this._restoreFunction();

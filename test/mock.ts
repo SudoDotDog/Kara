@@ -9,8 +9,9 @@ import * as Adapter from 'enzyme-adapter-react-16';
 import * as ModuleAlias from 'module-alias';
 import * as Sass from 'node-sass';
 import * as Path from 'path';
-import { MockDocument } from './mock/document';
-import { MockWindow } from './mock/window';
+import { registerUnitTestConnor } from './declare/error';
+import { MockDocument } from './mock/global/document';
+import { MockWindow } from './mock/global/window';
 
 const registerEnzyme = (): void => {
 
@@ -63,7 +64,13 @@ const registerGlobal = () => {
     (global as any).window = MockWindow.instance;
 };
 
+const registerConnor = () => {
+
+    registerUnitTestConnor();
+};
+
 registerSass();
 registerEnzyme();
 registerBinding();
 registerGlobal();
+registerConnor();

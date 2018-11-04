@@ -10,7 +10,6 @@ const webpack = require('webpack');
 
 const APP_DIR = path.resolve(__dirname, '..', '..', 'src', 'renderer', 'scene', 'scepter');
 const BUILD_DIR = path.resolve(__dirname, '..', '..', 'app', 'renderer', 'scene', 'scepter');
-const COMMON_SASS_DIR = path.resolve(__dirname, '..', '..', 'src', 'renderer', 'style', 'common');
 const PUBLIC_DIR = path.resolve(__dirname, '..', '..', 'public', 'template.html');
 const RENDERER_TSCONFIG_DIR = path.resolve(__dirname, '..', '..', 'typescript', 'tsconfig.renderer.dev.json');
 
@@ -45,49 +44,7 @@ let config = {
                     },
                 }],
             },
-            {
-                test: /\.sass$/,
-                exclude: COMMON_SASS_DIR,
-                use: [{
-                        loader: 'style-loader',
-                    },
-                    {
-                        loader: 'typings-for-css-modules-loader',
-                        options: {
-                            modules: true,
-                            namedExport: true,
-                            camelCase: true,
-                            sass: true,
-                            localIdentName: "[name]_[local]__[hash:base64:5]"
-                        },
-                    },
-                    {
-                        loader: 'sass-loader',
-                        options: {
-                            outputStyle: 'expanded',
-                            sourceMap: true,
-                        },
-                    },
-                ],
-            },
-            {
-                test: /\.sass$/,
-                include: COMMON_SASS_DIR,
-                use: [{
-                        loader: 'style-loader',
-                    },
-                    {
-                        loader: 'css-loader',
-                    },
-                    {
-                        loader: 'sass-loader',
-                        options: {
-                            outputStyle: 'expanded',
-                            sourceMap: true,
-                        },
-                    },
-                ],
-            },
+            ...require('../common/sass.dev'),
             {
                 enforce: "pre",
                 test: /\.js$/,

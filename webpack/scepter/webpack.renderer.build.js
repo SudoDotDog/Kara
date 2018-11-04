@@ -12,7 +12,6 @@ const path = require('path');
 const webpack = require('webpack');
 
 const BUILD_DIR = path.resolve(__dirname, '..', '..', 'app', 'renderer', 'scene', 'scepter');
-const COMMON_SASS_DIR = path.resolve(__dirname, '..', '..', 'src', 'renderer', 'style', 'common');
 const APP_DIR = path.resolve(__dirname, '..', '..', 'src', 'renderer', 'scene', 'scepter');
 const PUBLIC_DIR = path.resolve(__dirname, '..', '..', 'public', 'template.html');
 const RENDERER_TSCONFIG_DIR = path.resolve(__dirname, '..', '..', 'typescript', 'tsconfig.renderer.dev.json');
@@ -21,25 +20,7 @@ let config = {
     devtool: 'cheap-source-map',
     target: 'electron-renderer',
     mode: 'production',
-    optimization: {
-        minimizer: [
-            new UglifyJsPlugin({
-                cache: true,
-                parallel: true,
-            }),
-            new OptimizeCSSAssetsPlugin({}),
-        ],
-        splitChunks: {
-            cacheGroups: {
-                styles: {
-                    name: 'styles',
-                    test: /\.css$/,
-                    chunks: 'all',
-                    enforce: true,
-                },
-            },
-        },
-    },
+    optimization: require('../common/optimization'),
     entry: {
         index: APP_DIR + "/index.tsx",
     },
@@ -61,48 +42,7 @@ let config = {
                     },
                 }],
             },
-            {
-                test: /\.sass$/,
-                exclude: COMMON_SASS_DIR,
-                use: [{
-                        loader: MiniCssExtractPlugin.loader,
-                    },
-                    {
-                        loader: 'typings-for-css-modules-loader',
-                        options: {
-                            modules: true,
-                            namedExport: true,
-                            camelCase: true,
-                            minimize: true,
-                            sass: true,
-                            localIdentName: "[name]_[local]__[hash:base64:5]"
-                        },
-                    },
-                    {
-                        loader: 'sass-loader',
-                        options: {
-                            outputStyle: 'expanded',
-                        },
-                    },
-                ],
-            },
-            {
-                test: /\.sass$/,
-                include: COMMON_SASS_DIR,
-                use: [{
-                        loader: 'style-loader',
-                    },
-                    {
-                        loader: 'css-loader',
-                    },
-                    {
-                        loader: 'sass-loader',
-                        options: {
-                            outputStyle: 'expanded',
-                        },
-                    },
-                ],
-            },
+            ...require('../common/sass.build'),
             {
                 enforce: "pre",
                 test: /\.js$/,
@@ -112,8 +52,6 @@ let config = {
     },
     plugins: [
         new MiniCssExtractPlugin({
-            // Options similar to the same options in webpackOptions.output
-            // both options are optional
             filename: "[name].css",
             chunkFilename: "[id].css"
         }),

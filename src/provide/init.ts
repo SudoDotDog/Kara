@@ -14,16 +14,27 @@ export const initProvider = (): void => {
         return;
     }
 
-    provider.register({
-        name: 'google',
-        command: 'google',
-        key: 'g',
-        description: 'google',
-        declare: {
-            type: COMMAND_DECLARE_TYPE.SCRIPT,
-            script: `import {openExternal} from 'io';openExternal('https://google.com')`,
-        },
-    });
+    provider
+        .register({
+            name: 'google',
+            command: 'google',
+            key: 'g',
+            description: 'google',
+            declare: {
+                type: COMMAND_DECLARE_TYPE.SCRIPT,
+                script: `import {openExternal} from 'io';openExternal('https://google.com')`,
+            },
+        })
+        .register({
+            name: 'someLongName',
+            command: 'someLongName',
+            key: 's',
+            description: 'google',
+            declare: {
+                type: COMMAND_DECLARE_TYPE.SCRIPT,
+                script: `import {openExternal} from 'io';openExternal('https://google.com')`,
+            },
+        });
 
     return;
 };

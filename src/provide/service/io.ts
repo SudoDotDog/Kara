@@ -5,6 +5,7 @@
  */
 
 import { ConnorError } from 'connor';
+import { shell } from 'electron';
 
 export const getUserInput = (): Promise<string> => {
 
@@ -12,4 +13,10 @@ export const getUserInput = (): Promise<string> => {
 
         resolve('test');
     });
+};
+
+export const openExternal = async (url: string): Promise<void> => {
+
+    shell.openExternal(url);
+    return;
 };

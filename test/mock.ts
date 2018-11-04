@@ -45,6 +45,15 @@ const registerSass = (): void => {
     };
 };
 
+const registerElectron = (): void => {
+
+    const test: string = Path.join(__dirname, '..', 'test');
+
+    ModuleAlias.addAliases({
+        electron: Path.join(test, 'mock', 'global', 'electron.ts'),
+    });
+};
+
 const registerBinding = () => {
 
     const src: string = Path.join(__dirname, '..', 'src');
@@ -71,6 +80,7 @@ const registerConnor = () => {
 };
 
 registerSass();
+registerElectron();
 registerEnzyme();
 registerBinding();
 registerGlobal();

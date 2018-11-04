@@ -13,7 +13,7 @@ export class Restorable {
 
         if (!clazz || !clazz[element]) {
             throw Connor.getErrorCreator(UNIT_TEST_MODULE_NAME)
-                (UNIT_TEST_ERROR_CODE.UNABLE_TO_MOCK_ABSENT_FUNCTION);
+                (UNIT_TEST_ERROR_CODE.UNABLE_TO_MOCK_ABSENT_FUNCTION, element);
         }
 
         const store: any = clazz[element];

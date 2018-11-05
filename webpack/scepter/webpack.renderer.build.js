@@ -5,8 +5,6 @@
  */
 
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
-const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const path = require('path');
 const webpack = require('webpack');
@@ -33,15 +31,8 @@ let config = {
         extensions: [".ts", ".tsx", ".js", ".json", ".css", ".sass"],
     },
     module: {
-        rules: [{
-                test: /\.tsx?$/,
-                use: [{
-                    loader: 'awesome-typescript-loader',
-                    options: {
-                        configFileName: RENDERER_TSCONFIG_DIR,
-                    },
-                }],
-            },
+        rules: [
+            require('../common/ts')(RENDERER_TSCONFIG_DIR),
             ...require('../common/sass.build'),
             {
                 enforce: "pre",

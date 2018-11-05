@@ -31,15 +31,8 @@ let config = {
         extensions: [".ts", ".tsx", ".js", ".json", ".css", ".sass"],
     },
     module: {
-        rules: [{
-                test: /\.tsx?$/,
-                use: [{
-                    loader: 'awesome-typescript-loader',
-                    options: {
-                        configFileName: RENDERER_TSCONFIG_DIR,
-                    },
-                }],
-            },
+        rules: [
+            require('../common/ts')(RENDERER_TSCONFIG_DIR),
             ...require('../common/sass.build'),
             {
                 enforce: "pre",

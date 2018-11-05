@@ -28,15 +28,9 @@ let config = {
         extensions: [".js", ".ts"],
     },
     module: {
-        rules: [{
-            test: /\.tsx?$/,
-            use: [{
-                loader: 'awesome-typescript-loader',
-                options: {
-                    configFileName: TSCONFIG_DIR,
-                },
-            }],
-        }],
+        rules: [
+            require('./common/ts')(TSCONFIG_DIR),
+        ],
     },
     plugins: [
         new webpack.DefinePlugin({

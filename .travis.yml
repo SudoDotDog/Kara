@@ -6,12 +6,16 @@ node_js:
  - '9'
  - '10'
 
+cache: npm
+
 install:
  - make install
  - npm install codecov nyc -g
 
-script:
+before_script:
  - make build
+
+script:
  - nyc mocha
 
 after_success:

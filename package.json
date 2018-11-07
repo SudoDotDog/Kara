@@ -28,7 +28,7 @@
 		"@sudoo/command": "^1.2.0",
 		"@sudoo/marked": "^1.4.0",
 		"connor": "^2.0.0",
-		"react": "^16.6.0",
+		"react": "^16.6.1",
 		"react-dom": "^16.6.0",
 		"react-redux": "^5.1.0",
 		"react-router-dom": "^4.3.1",

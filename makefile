@@ -1,6 +1,9 @@
 # Paths
-main_build := webpack/webpack.main.build.js
-main_dev := webpack/webpack.main.dev.js
+main_build := webpack/webpack.main.build.ts
+main_dev := webpack/webpack.main.dev.ts
+
+renderer_center_build := webpack/center/webpack.renderer.build.js
+renderer_center_dev := webpack/center/webpack.renderer.dev.js
 renderer_scepter_build := webpack/scepter/webpack.renderer.build.js
 renderer_scepter_dev := webpack/scepter/webpack.renderer.dev.js
 renderer_execute_build := webpack/execute/webpack.renderer.build.js
@@ -32,7 +35,15 @@ electron-builder:
 
 build: renderer-build electron-build
 
-renderer-build: r-scepter-build r-execute-build
+renderer-build: r-scepter-build r-execute-build r-center-build
+
+r-center:
+	@echo "[INFO] Starting center renderer development"
+	@$(webpack_dev_server) --config $(renderer_center_dev)
+
+r-center-build:
+	@echo "[INFO] Starting center renderer production build"
+	@$(webpack) --config $(renderer_center_build)
 
 r-scepter:
 	@echo "[INFO] Starting scepter renderer development"

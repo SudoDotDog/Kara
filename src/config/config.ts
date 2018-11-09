@@ -7,6 +7,10 @@
 export default {
     isDebug: true,
     backgroundColor: 'white',
+    center: {
+        devURL: 'http://localhost:8083',
+        prodURL: `file://${__dirname}/../renderer/scene/center/index.html`,
+    },
     execute: {
         devURL: 'http://localhost:8082',
         prodURL: `file://${__dirname}/../renderer/scene/execute/index.html`,

@@ -26,6 +26,7 @@
             "#R^components/*": ["renderer/components/*"],
             "#R^style/*": ["renderer/style/*"],
             "#R^util/*": ["renderer/util/*"],
+            "#R~center/*": ["renderer/scene/center/*"],
             "#R~execute/*": ["renderer/scene/execute/*"]
         },
         "removeComments": true,

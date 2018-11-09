@@ -1,15 +1,15 @@
 /**
  * @author WMXPY
  * @namespace Webpack
- * @description Execute Renderer Development
+ * @description Center Renderer Development
  */
 
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const path = require('path');
 const webpack = require('webpack');
 
-const APP_DIR = path.resolve(__dirname, '..', '..', 'src', 'renderer', 'scene', 'execute');
-const BUILD_DIR = path.resolve(__dirname, '..', '..', 'app', 'renderer', 'scene', 'execute');
+const APP_DIR = path.resolve(__dirname, '..', '..', 'src', 'renderer', 'scene', 'center');
+const BUILD_DIR = path.resolve(__dirname, '..', '..', 'app', 'renderer', 'scene', 'center');
 const PUBLIC_DIR = path.resolve(__dirname, '..', '..', 'public', 'template.html');
 const RENDERER_TSCONFIG_DIR = path.resolve(__dirname, '..', '..', 'typescript', 'tsconfig.renderer.dev.json');
 
@@ -66,7 +66,7 @@ const config = {
         hot: true,
         contentBase: BUILD_DIR,
         publicPath: '/',
-        port: 8082,
+        port: 8083,
         inline: true,
         historyApiFallback: true
     },

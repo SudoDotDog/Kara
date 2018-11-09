@@ -17,5 +17,6 @@ module.exports = {
     "#R^components": buildPath('renderer', 'components'),
     "#R^style": buildPath('renderer', 'style'),
     "#R^util": buildPath('renderer', 'util'),
+    "#R~center": buildPath("renderer", "scene", "center"),
     "#R~execute": buildPath("renderer", "scene", "execute"),
 };

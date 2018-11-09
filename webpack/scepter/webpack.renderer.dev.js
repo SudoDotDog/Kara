@@ -13,7 +13,7 @@ const BUILD_DIR = path.resolve(__dirname, '..', '..', 'app', 'renderer', 'scene'
 const PUBLIC_DIR = path.resolve(__dirname, '..', '..', 'public', 'template.html');
 const RENDERER_TSCONFIG_DIR = path.resolve(__dirname, '..', '..', 'typescript', 'tsconfig.renderer.dev.json');
 
-let config = {
+const config = {
     devtool: 'cheap-module-eval-source-map',
     target: "electron-renderer",
     mode: "development",

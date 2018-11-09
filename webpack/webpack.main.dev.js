@@ -11,7 +11,7 @@ const BUILD_DIR = path.resolve(__dirname, '..', 'app', 'main');
 const APP_DIR = path.resolve(__dirname, '..', 'src', 'main');
 const TSCONFIG_DIR = path.resolve(__dirname, '..', 'typescript', 'tsconfig.main.dev.json');
 
-let config = {
+const config = {
     devtool: 'cheap-module-eval-source-map',
     entry: APP_DIR + "/index.ts",
     mode: "development",

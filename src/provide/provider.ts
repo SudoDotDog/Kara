@@ -4,10 +4,12 @@
  * @description Provider
  */
 
-import { ICommand } from "#P/declare";
+import { COMMAND_DECLARE, COMMAND_DECLARE_TYPE, ICommand, ICommandDeclareScript } from "#P/declare";
 import { _String } from '@sudoo/bark';
+import { MarkedResult } from "@sudoo/marked";
 import Connor, { ErrorCreationFunction } from "connor";
 import { PROVIDE_ERROR_CODE, PROVIDE_MODULE_NAME } from "./declare/error";
+import { executeScript } from "./marked";
 
 export class Provider {
 
@@ -47,6 +49,21 @@ export class Provider {
     public isEmpty(): boolean {
 
         return this.length === 0;
+    }
+
+    public async execute(declare: COMMAND_DECLARE): Promise<boolean> {
+
+        if (declare.type === COMMAND_DECLARE_TYPE.SCRIPT) {
+
+            const result: MarkedResult = await this.executeScript(declare);
+            return true;
+        }
+        return false;
+    }
+
+    public async executeScript(declare: ICommandDeclareScript): Promise<MarkedResult> {
+
+        return executeScript(declare.script);
     }
 
     public register(command: ICommand): Provider {

@@ -20,15 +20,26 @@ export enum COMMAND_DECLARE_TYPE {
     SELECT = 'SELECT',
 }
 
-export type COMMAND_DECLARE = {
+export type COMMAND_DECLARE = ICommandDeclareInput
+    | ICommandDeclareScript
+    | ICommandDeclareSelect;
+
+export interface ICommandDeclareInput {
+
     type: COMMAND_DECLARE_TYPE.INPUT;
 
     next: COMMAND_DECLARE;
-} | {
+}
+
+export interface ICommandDeclareScript {
+
     type: COMMAND_DECLARE_TYPE.SCRIPT;
 
     script: string;
-} | {
+}
+
+export interface ICommandDeclareSelect {
+
     type: COMMAND_DECLARE_TYPE.SELECT;
 
     from: Array<{
@@ -36,5 +47,5 @@ export type COMMAND_DECLARE = {
         name: string;
         key: string;
         next: COMMAND_DECLARE;
-    }>
-};
+    }>;
+}

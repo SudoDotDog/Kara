@@ -4,7 +4,7 @@
  * @description Box
  */
 
-import { ICommand } from '#P/declare';
+import { ICommand, ICommandDeclareScript } from '#P/declare';
 import { Provider } from '#P/provider';
 import * as styleExecute from '#R^style/scene/execute/execute.sass';
 import { Panel } from '#R~execute/components/panel';
@@ -92,6 +92,13 @@ export class Box extends React.Component<IBoxProps, IBoxState> {
         const setCurrent = (newCurrent: string) => this.setState({ current: newCurrent });
 
         switch (event.key) {
+            case KEY.ENTER:
+                const matched: ICommand | null = provider.match(current);
+                if (matched) {
+
+                    provider.execute(matched.declare).then(console.log);
+                }
+                break;
             case KEY.ESCAPE:
                 setCurrent('');
                 break;

@@ -66,6 +66,17 @@ export class Execute implements IScene {
         return this;
     }
 
+    public trigger(): IScene {
+
+        const browserWindow = this._getBrowserWindow();
+        if (browserWindow.isVisible()) {
+            this.hide();
+        } else {
+            this.show();
+        }
+        return this;
+    }
+
     public show(): IScene {
 
         const browserWindow = this._getBrowserWindow();

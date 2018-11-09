@@ -9,6 +9,7 @@ export interface IScene {
     create: () => IScene;
     remove: () => IScene;
     exist: () => boolean;
+    trigger: () => IScene;
     show: () => IScene;
     hide: () => IScene;
 }

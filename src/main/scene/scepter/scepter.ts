@@ -64,6 +64,31 @@ export class Scepter implements IScene {
         return this;
     }
 
+    public trigger(): IScene {
+
+        const browserWindow = this._getBrowserWindow();
+        if (browserWindow.isVisible()) {
+            this.hide();
+        } else {
+            this.show();
+        }
+        return this;
+    }
+
+    public show(): IScene {
+
+        const browserWindow = this._getBrowserWindow();
+        browserWindow.show();
+        return this;
+    }
+
+    public hide(): IScene {
+
+        const browserWindow = this._getBrowserWindow();
+        browserWindow.hide();
+        return this;
+    }
+
     private _bind(windows: BrowserWindow): void {
 
         windows.on('ready-to-show', (): void => {

@@ -16,13 +16,7 @@ const executeScene = Execute.createInstance();
 app.on("ready", () => {
     executeScene.create();
     KaraTray.createInstance();
-    bindingGlobalShortcut(() => {
-        dialog.showMessageBox({
-            type: 'info',
-            message: 'INFO',
-            buttons: ['OK'],
-        });
-    });
+    bindingGlobalShortcut(() => executeScene.trigger());
 });
 
 app.on("window-all-closed", () => {

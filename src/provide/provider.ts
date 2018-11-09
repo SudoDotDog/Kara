@@ -75,7 +75,15 @@ export class Provider {
                 (nearest: { command: ICommand; length: number; }, key: string) => {
 
                     const current: ICommand = this._commandMap[key];
-                    const distance: number = _String.similar(command, current.command);
+                    const target: string = current.command;
+
+                    const distance: number = _String
+                        .compare(command)
+                        .with(target)
+                        .unsensitiveContain(15)
+                        .length(3)
+                        .distance;
+
                     if (distance < nearest.length) {
 
                         return {
@@ -83,6 +91,7 @@ export class Provider {
                             length: distance,
                         };
                     }
+
                     return nearest;
                 }, { command: null, length: Infinity });
 

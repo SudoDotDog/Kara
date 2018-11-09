@@ -24,11 +24,19 @@ export const initProvider = (): void => {
                 type: COMMAND_DECLARE_TYPE.SCRIPT,
                 script: `import {openExternal} from 'io';openExternal('https://google.com')`,
             },
-        })
-        .register({
+        }).register({
             name: 'someLongName',
             command: 'someLongName',
             key: 's',
+            description: 'google',
+            declare: {
+                type: COMMAND_DECLARE_TYPE.SCRIPT,
+                script: `import {openExternal} from 'io';openExternal('https://google.com')`,
+            },
+        }).register({
+            name: 'someName',
+            command: 'someName',
+            key: 'o',
             description: 'google',
             declare: {
                 type: COMMAND_DECLARE_TYPE.SCRIPT,

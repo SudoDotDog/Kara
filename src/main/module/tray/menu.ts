@@ -1,6 +1,6 @@
 /**
  * @author WMXPY
- * @namespace Main_Tray
+ * @namespace Main_Module_Tray
  * @description Menu template
  */
 

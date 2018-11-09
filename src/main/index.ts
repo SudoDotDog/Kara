@@ -4,17 +4,25 @@
  * @description Index
  */
 
-import { app } from "electron";
+import { app, dialog } from "electron";
 import { registerConnor } from "./declare/error";
+import { bindingGlobalShortcut } from "./module/binding/binding";
+import { KaraTray } from "./module/tray/tray";
 import { Execute } from "./scene/execute/execute";
-import { KaraTray } from "./tray/tray";
 
 registerConnor();
-const scepterScene = Execute.createInstance();
+const executeScene = Execute.createInstance();
 
 app.on("ready", () => {
-    scepterScene.create();
+    executeScene.create();
     KaraTray.createInstance();
+    bindingGlobalShortcut(() => {
+        dialog.showMessageBox({
+            type: 'info',
+            message: 'INFO',
+            buttons: ['OK'],
+        });
+    });
 });
 
 app.on("window-all-closed", () => {
@@ -24,7 +32,7 @@ app.on("window-all-closed", () => {
 });
 
 app.on("activate", () => {
-    if (!scepterScene.exist()) {
-        scepterScene.create();
+    if (!executeScene.exist()) {
+        executeScene.create();
     }
 });

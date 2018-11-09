@@ -11,6 +11,7 @@ const buildPath = (...path) => {
 };
 
 module.exports = {
+    "#C": buildPath('config'),
     "#M": buildPath('main'),
     "#P": buildPath('provide'),
     "#R^components": buildPath('renderer', 'components'),

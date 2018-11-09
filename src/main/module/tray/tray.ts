@@ -1,11 +1,11 @@
 /**
  * @author WMXPY
- * @namespace Tray
+ * @namespace Main_Module_Tray
  * @description Tray
  */
 
+import Resource from '#C/resource';
 import { Menu, Tray } from 'electron';
-import Resource from '../../config/resource';
 import { trayMenuTemplate } from './menu';
 
 export class KaraTray {

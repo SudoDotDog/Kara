@@ -33,11 +33,13 @@ export class Execute implements IScene {
 
     private _browserWindow: BrowserWindow | null;
     private _error: ErrorCreationFunction;
+    private _ready: boolean;
 
     private constructor() {
 
         this._browserWindow = null;
         this._error = Connor.getErrorCreator(MODULE_NAME);
+        this._ready = false;
     }
 
     public create(): IScene {
@@ -64,11 +66,24 @@ export class Execute implements IScene {
         return this;
     }
 
+    public show(): IScene {
+
+        const browserWindow = this._getBrowserWindow();
+        browserWindow.show();
+        return this;
+    }
+
+    public hide(): IScene {
+
+        const browserWindow = this._getBrowserWindow();
+        browserWindow.hide();
+        return this;
+    }
+
     private _bind(windows: BrowserWindow): void {
 
         windows.on('ready-to-show', (): void => {
-            windows.show();
-            windows.focus();
+            this._ready = true;
         });
     }
 

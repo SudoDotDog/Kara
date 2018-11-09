@@ -19,6 +19,7 @@
         "noImplicitReturns": true,
         "noImplicitThis": true,
         "paths": {
+            "#C/*": ["config/*"],
             "#M/*": ["main/*"],
             "#P/*": ["provide/*"],
             "#R^components/*": ["renderer/components/*"],

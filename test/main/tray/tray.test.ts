@@ -4,7 +4,7 @@
  * @description Tray Test
  */
 
-import { KaraTray } from '#M/tray/tray';
+import { KaraTray } from '#M/module/tray/tray';
 import { expect } from 'chai';
 import * as Chance from 'chance';
 import { getMockedElectronTrays, Menu, Tray } from '../../mock/global/electron';

@@ -12,9 +12,9 @@
   dependencies:
     regenerator-runtime "^0.12.0"
 
-"@sudoo/bark@^1.0.2":
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/@sudoo/bark/-/bark-1.0.2.tgz#223046750172cde7ec108d0b76fc8b1f6df5caee"
+"@sudoo/bark@^1.0.3":
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/@sudoo/bark/-/bark-1.0.3.tgz#0ab4b96e658ad74b460831a01c11b9fe1e81bf03"
 
 "@sudoo/command@^1.2.0":
   version "1.2.0"
@@ -78,9 +78,9 @@
   version "10.12.1"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-10.12.1.tgz#da61b64a2930a80fa708e57c45cd5441eb379d5b"
 
-"@types/node@^10.12.2":
-  version "10.12.2"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-10.12.2.tgz#d77f9faa027cadad9c912cd47f4f8b07b0fb0864"
+"@types/node@^10.12.3":
+  version "10.12.3"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-10.12.3.tgz#3918b73ceed484e58367be5acb79d1775239e393"
 
 "@types/node@^8.0.24":
   version "8.10.36"

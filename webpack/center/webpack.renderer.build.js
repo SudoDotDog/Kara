@@ -11,7 +11,6 @@ const webpack = require('webpack');
 
 const BUILD_DIR = path.resolve(__dirname, '..', '..', 'app', 'renderer', 'scene', 'center');
 const APP_DIR = path.resolve(__dirname, '..', '..', 'src', 'renderer', 'scene', 'center');
-const PUBLIC_DIR = path.resolve(__dirname, '..', '..', 'public', 'template.html');
 const RENDERER_TSCONFIG_DIR = path.resolve(__dirname, '..', '..', 'typescript', 'tsconfig.renderer.dev.json');
 
 const config = {
@@ -49,7 +48,7 @@ const config = {
         new HtmlWebpackPlugin({
             chunks: ['index'],
             title: 'Command Center - Kara',
-            template: PUBLIC_DIR,
+            template: require('../common/dirs').HTML_TEMPLATE_DIR,
             filename: 'index.html',
         }),
         new webpack.DefinePlugin({

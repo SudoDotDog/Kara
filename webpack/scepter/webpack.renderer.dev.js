@@ -10,7 +10,6 @@ const webpack = require('webpack');
 
 const APP_DIR = path.resolve(__dirname, '..', '..', 'src', 'renderer', 'scene', 'scepter');
 const BUILD_DIR = path.resolve(__dirname, '..', '..', 'app', 'renderer', 'scene', 'scepter');
-const PUBLIC_DIR = path.resolve(__dirname, '..', '..', 'public', 'template.html');
 const RENDERER_TSCONFIG_DIR = path.resolve(__dirname, '..', '..', 'typescript', 'tsconfig.renderer.dev.json');
 
 const config = {
@@ -50,7 +49,7 @@ const config = {
         new HtmlWebpackPlugin({
             chunks: ['index'],
             title: 'Script Editor - Kara',
-            template: PUBLIC_DIR,
+            template: require('../common/dirs').HTML_TEMPLATE_DIR,
             filename: 'index.html',
         }),
         new webpack.DefinePlugin({

@@ -40,6 +40,11 @@ export class Scepter implements IScene {
         this._error = Connor.getErrorCreator(MODULE_NAME);
     }
 
+    public get isCreated(): boolean {
+
+        return Boolean(this._browserWindow);
+    }
+
     public create(): IScene {
 
         this._browserWindow =
@@ -86,6 +91,20 @@ export class Scepter implements IScene {
 
         const browserWindow = this._getBrowserWindow();
         browserWindow.hide();
+        return this;
+    }
+
+    public focus(): IScene {
+
+        const browserWindow = this._getBrowserWindow();
+        browserWindow.focus();
+        return this;
+    }
+
+    public blur(): IScene {
+
+        const browserWindow = this._getBrowserWindow();
+        browserWindow.blur();
         return this;
     }
 

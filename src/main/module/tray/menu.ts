@@ -5,15 +5,15 @@
  */
 
 import { IScene } from "#M/declare/scene";
-import { Center } from "#M/scene/center/execute";
+import { Center } from "#M/scene/center/center";
 import { app } from "electron";
-
-const centerScene: IScene = Center.createInstance();
 
 export const trayMenuTemplate = [
     {
         label: 'Command Center',
         click: (): void => {
+            const centerScene: IScene = Center.createInstance();
+
             if (centerScene.isCreated) {
                 centerScene.focus();
             } else {

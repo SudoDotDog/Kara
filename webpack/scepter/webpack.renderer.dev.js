@@ -49,7 +49,7 @@ const config = {
         new webpack.WatchIgnorePlugin([/css\.d\.ts$/]),
         new HtmlWebpackPlugin({
             chunks: ['index'],
-            title: 'Kara',
+            title: 'Script Editor - Kara',
             template: PUBLIC_DIR,
             filename: 'index.html',
         }),

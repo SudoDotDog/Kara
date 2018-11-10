@@ -33,18 +33,20 @@ export class Center implements IScene {
 
     private _browserWindow: BrowserWindow | null;
     private _error: ErrorCreationFunction;
-    private _ready: boolean;
 
     private constructor() {
 
         this._browserWindow = null;
         this._error = Connor.getErrorCreator(MODULE_NAME);
-        this._ready = false;
     }
 
     public get isCreated(): boolean {
 
-        return Boolean(this._browserWindow);
+        if (this.exist()) {
+            const browserWindow: BrowserWindow = this._browserWindow as BrowserWindow;
+            return !browserWindow.isDestroyed();
+        }
+        return false;
     }
 
     public create(): IScene {
@@ -64,7 +66,7 @@ export class Center implements IScene {
 
     public remove(): IScene {
 
-        const browserWindow = this._getBrowserWindow();
+        const browserWindow: BrowserWindow = this._getBrowserWindow();
         browserWindow.close();
         browserWindow.removeAllListeners();
         this._browserWindow = null;
@@ -73,7 +75,7 @@ export class Center implements IScene {
 
     public trigger(): IScene {
 
-        const browserWindow = this._getBrowserWindow();
+        const browserWindow: BrowserWindow = this._getBrowserWindow();
         if (browserWindow.isVisible()) {
             this.hide();
         } else {
@@ -113,7 +115,8 @@ export class Center implements IScene {
     private _bind(windows: BrowserWindow): void {
 
         windows.on('ready-to-show', (): void => {
-            this._ready = true;
+            windows.show();
+            windows.focus();
         });
     }
 

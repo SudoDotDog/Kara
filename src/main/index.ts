@@ -14,20 +14,19 @@ import { Execute } from "./scene/execute/execute";
 registerConnor();
 const executeScene: IScene = Execute.createInstance();
 
+const createExecuteScene = (): void => {
+    if (!executeScene.exist()) {
+        executeScene.create();
+    }
+};
+
 app.on("ready", (): void => {
-    executeScene.create();
+
+    createExecuteScene();
+
     KaraTray.createInstance();
     bindingGlobalShortcut(() => executeScene.trigger());
 });
 
-app.on("window-all-closed", (): void => {
-    if (process.platform !== "darwin") {
-        app.quit();
-    }
-});
-
-app.on("activate", (): void => {
-    if (!executeScene.exist()) {
-        executeScene.create();
-    }
-});
+app.on("window-all-closed", createExecuteScene);
+app.on("activate", createExecuteScene);

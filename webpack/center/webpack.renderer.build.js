@@ -48,7 +48,7 @@ const config = {
         }),
         new HtmlWebpackPlugin({
             chunks: ['index'],
-            title: 'Kara',
+            title: 'Command Center - Kara',
             template: PUBLIC_DIR,
             filename: 'index.html',
         }),

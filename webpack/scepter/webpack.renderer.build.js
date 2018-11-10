@@ -48,7 +48,7 @@ const config = {
         }),
         new HtmlWebpackPlugin({
             chunks: ['index'],
-            title: 'Kara',
+            title: 'Script Editor - Kara',
             template: PUBLIC_DIR,
             filename: 'index.html',
         }),

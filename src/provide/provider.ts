@@ -6,8 +6,7 @@
 
 import { COMMAND_DECLARE, COMMAND_DECLARE_TYPE, ICommand, ICommandDeclareScript } from "#P/declare";
 import { _String } from '@sudoo/bark';
-import { MarkedResult } from "@sudoo/marked";
-import { END_SIGNAL } from "@sudoo/marked/dist/declare/node";
+import { END_SIGNAL, MarkedResult } from "@sudoo/marked";
 import Connor, { ErrorCreationFunction } from "connor";
 import { PROVIDE_ERROR_CODE, PROVIDE_MODULE_NAME } from "./declare/error";
 import { executeScript } from "./marked";

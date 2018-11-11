@@ -4,7 +4,7 @@
  * @description Box
  */
 
-import { ICommand, ICommandDeclareScript } from '#P/declare';
+import { ICommand } from '#P/declare';
 import { Provider } from '#P/provider';
 import * as styleExecute from '#R^style/scene/execute/execute.sass';
 import { Panel } from '#R~execute/components/panel';

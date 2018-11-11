@@ -144,8 +144,8 @@ export class Center implements IScene {
 
         return {
 
-            width: 1350,
-            height: 1020,
+            width: 600,
+            height: 600,
 
             show: false,
             backgroundColor: Config.backgroundColor,

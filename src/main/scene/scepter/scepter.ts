@@ -5,11 +5,10 @@
  */
 
 import Connor, { ErrorCreationFunction } from 'connor';
-import { BrowserWindow, Menu } from 'electron';
+import { BrowserWindow } from 'electron';
 import Config from '../../../config/config';
 import { ERROR_CODE, MODULE_NAME } from '../../declare/error';
 import { IScene } from '../../declare/scene';
-import { menuTemplate } from './menu';
 
 export class Scepter implements IScene {
 
@@ -126,8 +125,6 @@ export class Scepter implements IScene {
             backgroundColor: Config.backgroundColor,
         });
         windows.loadURL(Config.scepter.prodURL);
-        const menu = Menu.buildFromTemplate(menuTemplate);
-        Menu.setApplicationMenu(menu);
         return windows;
     }
 

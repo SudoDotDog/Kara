@@ -5,11 +5,10 @@
  */
 
 import Connor, { ErrorCreationFunction } from 'connor';
-import { BrowserWindow, BrowserWindowConstructorOptions, Menu } from 'electron';
+import { BrowserWindow, BrowserWindowConstructorOptions } from 'electron';
 import Config from '../../../config/config';
 import { ERROR_CODE, MODULE_NAME } from '../../declare/error';
 import { IScene } from '../../declare/scene';
-import { menuTemplate } from './menu';
 
 export class Execute implements IScene {
 
@@ -121,8 +120,6 @@ export class Execute implements IScene {
 
         const windows: BrowserWindow = new BrowserWindow(this._getWindowSetting());
         windows.loadURL(Config.execute.prodURL);
-        const menu = Menu.buildFromTemplate(menuTemplate);
-        Menu.setApplicationMenu(menu);
         return windows;
     }
 

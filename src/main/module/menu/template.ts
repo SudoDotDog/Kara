@@ -1,7 +1,7 @@
 /**
  * @author WMXPY
- * @namespace Scene_Execute
- * @description Menu template
+ * @namespace Main_Module_Menu
+ * @description Template
  */
 
 export const menuTemplate: any = [

@@ -7,6 +7,7 @@
 import { COMMAND_DECLARE, COMMAND_DECLARE_TYPE, ICommand, ICommandDeclareScript } from "#P/declare";
 import { _String } from '@sudoo/bark';
 import { MarkedResult } from "@sudoo/marked";
+import { END_SIGNAL } from "@sudoo/marked/dist/declare/node";
 import Connor, { ErrorCreationFunction } from "connor";
 import { PROVIDE_ERROR_CODE, PROVIDE_MODULE_NAME } from "./declare/error";
 import { executeScript } from "./marked";
@@ -56,7 +57,9 @@ export class Provider {
         if (declare.type === COMMAND_DECLARE_TYPE.SCRIPT) {
 
             const result: MarkedResult = await this.executeScript(declare);
-            return true;
+            if (result.signal === END_SIGNAL.SUCCEED) {
+                return true;
+            }
         }
         return false;
     }

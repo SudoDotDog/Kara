@@ -20,9 +20,9 @@
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/@sudoo/command/-/command-1.2.0.tgz#645df61e142494bd7f1f925a71548ff154fbc6c9"
 
-"@sudoo/marked@^1.4.0":
-  version "1.4.0"
-  resolved "https://registry.yarnpkg.com/@sudoo/marked/-/marked-1.4.0.tgz#a55281d183968cc716ac769611c118b92c2c655b"
+"@sudoo/marked@^1.4.1":
+  version "1.4.1"
+  resolved "https://registry.yarnpkg.com/@sudoo/marked/-/marked-1.4.1.tgz#4efed75147b1e1b7c9dbae8e747e0645533aaf90"
   dependencies:
     "@types/estree" "0.0.39"
     acorn "^6.0.2"
@@ -129,19 +129,16 @@
 "@types/tapable@*":
   version "1.0.4"
   resolved "https://registry.yarnpkg.com/@types/tapable/-/tapable-1.0.4.tgz#b4ffc7dc97b498c969b360a41eee247f82616370"
-  integrity sha512-78AdXtlhpCHT0K3EytMpn4JNxaf5tbqbLcbIRoQIHzpTIyjpxLQKRoxU55ujBXAtg3Nl2h/XWvfDa9dsMOd0pQ==
 
 "@types/uglify-js@*":
   version "3.0.4"
   resolved "https://registry.yarnpkg.com/@types/uglify-js/-/uglify-js-3.0.4.tgz#96beae23df6f561862a830b4288a49e86baac082"
-  integrity sha512-SudIN9TRJ+v8g5pTG8RRCqfqTMNqgWCKKd3vtynhGzkIIjxaicNAMuY5TRadJ6tzDu3Dotf3ngaMILtmOdmWEQ==
   dependencies:
     source-map "^0.6.1"
 
 "@types/webpack@^4.4.18":
   version "4.4.18"
   resolved "https://registry.yarnpkg.com/@types/webpack/-/webpack-4.4.18.tgz#e3e04725ce1289b31b365e92058320706f502a08"
-  integrity sha512-BWm0KlzpZnKcnnuhcIxiGnBSgkOy9A2XpQTRYf5qZ1y2P2moLJ6jz+/smK/k3oT6vAVslBKVJAaOHE60sDvvjA==
   dependencies:
     "@types/node" "*"
     "@types/tapable" "*"

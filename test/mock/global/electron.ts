@@ -7,6 +7,31 @@
 import { Construable } from "../construable";
 
 /* tslint:disable:max-classes-per-file */
+
+// tslint:disable-next-line
+export class ipcMain extends Construable {
+
+    public static on(channel: string, ...args: any) {
+
+        this._called.push(['on', channel, ...args]);
+    }
+}
+
+// tslint:disable-next-line
+export class ipcRenderer extends Construable {
+
+    public static on(channel: string, ...args: any[]) {
+
+        this._called.push(['on', channel, ...args]);
+    }
+
+    public static send(channel: string, ...args: any[]) {
+
+        this._called.push(['send', channel, ...args]);
+    }
+}
+
+
 export class Menu extends Construable {
 
     public static buildFromTemplate(template: any) {

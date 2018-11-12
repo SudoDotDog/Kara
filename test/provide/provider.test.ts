@@ -8,10 +8,17 @@ import { COMMAND_DECLARE_TYPE, ICommand } from '#P/declare';
 import { Provider } from '#P/renderer';
 import { expect } from 'chai';
 import * as Chance from 'chance';
+import { ipcRenderer } from '../mock/global/electron';
 
 describe('Given a {Provider} class', (): void => {
 
     const chance: Chance.Chance = new Chance('provide-provider');
+
+    afterEach((): void => {
+
+        ipcRenderer.clear();
+        (Provider as any)._instance = null;
+    });
 
     const createCommand = (replace?: Partial<ICommand>): ICommand => {
 
@@ -34,6 +41,15 @@ describe('Given a {Provider} class', (): void => {
 
         // tslint:disable-next-line
         expect(clazz).to.be.exist;
+    });
+
+    it('should be listen to ipc channel', (): void => {
+
+        const clazz: Provider = Provider.instance;
+
+        expect(ipcRenderer.staticCalled).to.be.deep.equal([
+            ['on', 'provider-renderer-update', (clazz as any)._handleProviderRendererUpdate],
+        ]);
     });
 
     it('should be able to inject command', (): void => {

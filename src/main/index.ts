@@ -9,6 +9,7 @@ import { registerConnor } from "./declare/error";
 import { IScene } from "./declare/scene";
 import { bindingGlobalShortcut } from "./module/binding/binding";
 import { bindingGlobalMenu } from "./module/menu/menu";
+import { bindingMainProvider } from "./module/provider/provider";
 import { KaraTray } from "./module/tray/tray";
 import { Execute } from "./scene/execute/execute";
 
@@ -25,6 +26,7 @@ app.on("ready", (): void => {
 
     bindingGlobalShortcut(() => executeScene.trigger());
     bindingGlobalMenu();
+    bindingMainProvider();
     KaraTray.createInstance();
 
     createExecuteScene();

@@ -8,6 +8,7 @@ import { COMMAND_DECLARE, COMMAND_DECLARE_TYPE, ICommand, ICommandDeclareScript 
 import { _String } from '@sudoo/bark';
 import { END_SIGNAL, MarkedResult } from "@sudoo/marked";
 import Connor, { ErrorCreationFunction } from "connor";
+import { ipcRenderer } from "electron";
 import { PROVIDE_ERROR_CODE, PROVIDE_MODULE_NAME } from "./declare/error";
 import { executeScript } from "./module/marked";
 
@@ -33,6 +34,8 @@ export class Provider {
 
         this._commandMap = Object.create(null);
         this._error = Connor.instance(PROVIDE_MODULE_NAME).getErrorCreator();
+
+        ipcRenderer.on('provider-renderer-update', this._handleProviderRendererUpdate);
     }
 
     public get length(): number {
@@ -87,6 +90,7 @@ export class Provider {
 
     public nearest(command: string): ICommand | null {
 
+        ipcRenderer.send('provider-main-request-update');
         this._checkEmpty();
 
         const result: { command: ICommand; length: number; }
@@ -124,5 +128,10 @@ export class Provider {
             this._error(PROVIDE_ERROR_CODE.PROVIDE_IS_EMPTY);
         }
         return;
+    }
+
+    private _handleProviderRendererUpdate = (): void => {
+
+        console.log('test');
     }
 }

@@ -9,7 +9,7 @@ import { _String } from '@sudoo/bark';
 import { END_SIGNAL, MarkedResult } from "@sudoo/marked";
 import Connor, { ErrorCreationFunction } from "connor";
 import { PROVIDE_ERROR_CODE, PROVIDE_MODULE_NAME } from "./declare/error";
-import { executeScript } from "./marked";
+import { executeScript } from "./module/marked";
 
 export class Provider {
 

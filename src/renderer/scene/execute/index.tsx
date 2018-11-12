@@ -4,7 +4,7 @@
  * @description Index
  */
 
-import { initProvider } from '#P/init';
+import { initProvider } from '#P/module/init';
 import '#R^style/common/global.sass';
 import { mockWindow } from '#R^util/window';
 import Hello from '#R~execute/hello';

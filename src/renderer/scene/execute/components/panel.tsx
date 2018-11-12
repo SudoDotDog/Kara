@@ -5,7 +5,7 @@
  */
 
 import { ICommand } from "#P/declare";
-import { Provider } from "#P/provider";
+import { Provider } from "#P/renderer";
 import { KeyTooltip } from "#R^components/decorate";
 import { EmptyElement } from "#R^components/empty";
 import * as panelStyles from '#R^style/scene/execute/panel.sass';

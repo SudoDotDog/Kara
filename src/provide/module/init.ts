@@ -4,8 +4,8 @@
  * @description Init
  */
 
-import { COMMAND_DECLARE_TYPE } from "./declare";
-import { Provider } from "./provider";
+import { COMMAND_DECLARE_TYPE } from "../declare";
+import { Provider } from "../renderer";
 
 export const initProvider = (): void => {
 

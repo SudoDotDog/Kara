@@ -5,7 +5,7 @@
  */
 
 import { ICommand } from '#P/declare';
-import { Provider } from '#P/provider';
+import { Provider } from '#P/renderer';
 import * as styleExecute from '#R^style/scene/execute/execute.sass';
 import { Panel } from '#R~execute/components/panel';
 import { setCounter } from '#R~execute/state/box/box';

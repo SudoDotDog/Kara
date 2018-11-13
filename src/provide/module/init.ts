@@ -4,13 +4,19 @@
  * @description Init
  */
 
+import { MainProvider } from "#P/main";
 import { COMMAND_DECLARE_TYPE } from "../declare";
 import { Provider } from "../renderer";
 
-export const initProvider = (): void => {
-
+export const initRendererProvider = (): void => {
     const provider: Provider = Provider.instance;
-    if (!provider.isEmpty) {
+    console.log('init renderer provider');
+};
+
+export const initMainProvider = (): void => {
+
+    const provider: MainProvider = MainProvider.instance;
+    if (!provider.isEmpty()) {
         return;
     }
 

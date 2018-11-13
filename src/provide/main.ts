@@ -20,26 +20,49 @@ export class MainProvider {
         return this._instance;
     }
 
-    private _buffer: Array<{
-        key: string;
-        value: ICommand;
-    }>;
+    private _commandMap: {
+        [key: string]: ICommand;
+    };
 
     private constructor() {
 
-        this._buffer = [];
+        this._commandMap = Object.create(null);
 
         ipcMain.on('provider-main-request-update', this._flushListener);
     }
 
-    public flush() {
+    public get length(): number {
 
-        ipcMain.emit('provider-renderer-update');
+        return Object.keys(this._commandMap).length;
     }
 
-    public init() {
+    public clean(): MainProvider {
 
-        ipcMain.emit('provider-renderer-update');
+        this._commandMap = Object.create(null);
+        return this;
+    }
+
+    public isEmpty(): boolean {
+
+        return this.length === 0;
+    }
+
+    public register(command: ICommand): MainProvider {
+
+        this._commandMap[command.command] = command;
+        return this;
+    }
+
+    public flush(): MainProvider {
+
+        ipcMain.emit('provider-renderer-checksum');
+        return this;
+    }
+
+    public init(): MainProvider {
+
+        ipcMain.emit('provider-renderer-checksum');
+        return this;
     }
 
     private _flushListener = (): void => {

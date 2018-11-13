@@ -1,6 +1,6 @@
 /**
  * @author WMXPY
- * @namespace Util
+ * @namespace Renderer_Util
  * @description Redux Test
  */
 

@@ -4,7 +4,7 @@
  * @description Main Provider
  */
 
-import { ipcMain, IpcMessageEvent, WebContents } from "electron";
+import { ipcMain, WebContents } from "electron";
 import { ICommand } from "./declare";
 
 export class MainProvider {

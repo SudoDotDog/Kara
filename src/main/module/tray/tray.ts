@@ -5,7 +5,8 @@
  */
 
 import Resource from '#C/resource';
-import { Menu, Tray } from 'electron';
+import { Menu, MenuItemConstructorOptions, Tray } from 'electron';
+import { debugMenuFilter } from './debug';
 import { trayMenuTemplate } from './menu';
 
 export class KaraTray {
@@ -31,6 +32,7 @@ export class KaraTray {
 
     private _getMenu(): Menu {
 
-        return Menu.buildFromTemplate(trayMenuTemplate);
+        const template: MenuItemConstructorOptions[] = debugMenuFilter(trayMenuTemplate);
+        return Menu.buildFromTemplate(template);
     }
 }

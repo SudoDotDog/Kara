@@ -6,9 +6,9 @@
 
 import { IScene } from "#M/declare/scene";
 import { Center } from "#M/scene/center/center";
-import { app } from "electron";
+import { app, MenuItemConstructorOptions } from "electron";
 
-export const trayMenuTemplate = [
+export const trayMenuTemplate: MenuItemConstructorOptions[] = [
     {
         label: 'Command Center',
         click: (): void => {

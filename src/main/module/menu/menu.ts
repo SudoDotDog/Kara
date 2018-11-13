@@ -9,7 +9,7 @@ import { menuTemplate } from "./template";
 
 export const bindingGlobalMenu = (): void => {
 
-    const menu = Menu.buildFromTemplate(menuTemplate);
+    const menu: Menu = Menu.buildFromTemplate(menuTemplate);
     Menu.setApplicationMenu(menu);
     return;
 };

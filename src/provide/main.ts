@@ -4,7 +4,7 @@
  * @description Main Provider
  */
 
-import { ipcMain, WebContents } from "electron";
+import { ipcMain, webContents } from "electron";
 import { ICommand } from "./declare";
 
 export class MainProvider {
@@ -67,8 +67,8 @@ export class MainProvider {
 
     private _flushListener = (): void => {
 
-        WebContents.getAllWebContents()
-            .forEach((web: WebContents) => {
+        webContents.getAllWebContents()
+            .forEach((web: webContents) => {
                 web.send('provider-renderer-update');
             });
     }

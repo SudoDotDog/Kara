@@ -4,7 +4,7 @@
  * @description Debug
  */
 
-import { MenuItemConstructorOptions, WebContents } from "electron";
+import { MenuItemConstructorOptions, webContents } from "electron";
 
 export const debugMenuFilter = (menu: MenuItemConstructorOptions[]): MenuItemConstructorOptions[] => {
 
@@ -15,7 +15,7 @@ export const debugMenuFilter = (menu: MenuItemConstructorOptions[]): MenuItemCon
                 label: 'Debug',
                 click: (): void => {
 
-                    console.log('WebContents: ', WebContents.getAllWebContents().length);
+                    console.log('WebContents: ', webContents.getAllWebContents().length);
                 },
             },
             ...menu,

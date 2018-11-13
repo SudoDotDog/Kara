@@ -1,7 +1,7 @@
 /**
  * @author WMXPY
  * @namespace Provide
- * @description Provider Test
+ * @description Renderer Provider Test
  */
 
 import { COMMAND_DECLARE_TYPE, ICommand } from '#P/declare';

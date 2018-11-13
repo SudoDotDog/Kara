@@ -4,7 +4,7 @@
  * @description Index
  */
 
-import { initProvider } from '#P/module/init';
+import { initRendererProvider } from '#P/module/init';
 import '#R^style/common/global.sass';
 import { mockWindow } from '#R^util/window';
 import Hello from '#R~execute/hello';
@@ -19,7 +19,7 @@ import { initRendererSceneExecuteErrorDictionary } from './declare/error';
 declare const module: any;
 mockWindow(window);
 initRendererSceneExecuteErrorDictionary();
-initProvider();
+initRendererProvider();
 
 const render: (App: any) => void = (App: any): void => {
 

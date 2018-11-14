@@ -4,6 +4,7 @@
  * @description Execute
  */
 
+import { MainProvider } from '#P/main';
 import Connor, { ErrorCreationFunction } from 'connor';
 import { BrowserWindow, BrowserWindowConstructorOptions } from 'electron';
 import Config from '../../../config/config';
@@ -113,6 +114,8 @@ export class Execute implements IScene {
 
         windows.on('ready-to-show', (): void => {
             this._ready = true;
+            const mainProvider: MainProvider = MainProvider.instance;
+            mainProvider.flush();
         });
     }
 

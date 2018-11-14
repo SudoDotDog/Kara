@@ -4,11 +4,10 @@
  * @description Provider
 */
 
-import { MainProvider } from "#P/main";
+import { initMainProvider } from "#P/module/init";
 
 export const bindingMainProvider = (): void => {
 
-    const mainProvider: MainProvider = MainProvider.instance;
-    mainProvider.init();
+    initMainProvider();
     return;
 };

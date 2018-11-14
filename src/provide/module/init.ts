@@ -48,7 +48,7 @@ export const initMainProvider = (): void => {
                 type: COMMAND_DECLARE_TYPE.SCRIPT,
                 script: `import {openExternal} from 'io';openExternal('https://google.com')`,
             },
-        });
+        }).flush();
 
     return;
 };

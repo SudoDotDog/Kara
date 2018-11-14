@@ -11,6 +11,7 @@
         "estree",
         "fullscreenable",
         "ifeq",
+        "jsonified",
         "lockfile",
         "maximizable",
         "minimizable",

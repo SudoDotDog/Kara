@@ -8,9 +8,10 @@ import { COMMAND_DECLARE, COMMAND_DECLARE_TYPE, ICommand, ICommandDeclareScript 
 import { _String } from '@sudoo/bark';
 import { END_SIGNAL, MarkedResult } from "@sudoo/marked";
 import Connor, { ErrorCreationFunction } from "connor";
-import { ipcRenderer } from "electron";
-import { PROVIDE_ERROR_CODE, PROVIDE_MODULE_NAME } from "./declare/error";
+import { IpcMessageEvent, ipcRenderer } from "electron";
+import { initProvideErrorDictionary, PROVIDE_ERROR_CODE, PROVIDE_MODULE_NAME } from "./declare/error";
 import { executeScript } from "./module/marked";
+import { md5Encode } from "./util/crypto";
 
 export class Provider {
 
@@ -32,10 +33,12 @@ export class Provider {
 
     private constructor() {
 
-        this._commandMap = Object.create(null);
+        this._commandMap = {};
         this._error = Connor.instance(PROVIDE_MODULE_NAME).getErrorCreator();
 
-        ipcRenderer.on('provider-renderer-update', this._handleProviderRendererUpdate);
+        initProvideErrorDictionary();
+
+        ipcRenderer.on('provider-renderer-checksum', this._handleProviderRendererUpdate);
     }
 
     public get length(): number {
@@ -45,7 +48,7 @@ export class Provider {
 
     public clean(): Provider {
 
-        this._commandMap = Object.create(null);
+        this._commandMap = {};
         return this;
     }
 
@@ -71,12 +74,6 @@ export class Provider {
         return executeScript(declare.script);
     }
 
-    public register(command: ICommand): Provider {
-
-        this._commandMap[command.command] = command;
-        return this;
-    }
-
     public match(command: string): ICommand | null {
 
         if (Boolean(this._commandMap[command])) {
@@ -90,7 +87,6 @@ export class Provider {
 
     public nearest(command: string): ICommand | null {
 
-        ipcRenderer.send('provider-main-request-update');
         this._checkEmpty();
 
         const result: { command: ICommand; length: number; }
@@ -130,8 +126,18 @@ export class Provider {
         return;
     }
 
-    private _handleProviderRendererUpdate = (): void => {
+    private _handleProviderRendererUpdate = (event: IpcMessageEvent, checksum: string): void => {
 
-        console.log('test');
+        const jsonified: string = JSON.stringify(this._commandMap);
+        const currentChecksum: string = md5Encode(jsonified);
+
+        if (currentChecksum !== checksum) {
+            ipcRenderer.once('provider-main-request-update-response', (resEvent: IpcMessageEvent, jsonifiedMap: string) => {
+
+                const map: any = JSON.parse(jsonifiedMap);
+                this._commandMap = map;
+            });
+            ipcRenderer.send('provider-main-request-update');
+        }
     }
 }

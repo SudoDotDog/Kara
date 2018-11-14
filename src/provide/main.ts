@@ -4,8 +4,9 @@
  * @description Main Provider
  */
 
-import { ipcMain, webContents } from "electron";
+import { ipcMain, IpcMessageEvent, webContents } from "electron";
 import { ICommand } from "./declare";
+import { md5Encode } from "./util/crypto";
 
 export class MainProvider {
 
@@ -26,9 +27,10 @@ export class MainProvider {
 
     private constructor() {
 
-        this._commandMap = Object.create(null);
+        this._commandMap = {};
 
-        ipcMain.on('provider-main-request-update', this._flushListener);
+        this._updateListener = this._updateListener.bind(this);
+        ipcMain.on('provider-main-request-update', this._updateListener);
     }
 
     public get length(): number {
@@ -38,7 +40,7 @@ export class MainProvider {
 
     public clean(): MainProvider {
 
-        this._commandMap = Object.create(null);
+        this._commandMap = {};
         return this;
     }
 
@@ -55,21 +57,18 @@ export class MainProvider {
 
     public flush(): MainProvider {
 
-        ipcMain.emit('provider-renderer-checksum');
-        return this;
-    }
-
-    public init(): MainProvider {
-
-        ipcMain.emit('provider-renderer-checksum');
-        return this;
-    }
-
-    private _flushListener = (): void => {
-
+        const jsonified: string = JSON.stringify(this._commandMap);
+        const checksum: string = md5Encode(jsonified);
         webContents.getAllWebContents()
             .forEach((web: webContents) => {
-                web.send('provider-renderer-update');
+                web.send('provider-renderer-checksum', checksum);
             });
+        return this;
+    }
+
+    private _updateListener(event: IpcMessageEvent): void {
+
+        const jsonified: string = JSON.stringify(this._commandMap);
+        event.sender.send('provider-main-request-update-response', jsonified);
     }
 }

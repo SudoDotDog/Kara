@@ -34,6 +34,8 @@ export class Provider {
     private constructor() {
 
         this._commandMap = {};
+
+        this._handleProviderRendererUpdate = this._handleProviderRendererUpdate.bind(this);
         this._error = Connor.instance(PROVIDE_MODULE_NAME).getErrorCreator();
 
         initProvideErrorDictionary();
@@ -123,6 +125,16 @@ export class Provider {
         return result.command;
     }
 
+    public requestUpdate(): void {
+
+        ipcRenderer.once('provider-main-request-update-response', (resEvent: IpcMessageEvent, jsonifiedMap: string) => {
+
+            const map: any = JSON.parse(jsonifiedMap);
+            this._commandMap = map;
+        });
+        ipcRenderer.send('provider-main-request-update');
+    }
+
     private _checkEmpty(): void {
 
         if (this.isEmpty()) {
@@ -132,18 +144,13 @@ export class Provider {
         return;
     }
 
-    private _handleProviderRendererUpdate = (event: IpcMessageEvent, checksum: string): void => {
+    private _handleProviderRendererUpdate(event: IpcMessageEvent, checksum: string): void {
 
         const jsonified: string = JSON.stringify(this._commandMap);
         const currentChecksum: string = md5Encode(jsonified);
 
         if (currentChecksum !== checksum) {
-            ipcRenderer.once('provider-main-request-update-response', (resEvent: IpcMessageEvent, jsonifiedMap: string) => {
-
-                const map: any = JSON.parse(jsonifiedMap);
-                this._commandMap = map;
-            });
-            ipcRenderer.send('provider-main-request-update');
+            this.requestUpdate();
         }
     }
 }

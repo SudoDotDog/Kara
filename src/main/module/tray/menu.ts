@@ -22,6 +22,9 @@ export const trayMenuTemplate: MenuItemConstructorOptions[] = [
         },
     },
     {
+        type: 'separator',
+    },
+    {
         label: 'Exit',
         click: (): void => {
             app.quit();

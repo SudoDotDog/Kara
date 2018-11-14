@@ -5,7 +5,6 @@
  */
 
 export default {
-    isDebug: true,
     backgroundColor: 'white',
     scepter: {
         devURL: 'http://localhost:8081',

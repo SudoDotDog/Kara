@@ -4,9 +4,10 @@
  * @description Center
  */
 
+import Config from '#C/config';
+import { BUILD_MODE } from '#C/declare';
 import Connor, { ErrorCreationFunction } from 'connor';
 import { BrowserWindow, BrowserWindowConstructorOptions } from 'electron';
-import Config from '../../../config/config';
 import { ERROR_CODE, MODULE_NAME } from '../../declare/error';
 import { IScene } from '../../declare/scene';
 
@@ -51,7 +52,7 @@ export class Center implements IScene {
     public create(): IScene {
 
         this._browserWindow =
-            process.env.NODE_ENV === 'development'
+            process.env.NODE_ENV === BUILD_MODE.DEVELOPMENT
                 ? this._createDebugBrowserWindow()
                 : this._createBrowserWindow();
         this._bind(this._browserWindow);

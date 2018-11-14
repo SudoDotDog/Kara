@@ -4,7 +4,8 @@
  * @description Debug
  */
 
-import { MenuItemConstructorOptions, webContents } from "electron";
+import { MainProvider } from "#P/main";
+import { dialog, MenuItemConstructorOptions, webContents } from "electron";
 
 export const debugMenuFilter = (menu: MenuItemConstructorOptions[]): MenuItemConstructorOptions[] => {
 
@@ -15,8 +16,22 @@ export const debugMenuFilter = (menu: MenuItemConstructorOptions[]): MenuItemCon
                 label: 'Debug',
                 click: (): void => {
 
-                    console.log('WebContents: ', webContents.getAllWebContents().length);
+                    const information: string[][] = [
+                        ['WebContents', webContents.getAllWebContents().length.toString()],
+                    ];
+                    dialog.showErrorBox('Debug', information.map((item: string[]) => item.join(': ')).join('\n'));
                 },
+            },
+            {
+                label: 'Checksum Provider',
+                click: (): void => {
+
+                    const mainProvider: MainProvider = MainProvider.instance;
+                    mainProvider.flush();
+                },
+            },
+            {
+                type: 'separator',
             },
             ...menu,
         ];

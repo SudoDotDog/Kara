@@ -48,7 +48,7 @@ describe('Given a {Provider} class', (): void => {
         const clazz: Provider = Provider.instance;
 
         expect(ipcRenderer.staticCalled).to.be.deep.equal([
-            ['on', 'provider-renderer-update', (clazz as any)._handleProviderRendererUpdate],
+            ['on', 'provider-renderer-checksum', (clazz as any)._handleProviderRendererUpdate],
         ]);
     });
 

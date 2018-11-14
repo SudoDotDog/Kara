@@ -85,6 +85,12 @@ export class Provider {
         return null;
     }
 
+    public register(command: ICommand): Provider {
+
+        this._commandMap[command.command] = command;
+        return this;
+    }
+
     public nearest(command: string): ICommand | null {
 
         this._checkEmpty();

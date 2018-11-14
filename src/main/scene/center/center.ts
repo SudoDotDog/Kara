@@ -123,6 +123,7 @@ export class Center implements IScene {
     private _createBrowserWindow(): BrowserWindow {
 
         const windows: BrowserWindow = new BrowserWindow(this._getWindowSetting());
+        windows.setMenu(null);
         windows.loadURL(Config.center.prodURL);
         return windows;
     }
@@ -133,6 +134,7 @@ export class Center implements IScene {
             ...this._getWindowSetting(),
             alwaysOnTop: false,
         });
+        windows.setMenu(null);
         windows.loadURL(Config.center.devURL);
         windows.webContents.openDevTools();
         return windows;
@@ -144,6 +146,10 @@ export class Center implements IScene {
 
             width: 600,
             height: 600,
+
+            maximizable: false,
+            resizable: false,
+            fullscreenable: false,
 
             show: false,
             backgroundColor: Config.backgroundColor,

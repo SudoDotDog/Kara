@@ -4,7 +4,7 @@
  * @description Panel
  */
 
-import { ICommand } from "#P/declare";
+import { COMMAND_DECLARE, ICommand } from "#P/declare";
 import { Provider } from "#P/renderer";
 import { KeyTooltip } from "#R^components/decorate";
 import { EmptyElement } from "#R^components/empty";
@@ -12,11 +12,11 @@ import * as panelStyles from '#R^style/scene/execute/panel.sass';
 import * as React from "react";
 
 const NearestTooltip = (props: {
-    current: string;
+    typeBuffer: string;
 }): JSX.Element => {
 
     const provider: Provider = Provider.instance;
-    const matched: ICommand | null = provider.match(props.current);
+    const matched: ICommand | null = provider.match(props.typeBuffer);
 
     if (matched) {
         return (<div className={panelStyles.tooltip}>
@@ -25,7 +25,7 @@ const NearestTooltip = (props: {
         </div>);
     }
 
-    const nearest: ICommand | null = provider.nearest(props.current);
+    const nearest: ICommand | null = provider.nearest(props.typeBuffer);
 
     if (nearest) {
         return (<div className={panelStyles.tooltip}>
@@ -37,11 +37,12 @@ const NearestTooltip = (props: {
 };
 
 export const Panel = (props: {
-    current: string;
+    typeBuffer: string;
+    current: COMMAND_DECLARE;
 }): JSX.Element => {
 
     return (<div className={panelStyles.panel}>
-        <div className={panelStyles.field}>{props.current}</div>
-        <NearestTooltip current={props.current} />
+        <div className={panelStyles.field}>{props.typeBuffer}</div>
+        <NearestTooltip typeBuffer={props.typeBuffer} />
     </div>);
 };

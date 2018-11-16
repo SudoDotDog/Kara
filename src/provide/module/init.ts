@@ -5,6 +5,7 @@
  */
 
 import { MainProvider } from "#P/main";
+import { createDoneCommandDeclare } from "#P/util/declare";
 import { COMMAND_DECLARE_TYPE } from "../declare";
 import { Provider } from "../renderer";
 
@@ -29,6 +30,7 @@ export const initMainProvider = (): void => {
             declare: {
                 type: COMMAND_DECLARE_TYPE.SCRIPT,
                 script: `import {openExternal} from 'io';openExternal('https://google.com')`,
+                next: createDoneCommandDeclare(),
             },
         }).register({
             name: 'someLongName',
@@ -38,6 +40,7 @@ export const initMainProvider = (): void => {
             declare: {
                 type: COMMAND_DECLARE_TYPE.SCRIPT,
                 script: `import {openExternal} from 'io';openExternal('https://google.com')`,
+                next: createDoneCommandDeclare(),
             },
         }).register({
             name: 'someName',
@@ -47,6 +50,7 @@ export const initMainProvider = (): void => {
             declare: {
                 type: COMMAND_DECLARE_TYPE.SCRIPT,
                 script: `import {openExternal} from 'io';openExternal('https://google.com')`,
+                next: createDoneCommandDeclare(),
             },
         }).flush();
 

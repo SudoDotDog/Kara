@@ -10,3 +10,8 @@ export const createCommandCommandDeclare = (): COMMAND_DECLARE => ({
 
     type: COMMAND_DECLARE_TYPE.COMMAND,
 });
+
+export const createDoneCommandDeclare = (): COMMAND_DECLARE => ({
+
+    type: COMMAND_DECLARE_TYPE.DONE,
+});

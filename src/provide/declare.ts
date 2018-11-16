@@ -16,6 +16,7 @@ export interface ICommand {
 export enum COMMAND_DECLARE_TYPE {
 
     COMMAND = 'COMMAND',
+    DONE = 'DONE',
     INPUT = 'INPUT',
     SCRIPT = 'SCRIPT',
     SELECT = 'SELECT',
@@ -23,6 +24,7 @@ export enum COMMAND_DECLARE_TYPE {
 
 export type COMMAND_DECLARE
     = ICommandDeclareCommand
+    | ICommandDeclareDone
     | ICommandDeclareInput
     | ICommandDeclareScript
     | ICommandDeclareSelect;
@@ -30,6 +32,11 @@ export type COMMAND_DECLARE
 export interface ICommandDeclareCommand {
 
     type: COMMAND_DECLARE_TYPE.COMMAND;
+}
+
+export interface ICommandDeclareDone {
+
+    type: COMMAND_DECLARE_TYPE.DONE;
 }
 
 export interface ICommandDeclareInput {
@@ -44,6 +51,7 @@ export interface ICommandDeclareScript {
     type: COMMAND_DECLARE_TYPE.SCRIPT;
 
     script: string;
+    next: COMMAND_DECLARE;
 }
 
 export interface ICommandDeclareSelect {

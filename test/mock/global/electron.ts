@@ -9,6 +9,12 @@ import { Construable } from "../construable";
 /* tslint:disable:max-classes-per-file */
 
 // tslint:disable-next-line
+export class app extends Construable {
+
+    public static getPath()
+}
+
+// tslint:disable-next-line
 export class ipcMain extends Construable {
 
     public static on(channel: string, ...args: any) {

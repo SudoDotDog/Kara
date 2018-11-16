@@ -22,6 +22,7 @@ export class Storage {
     private static _instance: Storage | undefined;
 
     private _path: string;
+    private _files: Map<string, StorageFile<any>>;
 
     private constructor() {
 
@@ -30,14 +31,25 @@ export class Storage {
         } else {
             this._path = app.getPath('userData');
         }
+
+        this._files = new Map<string, StorageFile<any>>();
     }
 
     public resource<T>(filename: string): StorageFile<T> {
 
         const folder: string = this._getKaraFolder();
         this._checkDir(folder);
+
+        if (this._files.has(filename)) {
+
+            return this._files.get(filename) as StorageFile<T>;
+        }
+
         const path: string = Path.join(folder, filename);
-        return StorageFile.fromPath<T>(path);
+        const storageFile: StorageFile<T> = StorageFile.fromPath<T>(path);
+
+        this._files.set(filename, storageFile);
+        return storageFile;
     }
 
     private _getKaraFolder(): string {

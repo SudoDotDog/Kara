@@ -30,4 +30,22 @@ describe('Given a {StorageFile} class', (): void => {
         expect(result).to.be.equal(expectedResult);
         expect(mockedFsRead.called()).to.be.lengthOf(1);
     });
+
+    it('should be able to write file', async (): Promise<void> => {
+
+        const expectedResult: string = chance.string();
+
+        const mockedFsRead: Restorable = Restorable.mock(Fs, 'writeFile').with((path: string, content: string, encode: string, func: (err: Error) => void) => func(undefined as any));
+
+        const fakePath: string = chance.string();
+        const file: StorageFile<any> = StorageFile.fromPath(fakePath);
+
+        const result = await file.put(expectedResult);
+
+        mockedFsRead.restore();
+
+        // tslint:disable-next-line
+        expect(result).to.be.true;
+        expect(mockedFsRead.called()).to.be.lengthOf(1);
+    });
 });

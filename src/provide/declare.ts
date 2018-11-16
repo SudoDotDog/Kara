@@ -15,14 +15,22 @@ export interface ICommand {
 
 export enum COMMAND_DECLARE_TYPE {
 
+    COMMAND = 'COMMAND',
     INPUT = 'INPUT',
     SCRIPT = 'SCRIPT',
     SELECT = 'SELECT',
 }
 
-export type COMMAND_DECLARE = ICommandDeclareInput
+export type COMMAND_DECLARE
+    = ICommandDeclareCommand
+    | ICommandDeclareInput
     | ICommandDeclareScript
     | ICommandDeclareSelect;
+
+export interface ICommandDeclareCommand {
+
+    type: COMMAND_DECLARE_TYPE.COMMAND;
+}
 
 export interface ICommandDeclareInput {
 

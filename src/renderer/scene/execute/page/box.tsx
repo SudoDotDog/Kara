@@ -4,8 +4,9 @@
  * @description Box
  */
 
-import { ICommand } from '#P/declare';
+import { COMMAND_DECLARE, ICommand } from '#P/declare';
 import { Provider } from '#P/renderer';
+import { createCommandCommandDeclare } from '#P/util/declare';
 import * as styleExecute from '#R^style/scene/execute/execute.sass';
 import { Panel } from '#R~execute/components/panel';
 import { setCounter } from '#R~execute/state/box/box';
@@ -22,8 +23,9 @@ export interface IBoxProps {
 
 export interface IBoxState {
 
-    readonly current: string;
+    readonly current: COMMAND_DECLARE;
     readonly fullSized: boolean;
+    readonly typeBuffer: string;
 }
 
 const mapStateBoxCareAbout = (store: IStore): Partial<IBoxProps> => ({
@@ -38,10 +40,11 @@ const mapDispatchBoxCareAbout: any = {
 
 export class Box extends React.Component<IBoxProps, IBoxState> {
 
-    public readonly state = {
+    public readonly state: IBoxState = {
 
-        current: '',
+        current: createCommandCommandDeclare(),
         fullSized: false,
+        typeBuffer: '',
     };
 
     public constructor(props: IBoxProps) {
@@ -78,7 +81,7 @@ export class Box extends React.Component<IBoxProps, IBoxState> {
                     styleExecute.titleRight,
                     this.state.fullSized && styleExecute.titleRightFullSize,
                 ].join(' ')}>
-                    <Panel current={this.state.current} />
+                    <Panel current={this.state.typeBuffer} />
                 </div>
             </div>
         );
@@ -87,13 +90,13 @@ export class Box extends React.Component<IBoxProps, IBoxState> {
     private _handleKeyDown(event: KeyboardEvent): void {
 
         const provider: Provider = Provider.instance;
-        const current: string = this.state.current;
+        const typeBuffer: string = this.state.typeBuffer;
 
-        const setCurrent = (newCurrent: string) => this.setState({ current: newCurrent });
+        const setCurrent = (newTypeBuffer: string) => this.setState({ typeBuffer: newTypeBuffer });
 
         switch (event.key) {
             case KEY.ENTER:
-                const matched: ICommand | null = provider.match(current);
+                const matched: ICommand | null = provider.match(typeBuffer);
                 if (matched) {
 
                     provider.execute(matched.declare).then(console.log);
@@ -103,11 +106,11 @@ export class Box extends React.Component<IBoxProps, IBoxState> {
                 setCurrent('');
                 break;
             case KEY.TAB:
-                const nearest: ICommand | null = provider.nearest(current);
+                const nearest: ICommand | null = provider.nearest(typeBuffer);
                 if (nearest) setCurrent(nearest.command);
                 break;
             case KEY.BACKSPACE:
-                setCurrent(current.substring(0, current.length - 1));
+                setCurrent(typeBuffer.substring(0, typeBuffer.length - 1));
                 break;
         }
 
@@ -117,10 +120,10 @@ export class Box extends React.Component<IBoxProps, IBoxState> {
     private _handleKeyPress(event: KeyboardEvent): void {
 
         if (event.key.length === 1) {
-            const current = this.state.current + event.key;
+            const typeBuffer = this.state.typeBuffer + event.key;
 
             this.setState({
-                current,
+                typeBuffer,
             });
         }
 

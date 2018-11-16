@@ -4,14 +4,29 @@
  * @description Electron
  */
 
+import * as Chance from 'chance';
 import { Construable } from "../construable";
 
 /* tslint:disable:max-classes-per-file */
 
+const chance = new Chance('mock-global-electron');
+
 // tslint:disable-next-line
 export class app extends Construable {
 
-    public static getPath()
+    public static getPath(): string {
+
+        return chance.string();
+    }
+}
+
+// tslint:disable-next-line
+export class remote extends Construable {
+
+    public static get app(): typeof app {
+
+        return app;
+    }
 }
 
 // tslint:disable-next-line

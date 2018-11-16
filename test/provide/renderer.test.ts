@@ -1,156 +1,94 @@
 /**
  * @author WMXPY
- * @namespace Provides
- * @description Provider
+ * @namespace Provide
+ * @description Renderer Provider Test
  */
 
-import { COMMAND_DECLARE, COMMAND_DECLARE_TYPE, ICommand, ICommandDeclareScript } from "#P/declare";
-import { _String } from '@sudoo/bark';
-import { END_SIGNAL, MarkedResult } from "@sudoo/marked";
-import Connor, { ErrorCreationFunction } from "connor";
-import { IpcMessageEvent, ipcRenderer } from "electron";
-import { initProvideErrorDictionary, PROVIDE_ERROR_CODE, PROVIDE_MODULE_NAME } from "./declare/error";
-import { executeScript } from "./module/marked";
-import { md5Encode } from "./util/crypto";
+import { COMMAND_DECLARE_TYPE, ICommand } from '#P/declare';
+import { Provider } from '#P/renderer';
+import { createCommandCommandDeclare } from '#P/util/declare';
+import { expect } from 'chai';
+import * as Chance from 'chance';
+import { ipcRenderer } from '../mock/global/electron';
 
-export class Provider {
+describe('Given a {Provider} class', (): void => {
 
-    private static _instance: Provider;
+    const chance: Chance.Chance = new Chance('provide-provider');
 
-    public static get instance(): Provider {
+    afterEach((): void => {
 
-        if (!this._instance) {
-            this._instance = new Provider();
-        }
+        ipcRenderer.clear();
+        (Provider as any)._instance = null;
+    });
 
-        return this._instance;
-    }
+    const createCommand = (replace?: Partial<ICommand>): ICommand => {
 
-    private _commandMap: {
-        [key: string]: ICommand;
+        return {
+            command: chance.string(),
+            description: chance.string(),
+            declare: {
+                type: COMMAND_DECLARE_TYPE.SCRIPT,
+                script: chance.string(),
+                next: createCommandCommandDeclare(),
+            },
+            key: chance.string(),
+            name: chance.string(),
+            ...replace,
+        };
     };
-    private _error: ErrorCreationFunction;
 
-    private constructor() {
+    it('should be able to contactable', (): void => {
 
-        this._commandMap = {};
+        const clazz: Provider = Provider.instance;
 
-        this._handleProviderRendererUpdate = this._handleProviderRendererUpdate.bind(this);
-        this._error = Connor.instance(PROVIDE_MODULE_NAME).getErrorCreator();
+        // tslint:disable-next-line
+        expect(clazz).to.be.exist;
+    });
 
-        initProvideErrorDictionary();
+    it('should be listen to ipc channel', (): void => {
 
-        ipcRenderer.on('provider-renderer-checksum', this._handleProviderRendererUpdate);
-    }
+        const clazz: Provider = Provider.instance;
 
-    public get length(): number {
+        expect(ipcRenderer.staticCalled).to.be.deep.equal([
+            ['on', 'provider-renderer-checksum', (clazz as any)._handleProviderRendererUpdate],
+        ]);
+    });
 
-        return Object.keys(this._commandMap).length;
-    }
+    it('should be able to inject command', (): void => {
 
-    public clean(): Provider {
+        const clazz: Provider = Provider.instance;
+        clazz.register(createCommand());
 
-        this._commandMap = {};
-        return this;
-    }
+        expect(clazz).to.be.lengthOf(1);
+    });
 
-    public isEmpty(): boolean {
+    it('should be able to match command', (): void => {
 
-        return this.length === 0;
-    }
+        const clazz: Provider = Provider.instance.clean();
+        const command: ICommand = createCommand();
 
-    public async execute(declare: COMMAND_DECLARE): Promise<boolean> {
+        clazz.register(command);
 
-        if (declare.type === COMMAND_DECLARE_TYPE.SCRIPT) {
+        expect(clazz).to.be.lengthOf(1);
+        expect(clazz.match(command.command)).to.be.deep.equal(command);
+    });
 
-            const result: MarkedResult = await this.executeScript(declare);
-            if (result.signal === END_SIGNAL.SUCCEED) {
-                return true;
-            }
-        }
-        return false;
-    }
+    it('should be able to find nearest command', (): void => {
 
-    public async executeScript(declare: ICommandDeclareScript): Promise<MarkedResult> {
+        const clazz: Provider = Provider.instance.clean();
 
-        return executeScript(declare.script);
-    }
+        const baseCommandKey: string = chance.string();
+        const commandKey: string = baseCommandKey + chance.string();
+        const furtherCommandKey: string = commandKey + chance.string();
+        const baseFurtherCommandKey: string = furtherCommandKey + chance.string();
 
-    public match(command: string): ICommand | null {
+        const command: ICommand = createCommand({ command: commandKey });
+        const furtherCommand: ICommand = createCommand({ command: furtherCommandKey });
 
-        if (Boolean(this._commandMap[command])) {
+        clazz.register(command).register(furtherCommand);
 
-            const content: ICommand = this._commandMap[command];
-            return content;
-        }
-
-        return null;
-    }
-
-    public register(command: ICommand): Provider {
-
-        this._commandMap[command.command] = command;
-        return this;
-    }
-
-    public nearest(command: string): ICommand | null {
-
-        this._checkEmpty();
-
-        const result: { command: ICommand; length: number; }
-            = Object.keys(this._commandMap).reduce<any>(
-                (nearest: { command: ICommand; length: number; }, key: string) => {
-
-                    const current: ICommand = this._commandMap[key];
-                    const target: string = current.command;
-
-                    const distance: number = _String
-                        .compare(command)
-                        .with(target)
-                        .unsensitiveContain(15)
-                        .length(3)
-                        .distance;
-
-                    if (distance < nearest.length) {
-
-                        return {
-                            command: current,
-                            length: distance,
-                        };
-                    }
-
-                    return nearest;
-                }, { command: null, length: Infinity });
-
-        return result.command;
-    }
-
-    public requestUpdate(): void {
-
-        ipcRenderer.once('provider-main-request-update-response', (resEvent: IpcMessageEvent, jsonifiedMap: string) => {
-
-            const map: any = JSON.parse(jsonifiedMap);
-            this._commandMap = map;
-        });
-        ipcRenderer.send('provider-main-request-update');
-    }
-
-    private _checkEmpty(): void {
-
-        if (this.isEmpty()) {
-
-            this._error(PROVIDE_ERROR_CODE.PROVIDE_IS_EMPTY);
-        }
-        return;
-    }
-
-    private _handleProviderRendererUpdate(event: IpcMessageEvent, checksum: string): void {
-
-        const jsonified: string = JSON.stringify(this._commandMap);
-        const currentChecksum: string = md5Encode(jsonified);
-
-        if (currentChecksum !== checksum) {
-            this.requestUpdate();
-        }
-    }
-}
+        expect(clazz).to.be.lengthOf(2);
+        expect(clazz.nearest(baseCommandKey)).to.be.deep.equal(command);
+        expect(clazz.nearest(baseFurtherCommandKey)).to.be.deep.equal(furtherCommand);
+    });
+});

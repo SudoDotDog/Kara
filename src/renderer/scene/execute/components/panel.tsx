@@ -15,10 +15,8 @@ const getToolTip = (current: COMMAND_DECLARE): (props: {
 
     switch (current.type) {
 
-        case COMMAND_DECLARE_TYPE.COMMAND:
-            return CommandDeclareTooltip;
+        case COMMAND_DECLARE_TYPE.COMMAND: return CommandDeclareTooltip;
     }
-
     return CommandDeclareTooltip;
 };
 

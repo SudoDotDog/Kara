@@ -7,7 +7,7 @@
 import { Execute } from '#M/scene/execute/execute';
 import { expect } from 'chai';
 import * as Chance from 'chance';
-import { BrowserWindow } from '../../../mock/global/electron';
+import { BrowserWindow, Menu } from '../../../mock/global/electron';
 
 describe('Given an {Execute} scene class', (): void => {
 
@@ -17,6 +17,7 @@ describe('Given an {Execute} scene class', (): void => {
 
         (Execute as any)._instance = null;
         BrowserWindow.clear();
+        Menu.clear();
     });
 
     it('should be able to construct instance', (): void => {

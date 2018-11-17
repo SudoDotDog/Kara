@@ -12,7 +12,7 @@ import { IScene } from '../../declare/scene';
 
 export class Scepter implements IScene {
 
-    public static createInstance(): IScene {
+    public static createInstance(): Scepter {
 
         if (!this._instance) {
             this._instance = new Scepter();
@@ -28,7 +28,7 @@ export class Scepter implements IScene {
         this._instance = undefined;
     }
 
-    private static _instance: IScene | undefined;
+    private static _instance: Scepter | undefined;
 
     private _browserWindow: BrowserWindow | null;
     private _error: ErrorCreationFunction;

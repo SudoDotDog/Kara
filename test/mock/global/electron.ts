@@ -18,6 +18,31 @@ export class app extends Construable {
 
         return chance.string();
     }
+
+    public constructor(...args: any[]) {
+
+        super(...args);
+        app.instances.push(this);
+    }
+}
+
+export class BrowserWindow extends Construable {
+
+    public constructor(...args: any[]) {
+
+        super(...args);
+        BrowserWindow.instances.push(this);
+    }
+
+    public on(event: string, func: any) {
+
+        this._called.push(['on', event, func]);
+    }
+
+    public loadURL(path: string): void {
+
+        this._called.push(['loadURL', path]);
+    }
 }
 
 // tslint:disable-next-line
@@ -27,6 +52,12 @@ export class remote extends Construable {
 
         return app;
     }
+
+    public constructor(...args: any[]) {
+
+        super(...args);
+        remote.instances.push(this);
+    }
 }
 
 // tslint:disable-next-line
@@ -35,6 +66,12 @@ export class ipcMain extends Construable {
     public static on(channel: string, ...args: any) {
 
         this._called.push(['on', channel, ...args]);
+    }
+
+    public constructor(...args: any[]) {
+
+        super(...args);
+        ipcMain.instances.push(this);
     }
 }
 
@@ -50,6 +87,12 @@ export class ipcRenderer extends Construable {
 
         this._called.push(['send', channel, ...args]);
     }
+
+    public constructor(...args: any[]) {
+
+        super(...args);
+        ipcRenderer.instances.push(this);
+    }
 }
 
 
@@ -59,9 +102,21 @@ export class Menu extends Construable {
 
         this._called.push(['buildFromTemplate', template]);
     }
+
+    public constructor(...args: any[]) {
+
+        super(...args);
+        Menu.instances.push(this);
+    }
 }
 
 export class Tray extends Construable {
+
+    public constructor(...args: any[]) {
+
+        super(...args);
+        Tray.instances.push(this);
+    }
 
     public setContextMenu(template: any) {
 

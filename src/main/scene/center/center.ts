@@ -13,7 +13,7 @@ import { IScene } from '../../declare/scene';
 
 export class Center implements IScene {
 
-    public static createInstance(): IScene {
+    public static createInstance(): Center {
 
         if (!this._instance) {
             this._instance = new Center();
@@ -29,7 +29,7 @@ export class Center implements IScene {
         this._instance = undefined;
     }
 
-    private static _instance: IScene | undefined;
+    private static _instance: Center | undefined;
 
     private _browserWindow: BrowserWindow | null;
     private _error: ErrorCreationFunction;

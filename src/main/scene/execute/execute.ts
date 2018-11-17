@@ -8,13 +8,13 @@ import Config from '#C/config';
 import { BUILD_MODE } from '#C/declare';
 import { MainProvider } from '#P/main';
 import Connor, { ErrorCreationFunction } from 'connor';
-import { BrowserWindow, BrowserWindowConstructorOptions } from 'electron';
+import { BrowserWindow, BrowserWindowConstructorOptions, ipcMain } from 'electron';
 import { ERROR_CODE, MODULE_NAME } from '../../declare/error';
 import { IScene } from '../../declare/scene';
 
 export class Execute implements IScene {
 
-    public static createInstance(): IScene {
+    public static createInstance(): Execute {
 
         if (!this._instance) {
             this._instance = new Execute();
@@ -30,7 +30,7 @@ export class Execute implements IScene {
         this._instance = undefined;
     }
 
-    private static _instance: IScene | undefined;
+    private static _instance: Execute | undefined;
 
     private _browserWindow: BrowserWindow | null;
     private _error: ErrorCreationFunction;
@@ -41,6 +41,9 @@ export class Execute implements IScene {
         this._browserWindow = null;
         this._error = Connor.getErrorCreator(MODULE_NAME);
         this._ready = false;
+
+        this._extendHeight = this._extendHeight.bind(this);
+        this._reduceHeight = this._reduceHeight.bind(this);
     }
 
     public get isCreated(): boolean {
@@ -55,6 +58,8 @@ export class Execute implements IScene {
                 ? this._createDebugBrowserWindow()
                 : this._createBrowserWindow();
         this._bind(this._browserWindow);
+
+        this._createIPCListeners();
         return this;
     }
 
@@ -69,6 +74,8 @@ export class Execute implements IScene {
         browserWindow.close();
         browserWindow.removeAllListeners();
         this._browserWindow = null;
+
+        this._removeIPCListeners();
         return this;
     }
 
@@ -168,5 +175,35 @@ export class Execute implements IScene {
             return this._browserWindow;
         }
         throw this._error(ERROR_CODE.WINDOW_NOT_FOUND, 'Execute');
+    }
+
+    private _createIPCListeners(): void {
+
+        ipcMain.on('main-execute-extend-height', this._extendHeight);
+        ipcMain.on('main-execute-reduce-height', this._reduceHeight);
+        return;
+    }
+
+    private _removeIPCListeners(): void {
+
+        ipcMain.removeListener('main-execute-extend-height', this._extendHeight);
+        ipcMain.removeListener('main-execute-reduce-height', this._reduceHeight);
+        return;
+    }
+
+    private _extendHeight(): void {
+
+        const browserWindow = this._getBrowserWindow();
+
+        browserWindow.setSize(480, 560);
+        return;
+    }
+
+    private _reduceHeight(): void {
+
+        const browserWindow = this._getBrowserWindow();
+
+        browserWindow.setSize(480, 80);
+        return;
     }
 }

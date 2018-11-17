@@ -9,6 +9,7 @@ import * as Adapter from 'enzyme-adapter-react-16';
 import * as ModuleAlias from 'module-alias';
 import * as Sass from 'node-sass';
 import * as Path from 'path';
+import { registerConnor } from '../src/main/declare/error';
 import { registerUnitTestConnor } from './declare/error';
 import { MockDocument } from './mock/global/document';
 import { MockWindow } from './mock/global/window';
@@ -76,9 +77,10 @@ const registerGlobal = () => {
     (global as any).window = MockWindow.instance;
 };
 
-const registerConnor = () => {
+const registerTestConnor = () => {
 
     registerUnitTestConnor();
+    registerConnor();
 };
 
 registerSass();
@@ -86,4 +88,4 @@ registerElectron();
 registerEnzyme();
 registerBinding();
 registerGlobal();
-registerConnor();
+registerTestConnor();

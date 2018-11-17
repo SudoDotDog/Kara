@@ -27,7 +27,6 @@ export class Construable {
 
         this._constructArgs = args;
         this._called = [];
-        Construable.instances.push(this);
     }
 
     public get constructArgs(): any[] {

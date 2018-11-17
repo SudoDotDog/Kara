@@ -1,7 +1,7 @@
 /**
  * @author WMXPY
- * @namespace Components
- * @description Decorate
+ * @namespace Components_Current
+ * @description Command
  */
 
 import { ICommand } from "#P/declare";

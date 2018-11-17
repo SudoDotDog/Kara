@@ -6,6 +6,7 @@
 
 import { COMMAND_DECLARE_TYPE, ICommand } from '#P/declare';
 import { Provider } from '#P/renderer';
+import { createCommandCommandDeclare } from '#P/util/declare';
 import { expect } from 'chai';
 import * as Chance from 'chance';
 import { ipcRenderer } from '../mock/global/electron';
@@ -28,6 +29,7 @@ describe('Given a {Provider} class', (): void => {
             declare: {
                 type: COMMAND_DECLARE_TYPE.SCRIPT,
                 script: chance.string(),
+                next: createCommandCommandDeclare(),
             },
             key: chance.string(),
             name: chance.string(),

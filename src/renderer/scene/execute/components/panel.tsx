@@ -8,7 +8,7 @@ import { COMMAND_DECLARE, ICommand } from "#P/declare";
 import { Provider } from "#P/renderer";
 import { KeyTooltip } from "#R^components/decorate";
 import { EmptyElement } from "#R^components/empty";
-import * as panelStyles from '#R^style/scene/execute/panel.sass';
+import * as panelStyles from '#S/scene/execute/panel.sass';
 import * as React from "react";
 
 const NearestTooltip = (props: {

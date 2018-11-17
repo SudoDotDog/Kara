@@ -2,7 +2,7 @@
     "compileOnSave": false,
     "compilerOptions": {
         "alwaysStrict": true,
-        "baseUrl": "../src",
+        "baseUrl": "../",
         "downlevelIteration": true,
         "emitDecoratorMetadata": true,
         "experimentalDecorators": true,
@@ -20,14 +20,14 @@
         "noImplicitReturns": true,
         "noImplicitThis": true,
         "paths": {
-            "#C/*": ["config/*"],
-            "#M/*": ["main/*"],
-            "#P/*": ["provide/*"],
-            "#R^components/*": ["renderer/components/*"],
-            "#R^style/*": ["renderer/style/*"],
-            "#R^util/*": ["renderer/util/*"],
-            "#R~center/*": ["renderer/scene/center/*"],
-            "#R~execute/*": ["renderer/scene/execute/*"]
+            "#C/*": ["src/config/*"],
+            "#M/*": ["src/main/*"],
+            "#P/*": ["src/provide/*"],
+            "#S/*": ["style/*"],
+            "#R^components/*": ["src/renderer/components/*"],
+            "#R^util/*": ["src/renderer/util/*"],
+            "#R~center/*": ["src/renderer/scene/center/*"],
+            "#R~execute/*": ["src/renderer/scene/execute/*"]
         },
         "removeComments": true,
         "resolveJsonModule": true,

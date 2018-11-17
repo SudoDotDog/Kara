@@ -7,11 +7,11 @@
 import { COMMAND_DECLARE, ICommand } from '#P/declare';
 import { Provider } from '#P/renderer';
 import { createCommandCommandDeclare } from '#P/util/declare';
-import * as styleExecute from '#R^style/scene/execute/execute.sass';
 import { StyleBuilder } from '#R^util/style';
 import { Panel } from '#R~execute/components/panel';
 import { setCounter } from '#R~execute/state/box/box';
 import { IStore } from '#R~execute/state/declare';
+import * as styleExecute from '#S/scene/execute/execute.sass';
 import * as React from "react";
 import { connect } from "react-redux";
 import { KEY } from '../../../declare/key';

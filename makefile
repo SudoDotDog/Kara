@@ -34,6 +34,7 @@ electron-builder:
 	@cd app && $(electron_builder)
 
 build: renderer-build electron-build
+	@echo "[INFO] Build Complete"
 
 renderer-build: r-scepter-build r-execute-build r-center-build
 

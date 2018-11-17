@@ -4,8 +4,8 @@
  * @description Box
  */
 
-import * as styleCenter from '#R^style/scene/center/center.sass';
 import { CENTER_FRAME } from '#R~center/declare/center';
+import * as styleCenter from '#S/scene/center/center.sass';
 import * as React from "react";
 
 export interface ICenterState {

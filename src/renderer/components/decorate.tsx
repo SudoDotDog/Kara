@@ -4,7 +4,7 @@
  * @description Decorate
  */
 
-import * as styleDecorate from '#R^style/components/decorate.sass';
+import * as styleDecorate from '#S/components/decorate.sass';
 import * as React from "react";
 
 export const KeyTooltip = (props: {

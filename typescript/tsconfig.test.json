@@ -1,6 +1,6 @@
 {
     "compilerOptions": {
-        "baseUrl": "../src",
+        "baseUrl": "../",
         "emitDecoratorMetadata": true,
         "experimentalDecorators": true,
         "jsx": "react",
@@ -16,14 +16,14 @@
         "noImplicitAny": true,
         "noImplicitReturns": true,
         "paths": {
-            "#C/*": ["config/*"],
-            "#M/*": ["main/*"],
-            "#P/*": ["provide/*"],
-            "#R^components/*": ["renderer/components/*"],
-            "#R^style/*": ["renderer/style/*"],
-            "#R^util/*": ["renderer/util/*"],
-            "#R~center/*": ["renderer/scene/center/*"],
-            "#R~execute/*": ["renderer/scene/execute/*"]
+            "#C/*": ["src/config/*"],
+            "#M/*": ["src/main/*"],
+            "#P/*": ["src/provide/*"],
+            "#S/*": ["style/*"],
+            "#R^components/*": ["src/renderer/components/*"],
+            "#R^util/*": ["src/renderer/util/*"],
+            "#R~center/*": ["src/renderer/scene/center/*"],
+            "#R~execute/*": ["src/renderer/scene/execute/*"]
         },
         "sourceMap": true,
         "strict": true,

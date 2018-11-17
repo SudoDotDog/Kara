@@ -5,10 +5,10 @@
  */
 
 import { initRendererProvider } from '#P/module/init';
-import '#R^style/common/global.sass';
 import { mockWindow } from '#R^util/window';
 import Hello from '#R~execute/hello';
 import { getStore } from '#R~execute/state/store';
+import '#S/common/global.sass';
 import * as React from "react";
 import * as ReactDOM from "react-dom";
 import { AppContainer } from "react-hot-loader";

@@ -61,14 +61,16 @@ export interface ICommandDeclareScript {
     next: COMMAND_DECLARE;
 }
 
+export interface ICommandDeclareSelectElement {
+
+    name: string;
+    key: string;
+    next: COMMAND_DECLARE;
+}
+
 export interface ICommandDeclareSelect {
 
     type: COMMAND_DECLARE_TYPE.SELECT;
 
-    from: Array<{
-
-        name: string;
-        key: string;
-        next: COMMAND_DECLARE;
-    }>;
+    from: ICommandDeclareSelectElement[];
 }

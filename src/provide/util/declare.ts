@@ -4,7 +4,7 @@
  * @description Declare
  */
 
-import { COMMAND_DECLARE, COMMAND_DECLARE_TYPE } from "#P/declare";
+import { COMMAND_DECLARE, COMMAND_DECLARE_TYPE, ICommandDeclareSelectElement } from "#P/declare";
 
 export const createCommandCommandDeclare = (): COMMAND_DECLARE => ({
 
@@ -19,4 +19,26 @@ export const createDoneCommandDeclare = (): COMMAND_DECLARE => ({
 export const createErrorCommandDeclare = (): COMMAND_DECLARE => ({
 
     type: COMMAND_DECLARE_TYPE.ERROR,
+});
+
+export const createInputCommandDeclare = (next: COMMAND_DECLARE): COMMAND_DECLARE => ({
+
+    type: COMMAND_DECLARE_TYPE.INPUT,
+
+    next,
+});
+
+export const createScriptCommandDeclare = (script: string, next: COMMAND_DECLARE): COMMAND_DECLARE => ({
+
+    type: COMMAND_DECLARE_TYPE.SCRIPT,
+
+    script,
+    next,
+});
+
+export const createSelectCommandDeclare = (from: ICommandDeclareSelectElement[]): COMMAND_DECLARE => ({
+
+    type: COMMAND_DECLARE_TYPE.SELECT,
+
+    from,
 });

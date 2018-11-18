@@ -26,6 +26,7 @@ export enum COMMAND_DECLARE_TYPE {
 export type COMMAND_DECLARE
     = ICommandDeclareCommand
     | ICommandDeclareDone
+    | ICommandDeclareError
     | ICommandDeclareInput
     | ICommandDeclareScript
     | ICommandDeclareSelect;

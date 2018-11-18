@@ -113,23 +113,32 @@ export class Box extends React.Component<IBoxProps, IBoxState> {
         const setCurrent = (newTypeBuffer: string) => this.setState({ typeBuffer: newTypeBuffer });
 
         switch (event.key) {
-            case KEY.ENTER:
+
+            case KEY.ENTER: {
+
                 const matched: ICommand | null = provider.match(typeBuffer);
                 if (matched) {
 
                     provider.execute(matched.declare).then(this._nextState);
                 }
                 break;
-            case KEY.ESCAPE:
+            }
+            case KEY.ESCAPE: {
+
                 setCurrent('');
                 break;
-            case KEY.TAB:
+            }
+            case KEY.TAB: {
+
                 const nearest: ICommand | null = provider.nearest(typeBuffer);
                 if (nearest) setCurrent(nearest.command);
                 break;
-            case KEY.BACKSPACE:
+            }
+            case KEY.BACKSPACE: {
+
                 setCurrent(typeBuffer.substring(0, typeBuffer.length - 1));
                 break;
+            }
         }
 
         return;

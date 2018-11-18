@@ -5,13 +5,13 @@
  */
 
 import { COMMAND_DECLARE, COMMAND_DECLARE_TYPE, ICommand, ICommandDeclareScript } from "#P/declare";
-import { _String } from '@sudoo/bark';
 import { END_SIGNAL, MarkedResult } from "@sudoo/marked";
 import Connor, { ErrorCreationFunction } from "connor";
 import { IpcMessageEvent, ipcRenderer } from "electron";
 import { initProvideErrorDictionary, PROVIDE_ERROR_CODE, PROVIDE_MODULE_NAME } from "./declare/error";
 import { executeScript } from "./module/marked";
 import { md5Encode } from "./util/crypto";
+import { findNearestCommand } from "./util/current";
 import { createErrorCommandDeclare } from "./util/declare";
 
 export class Provider {
@@ -65,6 +65,7 @@ export class Provider {
         switch (current.type) {
 
             case COMMAND_DECLARE_TYPE.SCRIPT: {
+
                 const result: MarkedResult = await this.executeScript(current);
                 if (result.signal === END_SIGNAL.SUCCEED) {
 
@@ -103,31 +104,7 @@ export class Provider {
 
         this._checkEmpty();
 
-        const result: { command: ICommand; length: number; }
-            = Object.keys(this._commandMap).reduce<any>(
-                (nearest: { command: ICommand; length: number; }, key: string) => {
-
-                    const current: ICommand = this._commandMap[key];
-                    const target: string = current.command;
-
-                    const distance: number = _String
-                        .compare(command)
-                        .with(target)
-                        .unsensitiveContain(15)
-                        .length(3)
-                        .distance;
-
-                    if (distance < nearest.length) {
-
-                        return {
-                            command: current,
-                            length: distance,
-                        };
-                    }
-
-                    return nearest;
-                }, { command: null, length: Infinity });
-
+        const result = findNearestCommand(this._commandMap, command);
         return result.command;
     }
 

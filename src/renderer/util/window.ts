@@ -1,6 +1,6 @@
 /**
  * @author WMXPY
- * @namespace Declare
+ * @namespace Renderer_Util
  * @description Util
  */
 

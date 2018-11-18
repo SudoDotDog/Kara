@@ -11,8 +11,8 @@ import { IpcMessageEvent, ipcRenderer } from "electron";
 import { initProvideErrorDictionary, PROVIDE_ERROR_CODE, PROVIDE_MODULE_NAME } from "./declare/error";
 import { executeScript } from "./module/marked";
 import { md5Encode } from "./util/crypto";
-import { findNearestCommand } from "./util/current";
 import { createErrorCommandDeclare } from "./util/declare";
+import { findNearestCommand } from "./util/nearest";
 
 export class Provider {
 

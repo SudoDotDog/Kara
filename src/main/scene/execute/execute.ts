@@ -6,6 +6,7 @@
 
 import Config from '#C/config';
 import { BUILD_MODE } from '#C/declare';
+import { SCENE_EXECUTE_IPC } from '#C/ipc';
 import { MainProvider } from '#P/main';
 import Connor, { ErrorCreationFunction } from 'connor';
 import { BrowserWindow, BrowserWindowConstructorOptions, ipcMain } from 'electron';
@@ -179,15 +180,15 @@ export class Execute implements IScene {
 
     private _createIPCListeners(): void {
 
-        ipcMain.on('main-execute-extend-height', this._extendHeight);
-        ipcMain.on('main-execute-reduce-height', this._reduceHeight);
+        ipcMain.on(SCENE_EXECUTE_IPC.EXTEND_HEIGHT, this._extendHeight);
+        ipcMain.on(SCENE_EXECUTE_IPC.REDUCE_HEIGHT, this._reduceHeight);
         return;
     }
 
     private _removeIPCListeners(): void {
 
-        ipcMain.removeListener('main-execute-extend-height', this._extendHeight);
-        ipcMain.removeListener('main-execute-reduce-height', this._reduceHeight);
+        ipcMain.removeListener(SCENE_EXECUTE_IPC.EXTEND_HEIGHT, this._extendHeight);
+        ipcMain.removeListener(SCENE_EXECUTE_IPC.REDUCE_HEIGHT, this._reduceHeight);
         return;
     }
 

@@ -4,6 +4,7 @@
  * @description Provider
  */
 
+import { PROVIDER_IPC } from "#C/ipc";
 import { COMMAND_DECLARE, COMMAND_DECLARE_TYPE, ICommand, ICommandDeclareScript } from "#P/declare";
 import { END_SIGNAL, MarkedResult } from "@sudoo/marked";
 import Connor, { ErrorCreationFunction } from "connor";
@@ -41,7 +42,7 @@ export class Provider {
 
         initProvideErrorDictionary();
 
-        ipcRenderer.on('provider-renderer-checksum', this._handleProviderRendererUpdate);
+        ipcRenderer.on(PROVIDER_IPC.CHECKSUM, this._handleProviderRendererUpdate);
     }
 
     public get length(): number {
@@ -110,12 +111,12 @@ export class Provider {
 
     public requestUpdate(): void {
 
-        ipcRenderer.once('provider-main-request-update-response', (resEvent: IpcMessageEvent, jsonifiedMap: string) => {
+        ipcRenderer.once(PROVIDER_IPC.REQUEST_UPDATE_RESPONSE, (resEvent: IpcMessageEvent, jsonifiedMap: string) => {
 
             const map: any = JSON.parse(jsonifiedMap);
             this._commandMap = map;
         });
-        ipcRenderer.send('provider-main-request-update');
+        ipcRenderer.send(PROVIDER_IPC.REQUEST_UPDATE);
     }
 
     private _checkEmpty(): void {

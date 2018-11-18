@@ -4,6 +4,7 @@
  * @description Main Provider
  */
 
+import { PROVIDER_IPC } from "#C/ipc";
 import { ipcMain, IpcMessageEvent, webContents } from "electron";
 import { ICommand } from "./declare";
 import { md5Encode } from "./util/crypto";
@@ -30,7 +31,7 @@ export class MainProvider {
         this._commandMap = {};
 
         this._updateListener = this._updateListener.bind(this);
-        ipcMain.on('provider-main-request-update', this._updateListener);
+        ipcMain.on(PROVIDER_IPC.REQUEST_UPDATE, this._updateListener);
     }
 
     public get length(): number {
@@ -61,7 +62,7 @@ export class MainProvider {
         const checksum: string = md5Encode(jsonified);
         webContents.getAllWebContents()
             .forEach((web: webContents) => {
-                web.send('provider-renderer-checksum', checksum);
+                web.send(PROVIDER_IPC.CHECKSUM, checksum);
             });
         return this;
     }
@@ -69,6 +70,6 @@ export class MainProvider {
     private _updateListener(event: IpcMessageEvent): void {
 
         const jsonified: string = JSON.stringify(this._commandMap);
-        event.sender.send('provider-main-request-update-response', jsonified);
+        event.sender.send(PROVIDER_IPC.REQUEST_UPDATE_RESPONSE, jsonified);
     }
 }

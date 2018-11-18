@@ -59,16 +59,21 @@ export class Provider {
         return this.length === 0;
     }
 
-    public async execute(declare: COMMAND_DECLARE): Promise<boolean> {
+    public async execute(current: COMMAND_DECLARE): Promise<COMMAND_DECLARE> {
 
-        if (declare.type === COMMAND_DECLARE_TYPE.SCRIPT) {
+        switch (current.type) {
 
-            const result: MarkedResult = await this.executeScript(declare);
-            if (result.signal === END_SIGNAL.SUCCEED) {
-                return true;
+            case COMMAND_DECLARE_TYPE.SCRIPT: {
+                const result: MarkedResult = await this.executeScript(current);
+                if (result.signal === END_SIGNAL.SUCCEED) {
+
+                    return current.next;
+                }
+                break;
             }
         }
-        return false;
+
+        return current;
     }
 
     public async executeScript(declare: ICommandDeclareScript): Promise<MarkedResult> {

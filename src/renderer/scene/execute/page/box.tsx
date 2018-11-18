@@ -4,7 +4,7 @@
  * @description Box
  */
 
-import { COMMAND_DECLARE, ICommand } from '#P/declare';
+import { COMMAND_DECLARE, COMMAND_DECLARE_TYPE, ICommand } from '#P/declare';
 import { Provider } from '#P/renderer';
 import { createCommandCommandDeclare } from '#P/util/declare';
 import { StyleBuilder } from '#R^util/style';
@@ -52,6 +52,8 @@ export class Box extends React.Component<IBoxProps, IBoxState> {
 
         super(props);
 
+        this._nextState = this._nextState.bind(this);
+
         this._handleKeyDown = this._handleKeyDown.bind(this);
         this._handleKeyPress = this._handleKeyPress.bind(this);
     }
@@ -91,6 +93,18 @@ export class Box extends React.Component<IBoxProps, IBoxState> {
         );
     }
 
+    private _nextState(next: COMMAND_DECLARE): void {
+
+        if (next.type === COMMAND_DECLARE_TYPE.DONE) {
+
+            console.log('DONE');
+        }
+
+        this.setState({
+            current: next,
+        });
+    }
+
     private _handleKeyDown(event: KeyboardEvent): void {
 
         const provider: Provider = Provider.instance;
@@ -103,7 +117,7 @@ export class Box extends React.Component<IBoxProps, IBoxState> {
                 const matched: ICommand | null = provider.match(typeBuffer);
                 if (matched) {
 
-                    provider.execute(matched.declare).then(console.log);
+                    provider.execute(matched.declare).then(this._nextState);
                 }
                 break;
             case KEY.ESCAPE:

@@ -15,3 +15,8 @@ export const createDoneCommandDeclare = (): COMMAND_DECLARE => ({
 
     type: COMMAND_DECLARE_TYPE.DONE,
 });
+
+export const createErrorCommandDeclare = (): COMMAND_DECLARE => ({
+
+    type: COMMAND_DECLARE_TYPE.ERROR,
+});

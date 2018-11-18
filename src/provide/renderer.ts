@@ -12,6 +12,7 @@ import { IpcMessageEvent, ipcRenderer } from "electron";
 import { initProvideErrorDictionary, PROVIDE_ERROR_CODE, PROVIDE_MODULE_NAME } from "./declare/error";
 import { executeScript } from "./module/marked";
 import { md5Encode } from "./util/crypto";
+import { createErrorCommandDeclare } from "./util/declare";
 
 export class Provider {
 
@@ -73,7 +74,7 @@ export class Provider {
             }
         }
 
-        return current;
+        return createErrorCommandDeclare();
     }
 
     public async executeScript(declare: ICommandDeclareScript): Promise<MarkedResult> {

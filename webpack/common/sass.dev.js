@@ -6,7 +6,7 @@
 
 const path = require('path');
 
-const COMMON_SASS_DIR = path.resolve(__dirname, '..', '..', 'src', 'renderer', 'style', 'common');
+const COMMON_SASS_DIR = path.resolve(__dirname, '..', '..', 'style', 'common');
 
 module.exports = [{
         test: /\.sass$/,

@@ -11,6 +11,7 @@ import { StyleBuilder } from '#R^util/style';
 import { Panel } from '#R~execute/components/panel';
 import { setCounter } from '#R~execute/state/box/box';
 import { IStore } from '#R~execute/state/declare';
+import { ExecuteResizer } from '#R~execute/util/resizer';
 import * as styleExecute from '#S/scene/execute/execute.sass';
 import * as React from "react";
 import { connect } from "react-redux";
@@ -59,6 +60,8 @@ export class Box extends React.Component<IBoxProps, IBoxState> {
     }
 
     public componentDidMount(): void {
+
+        (window as any).test = ExecuteResizer;
 
         document.addEventListener('keydown', this._handleKeyDown);
         document.addEventListener('keypress', this._handleKeyPress);

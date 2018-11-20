@@ -5,7 +5,7 @@
  */
 
 import { SCENE_EXECUTE_IPC } from "#C/ipc";
-import { ipcRenderer } from "test/mock/global/electron";
+import { ipcRenderer } from "electron";
 
 export class ExecuteResizer {
 
@@ -38,17 +38,17 @@ export class ExecuteResizer {
 
     private extend(): void {
 
-        if (!this._extended) {
-            this._extended = true;
-            ipcRenderer.send(SCENE_EXECUTE_IPC.EXTEND_HEIGHT);
-        }
+        // if (!this._extended) {
+        //     this._extended = true;
+        ipcRenderer.send(SCENE_EXECUTE_IPC.EXTEND_HEIGHT);
+        // }
     }
 
     private reduce(): void {
 
-        if (this._extended) {
-            this._extended = false;
-            ipcRenderer.send(SCENE_EXECUTE_IPC.REDUCE_HEIGHT);
-        }
+        // if (this._extended) {
+        //     this._extended = false;
+        ipcRenderer.send(SCENE_EXECUTE_IPC.REDUCE_HEIGHT);
+        // }
     }
 }

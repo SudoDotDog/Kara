@@ -196,15 +196,16 @@ export class Execute implements IScene {
 
         const browserWindow = this._getBrowserWindow();
 
-        browserWindow.setSize(480, 560);
+        browserWindow.setContentSize(480, 560, true);
         return;
     }
 
     private _reduceHeight(): void {
 
         const browserWindow = this._getBrowserWindow();
-
-        browserWindow.setSize(480, 80);
+        console.log('REDUCE');
+        console.log(browserWindow.getSize(), browserWindow.getContentSize());
+        browserWindow.setContentSize(480, 250, true);
         return;
     }
 }

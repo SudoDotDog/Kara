@@ -37,15 +37,15 @@ export class AutoHorizontalExpend extends React.Component<IAutoHorizontalExpendP
 
     public render(): JSX.Element {
 
-        return (
-            <div className={StyleBuilder
+        return (<div
+            className={StyleBuilder
                 .init(this.props.className)
                 .add(styleExecute.expendable)
                 .if(this.state.horizontalFullSized, styleExecute.fullSized)
-                .build()}>
+                .build()}
+        >
 
-                {this.props.children}
-            </div>
-        );
+            {this.props.children}
+        </div>);
     }
 }

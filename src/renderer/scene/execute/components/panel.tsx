@@ -30,7 +30,13 @@ export const Panel = (props: {
     }) => JSX.Element = getToolTip(props.current);
 
     return (<div className={panelStyles.panel}>
-        <div className={panelStyles.field}>{props.typeBuffer}</div>
-        <ToolTipComponent typeBuffer={props.typeBuffer} />
+
+        <div className={panelStyles.field}>
+
+            {props.typeBuffer}
+        </div>
+        <ToolTipComponent
+            typeBuffer={props.typeBuffer}
+        />
     </div>);
 };

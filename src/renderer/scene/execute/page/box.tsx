@@ -17,6 +17,7 @@ import * as styleExecute from '#S/scene/execute/execute.sass';
 import * as React from "react";
 import { connect } from "react-redux";
 import { KEY } from '../../../declare/key';
+import { Details } from './details';
 
 export interface IBoxProps {
 
@@ -27,6 +28,7 @@ export interface IBoxProps {
 interface IBoxState {
 
     readonly current: COMMAND_DECLARE;
+    readonly expend: boolean;
     readonly typeBuffer: string;
 }
 
@@ -45,6 +47,7 @@ export class Box extends React.Component<IBoxProps, IBoxState> {
     public readonly state: IBoxState = {
 
         current: createCommandCommandDeclare(),
+        expend: false,
         typeBuffer: '',
     };
 
@@ -69,31 +72,30 @@ export class Box extends React.Component<IBoxProps, IBoxState> {
     public componentWillUnmount(): void {
 
         document.removeEventListener('keydown', this._handleKeyDown);
-        document.addEventListener('keypress', this._handleKeyPress);
+        document.removeEventListener('keypress', this._handleKeyPress);
     }
 
     public render(): JSX.Element {
 
-        return (
-            <div className={styleExecute.outer}>
-                <div className={styleExecute.title}>
+        return (<div className={styleExecute.outer}>
 
-                    <div className={styleExecute.titleLeft}>
+            <div className={styleExecute.title}>
 
-                        <div></div>
-                    </div>
-                    <AutoHorizontalExpend className={styleExecute.titleRight}>
+                <div className={styleExecute.titleLeft}>
 
-                        <Panel current={this.state.current} typeBuffer={this.state.typeBuffer} />
-                    </AutoHorizontalExpend>
-                </div>
-
-                <VerticalExpendable>
                     <div></div>
-                </VerticalExpendable>
+                </div>
+                <AutoHorizontalExpend className={styleExecute.titleRight}>
+
+                    <Panel
+                        current={this.state.current}
+                        typeBuffer={this.state.typeBuffer}
+                    />
+                </AutoHorizontalExpend>
             </div>
 
-        );
+            <Details expend={this.state.expend} />
+        </div>);
     }
 
     private _nextState(next: COMMAND_DECLARE): void {
@@ -128,6 +130,7 @@ export class Box extends React.Component<IBoxProps, IBoxState> {
             }
             case KEY.ESCAPE: {
 
+                this.setState({expend: !this.state.expend});
                 setCurrent('');
                 break;
             }

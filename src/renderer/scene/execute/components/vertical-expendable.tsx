@@ -18,14 +18,14 @@ export interface IVerticalExpendableProps {
 
 export const VerticalExpendable: React.SFC<IVerticalExpendableProps> = (props: IVerticalExpendableProps): JSX.Element => {
 
-    return (
-        <div className={StyleBuilder
+    return (<div
+        className={StyleBuilder
             .init(props.className)
             .add(styleExecute.verticalExpendable)
             .if(props.expend, styleExecute.fullSized)
-            .build()}>
+            .build()}
+    >
 
-            {props.children}
-        </div>
-    );
+        {props.children}
+    </div>);
 };

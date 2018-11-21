@@ -17,7 +17,7 @@ import * as React from "react";
 import { connect } from "react-redux";
 import { KEY } from '../../../declare/key';
 
-interface IBoxProps {
+export interface IBoxProps {
 
     readonly counter: number;
     readonly setCounter: (number: number) => any;

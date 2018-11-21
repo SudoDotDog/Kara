@@ -8,7 +8,7 @@ import { StyleBuilder } from "#R^util/style";
 import * as styleExecute from '#S/scene/execute/execute.sass';
 import * as React from "react";
 
-interface IExpendableProps {
+export interface IExpendableProps {
 
     children: JSX.Element;
 

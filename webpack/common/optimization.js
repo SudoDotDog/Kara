@@ -5,11 +5,11 @@
  */
 
 const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
-const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
+const TerserPlugin = require("terser-webpack-plugin");
 
 module.exports = {
     minimizer: [
-        new UglifyJsPlugin({
+        new TerserPlugin({
             cache: true,
             parallel: true,
         }),

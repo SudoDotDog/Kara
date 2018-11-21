@@ -4,13 +4,15 @@
  * @description Details
  */
 
+import { COMMAND_DECLARE } from '#P/declare';
 import { VerticalExpendable } from '#R~execute/components/vertical-expendable';
 import { ExecuteResizer } from '#R~execute/util/resizer';
 import * as React from "react";
 
 export interface IDetailsProps {
 
-    expend?: boolean;
+    readonly current: COMMAND_DECLARE;
+    readonly typeBuffer: string;
 }
 
 export class Details extends React.Component<IDetailsProps, {}> {
@@ -22,7 +24,7 @@ export class Details extends React.Component<IDetailsProps, {}> {
 
     public componentWillUpdate(nextProps: IDetailsProps): void {
 
-        if (nextProps.expend) {
+        if (false) {
 
             ExecuteResizer.extendExecute();
         } else {
@@ -33,7 +35,7 @@ export class Details extends React.Component<IDetailsProps, {}> {
 
     public render(): JSX.Element {
 
-        return (<VerticalExpendable expend={this.props.expend}>
+        return (<VerticalExpendable expend={false}>
 
             <div></div>
         </VerticalExpendable>);

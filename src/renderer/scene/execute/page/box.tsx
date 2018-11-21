@@ -7,17 +7,13 @@
 import { COMMAND_DECLARE, COMMAND_DECLARE_TYPE, ICommand } from '#P/declare';
 import { Provider } from '#P/renderer';
 import { createCommandCommandDeclare } from '#P/util/declare';
-import { AutoHorizontalExpend } from '#R~execute/components/auto-horizontal-expend';
-import { Panel } from '#R~execute/components/panel';
-import { VerticalExpendable } from '#R~execute/components/vertical-expendable';
 import { setCounter } from '#R~execute/state/box/box';
 import { IStore } from '#R~execute/state/declare';
 import { ExecuteResizer } from '#R~execute/util/resizer';
-import * as styleExecute from '#S/scene/execute/execute.sass';
 import * as React from "react";
 import { connect } from "react-redux";
 import { KEY } from '../../../declare/key';
-import { Details } from './details';
+import { Protocol } from './protocol';
 
 export interface IBoxProps {
 
@@ -28,7 +24,6 @@ export interface IBoxProps {
 interface IBoxState {
 
     readonly current: COMMAND_DECLARE;
-    readonly expend: boolean;
     readonly typeBuffer: string;
 }
 
@@ -47,7 +42,6 @@ export class Box extends React.Component<IBoxProps, IBoxState> {
     public readonly state: IBoxState = {
 
         current: createCommandCommandDeclare(),
-        expend: false,
         typeBuffer: '',
     };
 
@@ -77,25 +71,10 @@ export class Box extends React.Component<IBoxProps, IBoxState> {
 
     public render(): JSX.Element {
 
-        return (<div className={styleExecute.outer}>
-
-            <div className={styleExecute.title}>
-
-                <div className={styleExecute.titleLeft}>
-
-                    <div></div>
-                </div>
-                <AutoHorizontalExpend className={styleExecute.titleRight}>
-
-                    <Panel
-                        current={this.state.current}
-                        typeBuffer={this.state.typeBuffer}
-                    />
-                </AutoHorizontalExpend>
-            </div>
-
-            <Details expend={this.state.expend} />
-        </div>);
+        return (<Protocol
+            current={this.state.current}
+            typeBuffer={this.state.typeBuffer}
+        />);
     }
 
     private _nextState(next: COMMAND_DECLARE): void {
@@ -130,7 +109,6 @@ export class Box extends React.Component<IBoxProps, IBoxState> {
             }
             case KEY.ESCAPE: {
 
-                this.setState({expend: !this.state.expend});
                 setCurrent('');
                 break;
             }

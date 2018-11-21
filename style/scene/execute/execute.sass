@@ -25,7 +25,10 @@
         display: flex
 
         @include background-opacity($red, .5);
+        -webkit-app-region: no-drag
         height: 100%
+        &.unlock
+           -webkit-app-region: drag
         div
             align-self: flex-end
     .title-right

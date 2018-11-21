@@ -4,7 +4,9 @@
  * @description Protocol
  */
 
+import { BUILD_MODE } from '#C/declare';
 import { COMMAND_DECLARE } from '#P/declare';
+import { StyleBuilder } from '#R^util/style';
 import { AutoHorizontalExpend } from '#R~execute/components/auto-horizontal-expend';
 import { Panel } from '#R~execute/components/panel';
 import * as styleExecute from '#S/scene/execute/execute.sass';
@@ -19,13 +21,18 @@ export interface IProtocolProps {
 
 export const Protocol: React.SFC<IProtocolProps> = (props: IProtocolProps): JSX.Element => {
 
+    const isDebug: boolean = process.env.NODE_ENV === BUILD_MODE.DEVELOPMENT;
+
     return (<div className={styleExecute.outer}>
 
         <div className={styleExecute.title}>
 
-            <div className={styleExecute.titleLeft}>
-
-                <div></div>
+            <div className={
+                StyleBuilder
+                    .init(styleExecute.titleLeft)
+                    .if(isDebug, styleExecute.unlock)
+                    .build()
+            }>
             </div>
             <AutoHorizontalExpend className={styleExecute.titleRight}>
 

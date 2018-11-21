@@ -31,29 +31,36 @@ export type COMMAND_DECLARE
     | ICommandDeclareScript
     | ICommandDeclareSelect;
 
+interface ICommandDeclareArguments {
+
+    arguments?: {
+        [key: string]: string;
+    };
+}
+
 export interface ICommandDeclareCommand {
 
     type: COMMAND_DECLARE_TYPE.COMMAND;
 }
 
-export interface ICommandDeclareDone {
+export interface ICommandDeclareDone extends ICommandDeclareArguments {
 
     type: COMMAND_DECLARE_TYPE.DONE;
 }
 
-export interface ICommandDeclareError {
+export interface ICommandDeclareError extends ICommandDeclareArguments {
 
     type: COMMAND_DECLARE_TYPE.ERROR;
 }
 
-export interface ICommandDeclareInput {
+export interface ICommandDeclareInput extends ICommandDeclareArguments {
 
     type: COMMAND_DECLARE_TYPE.INPUT;
 
     next: COMMAND_DECLARE;
 }
 
-export interface ICommandDeclareScript {
+export interface ICommandDeclareScript extends ICommandDeclareArguments {
 
     type: COMMAND_DECLARE_TYPE.SCRIPT;
 
@@ -61,16 +68,16 @@ export interface ICommandDeclareScript {
     next: COMMAND_DECLARE;
 }
 
+export interface ICommandDeclareSelect extends ICommandDeclareArguments {
+
+    type: COMMAND_DECLARE_TYPE.SELECT;
+
+    from: ICommandDeclareSelectElement[];
+}
+
 export interface ICommandDeclareSelectElement {
 
     name: string;
     key: string;
     next: COMMAND_DECLARE;
-}
-
-export interface ICommandDeclareSelect {
-
-    type: COMMAND_DECLARE_TYPE.SELECT;
-
-    from: ICommandDeclareSelectElement[];
 }

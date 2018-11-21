@@ -28,9 +28,12 @@ export const initMainProvider = (): void => {
             key: 'g',
             description: 'google',
             declare: {
-                type: COMMAND_DECLARE_TYPE.SCRIPT,
-                script: `import {openExternal} from 'io';openExternal('https://google.com')`,
-                next: createDoneCommandDeclare(),
+                type: COMMAND_DECLARE_TYPE.INPUT,
+                next: {
+                    type: COMMAND_DECLARE_TYPE.SCRIPT,
+                    script: `import {openExternal} from 'io';openExternal('https://google.com')`,
+                    next: createDoneCommandDeclare(),
+                },
             },
         }).register({
             name: 'someLongName',

@@ -164,7 +164,6 @@ export class Execute implements IScene {
             alwaysOnTop: true,
             resizable: false,
             fullscreenable: false,
-            movable: false,
             maximizable: false,
             minimizable: false,
         };

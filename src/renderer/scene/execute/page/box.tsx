@@ -9,6 +9,7 @@ import { Provider } from '#P/renderer';
 import { createCommandCommandDeclare } from '#P/util/declare';
 import { AutoHorizontalExpend } from '#R~execute/components/auto-horizontal-expend';
 import { Panel } from '#R~execute/components/panel';
+import { VerticalExpendable } from '#R~execute/components/vertical-expendable';
 import { setCounter } from '#R~execute/state/box/box';
 import { IStore } from '#R~execute/state/declare';
 import { ExecuteResizer } from '#R~execute/util/resizer';
@@ -74,17 +75,24 @@ export class Box extends React.Component<IBoxProps, IBoxState> {
     public render(): JSX.Element {
 
         return (
-            <div className={styleExecute.title}>
+            <div className={styleExecute.outer}>
+                <div className={styleExecute.title}>
 
-                <div className={styleExecute.titleLeft}>
+                    <div className={styleExecute.titleLeft}>
 
-                    <div></div>
+                        <div></div>
+                    </div>
+                    <AutoHorizontalExpend className={styleExecute.titleRight}>
+
+                        <Panel current={this.state.current} typeBuffer={this.state.typeBuffer} />
+                    </AutoHorizontalExpend>
                 </div>
-                <AutoHorizontalExpend className={styleExecute.titleRight}>
 
-                    <Panel current={this.state.current} typeBuffer={this.state.typeBuffer} />
-                </AutoHorizontalExpend>
+                <VerticalExpendable>
+                    <div></div>
+                </VerticalExpendable>
             </div>
+
         );
     }
 

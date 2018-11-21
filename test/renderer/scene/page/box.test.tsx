@@ -35,6 +35,6 @@ describe('Given a <Box /> Component', (): void => {
 
         const component: ShallowWrapper = render();
 
-        expect(component.prop('className')).to.be.equal('title');
+        expect(component.prop('className')).to.be.equal('outer');
     });
 });

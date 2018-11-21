@@ -16,12 +16,12 @@ export interface IVerticalExpendableProps {
     expend?: boolean;
 }
 
-export const VerticalExpendableBase: React.SFC<IVerticalExpendableProps> = (props: IVerticalExpendableProps): JSX.Element => {
+export const VerticalExpendable: React.SFC<IVerticalExpendableProps> = (props: IVerticalExpendableProps): JSX.Element => {
 
     return (
         <div className={StyleBuilder
             .init(props.className)
-            .add(styleExecute.expendable)
+            .add(styleExecute.verticalExpendable)
             .if(props.expend, styleExecute.fullSized)
             .build()}>
 

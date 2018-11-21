@@ -1,3 +1,9 @@
+/**
+ * @author WMXPY
+ * @namespace Scene_Execute_State
+ * @description Declare
+ */
+
 import { IBoxStore } from "./box/type";
 
 export interface IStore {

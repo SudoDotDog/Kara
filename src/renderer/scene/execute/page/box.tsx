@@ -7,7 +7,7 @@
 import { COMMAND_DECLARE, COMMAND_DECLARE_TYPE, ICommand } from '#P/declare';
 import { Provider } from '#P/renderer';
 import { createCommandCommandDeclare } from '#P/util/declare';
-import { StyleBuilder } from '#R^util/style';
+import { Expendable } from '#R~execute/components/expendable';
 import { Panel } from '#R~execute/components/panel';
 import { setCounter } from '#R~execute/state/box/box';
 import { IStore } from '#R~execute/state/declare';
@@ -17,16 +17,15 @@ import * as React from "react";
 import { connect } from "react-redux";
 import { KEY } from '../../../declare/key';
 
-export interface IBoxProps {
+interface IBoxProps {
 
     readonly counter: number;
     readonly setCounter: (number: number) => any;
 }
 
-export interface IBoxState {
+interface IBoxState {
 
     readonly current: COMMAND_DECLARE;
-    readonly fullSized: boolean;
     readonly typeBuffer: string;
 }
 
@@ -45,7 +44,6 @@ export class Box extends React.Component<IBoxProps, IBoxState> {
     public readonly state: IBoxState = {
 
         current: createCommandCommandDeclare(),
-        fullSized: false,
         typeBuffer: '',
     };
 
@@ -65,9 +63,6 @@ export class Box extends React.Component<IBoxProps, IBoxState> {
 
         document.addEventListener('keydown', this._handleKeyDown);
         document.addEventListener('keypress', this._handleKeyPress);
-        setImmediate(() => this.setState({
-            fullSized: true,
-        }));
     }
 
     public componentWillUnmount(): void {
@@ -85,13 +80,10 @@ export class Box extends React.Component<IBoxProps, IBoxState> {
 
                     <div></div>
                 </div>
-                <div className={StyleBuilder
-                    .init(styleExecute.titleRight)
-                    .if(this.state.fullSized, styleExecute.titleRightFullSize)
-                    .build()}>
+                <Expendable className={styleExecute.titleRight}>
 
                     <Panel current={this.state.current} typeBuffer={this.state.typeBuffer} />
-                </div>
+                </Expendable>
             </div>
         );
     }

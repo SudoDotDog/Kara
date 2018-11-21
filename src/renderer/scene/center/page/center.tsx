@@ -8,7 +8,7 @@ import { CENTER_FRAME } from '#R~center/declare/center';
 import * as styleCenter from '#S/scene/center/center.sass';
 import * as React from "react";
 
-export interface ICenterState {
+interface ICenterState {
 
     readonly frame: CENTER_FRAME;
 }

@@ -5,6 +5,7 @@
  */
 
 import { Box, IBoxProps } from '#R~execute/page/box';
+import { Protocol } from '#R~execute/page/protocol';
 import { expect } from 'chai';
 import * as Chance from 'chance';
 import { shallow, ShallowWrapper } from 'enzyme';
@@ -24,17 +25,10 @@ describe('Given a <Box /> Component', (): void => {
         return shallow(<Box {...props} />);
     };
 
-    it('should be able to render', (): void => {
+    it('should render a protocol', (): void => {
 
         const component: ShallowWrapper = render();
 
-        expect(component.type()).to.be.equal('div');
-    });
-
-    it('should have a correct class name', (): void => {
-
-        const component: ShallowWrapper = render();
-
-        expect(component.prop('className')).to.be.equal('outer');
+        expect(component.type()).to.be.equal(Protocol);
     });
 });

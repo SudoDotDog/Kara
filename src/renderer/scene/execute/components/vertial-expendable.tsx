@@ -1,0 +1,31 @@
+/**
+ * @author WMXPY
+ * @namespace Scene_Execute_Component
+ * @description Expendable
+ */
+
+import { StyleBuilder } from "#R^util/style";
+import * as styleExecute from '#S/scene/execute/execute.sass';
+import * as React from "react";
+
+export interface IVerticalExpendableProps {
+
+    children: JSX.Element;
+
+    className?: string;
+    expend?: boolean;
+}
+
+export const VerticalExpendableBase: React.SFC<IVerticalExpendableProps> = (props: IVerticalExpendableProps): JSX.Element => {
+
+    return (
+        <div className={StyleBuilder
+            .init(props.className)
+            .add(styleExecute.expendable)
+            .if(props.expend, styleExecute.fullSized)
+            .build()}>
+
+            {props.children}
+        </div>
+    );
+};

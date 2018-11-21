@@ -1,14 +1,14 @@
 /**
  * @author WMXPY
  * @namespace Scene_Execute_Component
- * @description Expendable
+ * @description AutoHorizontalExpend
  */
 
 import { StyleBuilder } from "#R^util/style";
 import * as styleExecute from '#S/scene/execute/execute.sass';
 import * as React from "react";
 
-export interface IExpendableProps {
+export interface IAutoHorizontalExpendProps {
 
     children: JSX.Element;
 
@@ -16,14 +16,14 @@ export interface IExpendableProps {
     expend?: boolean;
 }
 
-interface IExpendableState {
+interface IAutoHorizontalExpendState {
 
     horizontalFullSized: boolean;
 }
 
-export class Expendable extends React.Component<IExpendableProps, IExpendableState> {
+export class AutoHorizontalExpend extends React.Component<IAutoHorizontalExpendProps, IAutoHorizontalExpendState> {
 
-    public readonly state: IExpendableState = {
+    public readonly state: IAutoHorizontalExpendState = {
 
         horizontalFullSized: false,
     };

@@ -7,7 +7,7 @@
 import { COMMAND_DECLARE, COMMAND_DECLARE_TYPE, ICommand } from '#P/declare';
 import { Provider } from '#P/renderer';
 import { createCommandCommandDeclare } from '#P/util/declare';
-import { Expendable } from '#R~execute/components/expendable';
+import { AutoHorizontalExpend } from '#R~execute/components/auto-horizontal-expend';
 import { Panel } from '#R~execute/components/panel';
 import { setCounter } from '#R~execute/state/box/box';
 import { IStore } from '#R~execute/state/declare';
@@ -80,10 +80,10 @@ export class Box extends React.Component<IBoxProps, IBoxState> {
 
                     <div></div>
                 </div>
-                <Expendable className={styleExecute.titleRight}>
+                <AutoHorizontalExpend className={styleExecute.titleRight}>
 
                     <Panel current={this.state.current} typeBuffer={this.state.typeBuffer} />
-                </Expendable>
+                </AutoHorizontalExpend>
             </div>
         );
     }

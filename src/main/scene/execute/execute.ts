@@ -43,6 +43,7 @@ export class Execute implements IScene {
         this._error = Connor.getErrorCreator(MODULE_NAME);
         this._ready = false;
 
+        this.hide = this.hide.bind(this);
         this._extendHeight = this._extendHeight.bind(this);
         this._reduceHeight = this._reduceHeight.bind(this);
     }
@@ -181,6 +182,7 @@ export class Execute implements IScene {
 
         ipcMain.on(SCENE_EXECUTE_IPC.EXTEND_HEIGHT, this._extendHeight);
         ipcMain.on(SCENE_EXECUTE_IPC.REDUCE_HEIGHT, this._reduceHeight);
+        ipcMain.on(SCENE_EXECUTE_IPC.HIDE_WINDOW, this.hide);
         return;
     }
 
@@ -188,6 +190,7 @@ export class Execute implements IScene {
 
         ipcMain.removeListener(SCENE_EXECUTE_IPC.EXTEND_HEIGHT, this._extendHeight);
         ipcMain.removeListener(SCENE_EXECUTE_IPC.REDUCE_HEIGHT, this._reduceHeight);
+        ipcMain.removeListener(SCENE_EXECUTE_IPC.HIDE_WINDOW, this.hide);
         return;
     }
 

@@ -10,6 +10,7 @@ import { createCommandCommandDeclare } from '#P/util/declare';
 import { setCounter } from '#R~execute/state/box/box';
 import { IStore } from '#R~execute/state/declare';
 import { ExecuteResizer } from '#R~execute/util/resizer';
+import { hideExecuteWindow } from '#R~execute/util/trigger';
 import * as React from "react";
 import { connect } from "react-redux";
 import { KEY } from '../../../declare/key';
@@ -81,12 +82,13 @@ export class Box extends React.Component<IBoxProps, IBoxState> {
 
         if (next.type === COMMAND_DECLARE_TYPE.DONE) {
 
-            console.log('DONE');
+            hideExecuteWindow();
         }
 
         this.setState({
             current: next,
         });
+        console.log(next);
     }
 
     private _handleKeyDown(event: KeyboardEvent): void {

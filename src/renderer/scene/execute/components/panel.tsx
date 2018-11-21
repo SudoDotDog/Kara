@@ -5,7 +5,7 @@
  */
 
 import { COMMAND_DECLARE, COMMAND_DECLARE_TYPE } from "#P/declare";
-import { CommandDeclareTooltip } from "#R^components/current/command";
+import { CommandDeclareTooltip } from "#R^components/panel/command";
 import * as panelStyles from '#S/scene/execute/panel.sass';
 import * as React from "react";
 

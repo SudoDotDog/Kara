@@ -8,6 +8,7 @@ export enum SCENE_EXECUTE_IPC {
 
     EXTEND_HEIGHT = 'main-execute-extend-height',
     REDUCE_HEIGHT = 'main-execute-reduce-height',
+    HIDE_WINDOW = 'main-execute-hide-window',
 }
 
 export enum PROVIDER_IPC {

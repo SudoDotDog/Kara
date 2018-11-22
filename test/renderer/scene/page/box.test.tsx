@@ -4,6 +4,7 @@
  * @description Box Test
  */
 
+import { createCommandCommandDeclare } from '#P/util/declare';
 import { Box, IBoxProps } from '#R~execute/page/box';
 import { Protocol } from '#R~execute/page/protocol';
 import { expect } from 'chai';
@@ -17,8 +18,12 @@ describe('Given a <Box /> Component', (): void => {
     const chance: Chance.Chance = new Chance('renderer-scene-page-box');
 
     const getDefaultProps = (): IBoxProps => ({
-        counter: chance.natural(),
-        setCounter: new Sandbox().func(),
+
+        input: chance.string(),
+        current: createCommandCommandDeclare(),
+        setCurrent: new Sandbox().func(),
+        clearInput: new Sandbox().func(),
+        setInput: new Sandbox().func(),
     });
 
     const render = (props: IBoxProps = getDefaultProps()) => {

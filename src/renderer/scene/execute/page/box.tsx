@@ -6,7 +6,7 @@
 
 import { COMMAND_DECLARE, COMMAND_DECLARE_TYPE, ICommand } from '#P/declare';
 import { Provider } from '#P/renderer';
-import { createCommandCommandDeclare } from '#P/util/declare';
+import { setInput } from '#R~execute/state/buffer/buffer';
 import { setCurrent } from '#R~execute/state/current/current';
 import { IStore } from '#R~execute/state/declare';
 import { ExecuteResizer } from '#R~execute/util/resizer';
@@ -19,30 +19,24 @@ import { Protocol } from './protocol';
 export interface IBoxProps {
 
     readonly current: COMMAND_DECLARE;
+    readonly input: string;
     readonly setCurrent: (current: COMMAND_DECLARE) => void;
-}
-
-interface IBoxState {
-
-    readonly typeBuffer: string;
+    readonly setInput: (input: string) => void;
 }
 
 const mapStateBoxCareAbout = (store: IStore): Partial<IBoxProps> => ({
 
     current: store.current.current,
+    input: store.buffer.input,
 });
 
 const mapDispatchBoxCareAbout: any = {
 
     setCurrent,
+    setInput,
 };
 
-export class Box extends React.Component<IBoxProps, IBoxState> {
-
-    public readonly state: IBoxState = {
-
-        typeBuffer: '',
-    };
+export class Box extends React.Component<IBoxProps, {}> {
 
     public constructor(props: IBoxProps) {
 
@@ -72,7 +66,7 @@ export class Box extends React.Component<IBoxProps, IBoxState> {
 
         return (<Protocol
             current={this.props.current}
-            typeBuffer={this.state.typeBuffer}
+            typeBuffer={this.props.input}
         />);
     }
 
@@ -90,9 +84,7 @@ export class Box extends React.Component<IBoxProps, IBoxState> {
     private _handleKeyDown(event: KeyboardEvent): void {
 
         const provider: Provider = Provider.instance;
-        const typeBuffer: string = this.state.typeBuffer;
-
-        const setTypeBuffer = (newTypeBuffer: string) => this.setState({ typeBuffer: newTypeBuffer });
+        const typeBuffer: string = this.props.input;
 
         switch (event.key) {
 
@@ -107,18 +99,18 @@ export class Box extends React.Component<IBoxProps, IBoxState> {
             }
             case KEY.ESCAPE: {
 
-                setTypeBuffer('');
+                this.props.setInput('');
                 break;
             }
             case KEY.TAB: {
 
                 const nearest: ICommand | null = provider.nearest(typeBuffer);
-                if (nearest) setTypeBuffer(nearest.command);
+                if (nearest) this.props.setInput(nearest.command);
                 break;
             }
             case KEY.BACKSPACE: {
 
-                setTypeBuffer(typeBuffer.substring(0, typeBuffer.length - 1));
+                this.props.setInput(typeBuffer.substring(0, typeBuffer.length - 1));
                 break;
             }
         }
@@ -129,11 +121,9 @@ export class Box extends React.Component<IBoxProps, IBoxState> {
     private _handleKeyPress(event: KeyboardEvent): void {
 
         if (event.key.length === 1) {
-            const typeBuffer = this.state.typeBuffer + event.key;
+            const typeBuffer = this.props.input + event.key;
 
-            this.setState({
-                typeBuffer,
-            });
+            this.props.setInput(typeBuffer);
         }
 
         return;

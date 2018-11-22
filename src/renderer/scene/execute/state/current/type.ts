@@ -1,6 +1,6 @@
 /**
  * @author WMXPY
- * @namespace Scene_Execute_State_Box
+ * @namespace Scene_Execute_State_Current
  * @description Type
  */
 

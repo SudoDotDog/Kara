@@ -8,7 +8,7 @@ import { Reducer } from 'redux';
 import { EXECUTE_ACTIONS, IStore } from '../declare';
 import { IBufferStore, ISetInputReducerAction } from './type';
 
-const reduceSetInput: Reducer<IStore, ISetInputReducerAction> = (state: IStore | undefined, action: ISetInputReducerAction): IStore => (console.log(action), {
+const reduceSetInput: Reducer<IStore, ISetInputReducerAction> = (state: IStore | undefined, action: ISetInputReducerAction): IStore => ({
 
     ...state as IStore,
     buffer: {
@@ -27,6 +27,15 @@ export const setInput = (input: string): ISetInputReducerAction => {
     return {
         type: EXECUTE_ACTIONS.SET_INPUT,
         input,
+    };
+};
+
+export const clearInput = (): ISetInputReducerAction => {
+
+    return {
+
+        type: EXECUTE_ACTIONS.SET_INPUT,
+        input: '',
     };
 };
 

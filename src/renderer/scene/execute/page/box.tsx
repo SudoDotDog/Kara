@@ -6,7 +6,7 @@
 
 import { COMMAND_DECLARE, COMMAND_DECLARE_TYPE, ICommand } from '#P/declare';
 import { Provider } from '#P/renderer';
-import { setInput } from '#R~execute/state/buffer/buffer';
+import { clearInput, setInput } from '#R~execute/state/buffer/buffer';
 import { setCurrent } from '#R~execute/state/current/current';
 import { IStore } from '#R~execute/state/declare';
 import { ExecuteResizer } from '#R~execute/util/resizer';
@@ -19,8 +19,10 @@ import { Protocol } from './protocol';
 export interface IBoxProps {
 
     readonly current: COMMAND_DECLARE;
-    readonly input: string;
     readonly setCurrent: (current: COMMAND_DECLARE) => void;
+
+    readonly input: string;
+    readonly clearInput: () => void;
     readonly setInput: (input: string) => void;
 }
 
@@ -33,6 +35,8 @@ const mapStateBoxCareAbout = (store: IStore): Partial<IBoxProps> => ({
 const mapDispatchBoxCareAbout: any = {
 
     setCurrent,
+
+    clearInput,
     setInput,
 };
 
@@ -99,7 +103,7 @@ export class Box extends React.Component<IBoxProps, {}> {
             }
             case KEY.ESCAPE: {
 
-                this.props.setInput('');
+                this.props.clearInput();
                 break;
             }
             case KEY.TAB: {

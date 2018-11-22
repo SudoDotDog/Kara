@@ -4,11 +4,11 @@
  * @description Declare
  */
 
-import { IBoxStore } from "./box/type";
+import { ICurrentStore } from "./current/type";
 
 export interface IStore {
 
-    readonly box: IBoxStore;
+    readonly current: ICurrentStore;
 }
 
 export enum EXECUTE_ACTIONS {

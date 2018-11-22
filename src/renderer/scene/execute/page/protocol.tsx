@@ -33,6 +33,7 @@ export const Protocol: React.SFC<IProtocolProps> = (props: IProtocolProps): JSX.
                     .if(isDebug, styleExecute.unlock)
                     .build()
             }>
+                {props.current.type}
             </div>
             <AutoHorizontalExpend className={styleExecute.titleRight}>
 

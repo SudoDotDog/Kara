@@ -7,7 +7,7 @@
 import { COMMAND_DECLARE, COMMAND_DECLARE_TYPE, ICommand } from '#P/declare';
 import { Provider } from '#P/renderer';
 import { createCommandCommandDeclare } from '#P/util/declare';
-import { setCounter } from '#R~execute/state/box/box';
+import { setCurrent } from '#R~execute/state/current/current';
 import { IStore } from '#R~execute/state/declare';
 import { ExecuteResizer } from '#R~execute/util/resizer';
 import { hideExecuteWindow } from '#R~execute/util/trigger';
@@ -18,31 +18,29 @@ import { Protocol } from './protocol';
 
 export interface IBoxProps {
 
-    readonly counter: number;
-    readonly setCounter: (number: number) => any;
+    readonly current: COMMAND_DECLARE;
+    readonly setCurrent: (current: COMMAND_DECLARE) => void;
 }
 
 interface IBoxState {
 
-    readonly current: COMMAND_DECLARE;
     readonly typeBuffer: string;
 }
 
 const mapStateBoxCareAbout = (store: IStore): Partial<IBoxProps> => ({
 
-    counter: store.box.counter,
+    current: store.current.current,
 });
 
 const mapDispatchBoxCareAbout: any = {
 
-    setCounter,
+    setCurrent,
 };
 
 export class Box extends React.Component<IBoxProps, IBoxState> {
 
     public readonly state: IBoxState = {
 
-        current: createCommandCommandDeclare(),
         typeBuffer: '',
     };
 
@@ -73,7 +71,7 @@ export class Box extends React.Component<IBoxProps, IBoxState> {
     public render(): JSX.Element {
 
         return (<Protocol
-            current={this.state.current}
+            current={this.props.current}
             typeBuffer={this.state.typeBuffer}
         />);
     }
@@ -85,9 +83,7 @@ export class Box extends React.Component<IBoxProps, IBoxState> {
             hideExecuteWindow();
         }
 
-        this.setState({
-            current: next,
-        });
+        this.props.setCurrent(next);
         console.log(next);
     }
 
@@ -96,7 +92,7 @@ export class Box extends React.Component<IBoxProps, IBoxState> {
         const provider: Provider = Provider.instance;
         const typeBuffer: string = this.state.typeBuffer;
 
-        const setCurrent = (newTypeBuffer: string) => this.setState({ typeBuffer: newTypeBuffer });
+        const setTypeBuffer = (newTypeBuffer: string) => this.setState({ typeBuffer: newTypeBuffer });
 
         switch (event.key) {
 
@@ -111,18 +107,18 @@ export class Box extends React.Component<IBoxProps, IBoxState> {
             }
             case KEY.ESCAPE: {
 
-                setCurrent('');
+                setTypeBuffer('');
                 break;
             }
             case KEY.TAB: {
 
                 const nearest: ICommand | null = provider.nearest(typeBuffer);
-                if (nearest) setCurrent(nearest.command);
+                if (nearest) setTypeBuffer(nearest.command);
                 break;
             }
             case KEY.BACKSPACE: {
 
-                setCurrent(typeBuffer.substring(0, typeBuffer.length - 1));
+                setTypeBuffer(typeBuffer.substring(0, typeBuffer.length - 1));
                 break;
             }
         }

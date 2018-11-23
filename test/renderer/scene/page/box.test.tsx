@@ -6,7 +6,7 @@
 
 import { createCommandCommandDeclare } from '#P/util/declare';
 import { Box, IBoxProps } from '#R~execute/page/box';
-import { Protocol } from '#R~execute/page/protocol';
+import { ConnectedProtocol } from '#R~execute/page/protocol';
 import { expect } from 'chai';
 import * as Chance from 'chance';
 import { shallow, ShallowWrapper } from 'enzyme';
@@ -34,6 +34,6 @@ describe('Given a <Box /> Component', (): void => {
 
         const component: ShallowWrapper = render();
 
-        expect(component.type()).to.be.equal(Protocol);
+        expect(component.type()).to.be.equal(ConnectedProtocol);
     });
 });

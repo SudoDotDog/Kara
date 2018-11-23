@@ -19,6 +19,7 @@ describe('Given a <CommandDeclareToolTip /> Component', (): void => {
 
     const getDefaultProps: () => IComponentsPanelProps = () => ({
 
+        command: chance.string(),
         provider: new MockProvider() as any,
         input: chance.string(),
     });

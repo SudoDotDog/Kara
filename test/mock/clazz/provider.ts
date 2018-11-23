@@ -18,6 +18,6 @@ export class MockProvider extends Construable {
     public nearest(command: string): ICommand | null {
 
         this._called.push(['nearest', command]);
-        return this._shouldReturn.get('command');
+        return this._shouldReturn.get('nearest');
     }
 }

@@ -4,7 +4,6 @@
  * @description Type
  */
 
-import { COMMAND_DECLARE } from "#P/declare";
 import { Action } from "redux";
 import { EXECUTE_ACTIONS } from "../declare";
 

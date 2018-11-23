@@ -22,27 +22,19 @@ export const bufferReducers = {
     [EXECUTE_ACTIONS.SET_INPUT]: reduceSetInput,
 };
 
-export const setInput = (input: string): ISetInputReducerAction => {
+export const setInput = (input: string): ISetInputReducerAction => ({
 
-    return {
-        type: EXECUTE_ACTIONS.SET_INPUT,
-        input,
-    };
-};
+    type: EXECUTE_ACTIONS.SET_INPUT,
+    input,
+});
 
-export const clearInput = (): ISetInputReducerAction => {
+export const clearInput = (): ISetInputReducerAction => ({
 
-    return {
+    type: EXECUTE_ACTIONS.SET_INPUT,
+    input: '',
+});
 
-        type: EXECUTE_ACTIONS.SET_INPUT,
-        input: '',
-    };
-};
+export const getDefaultBufferStore = (): IBufferStore => ({
 
-export const getDefaultBufferStore = (): IBufferStore => {
-
-    return {
-
-        input: '',
-    };
-};
+    input: '',
+});

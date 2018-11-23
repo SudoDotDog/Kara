@@ -21,6 +21,7 @@ export enum EXECUTE_ACTIONS {
     SET_EXPEND = 'SET_EXPEND',
 
     // current
+    SET_COMMAND = 'SET_COMMAND',
     SET_CURRENT = 'SET_CURRENT',
 
     // buffer

@@ -22,27 +22,19 @@ export const applicationReducers = {
     [EXECUTE_ACTIONS.SET_EXPEND]: reduceExpend,
 };
 
-export const expendDetails = (): ISetExpendReducerAction => {
+export const expendDetails = (): ISetExpendReducerAction => ({
 
-    return {
-        type: EXECUTE_ACTIONS.SET_EXPEND,
-        expend: true,
-    };
-};
+    type: EXECUTE_ACTIONS.SET_EXPEND,
+    expend: true,
+});
 
-export const shrinkDetails = (): ISetExpendReducerAction => {
+export const shrinkDetails = (): ISetExpendReducerAction => ({
 
-    return {
+    type: EXECUTE_ACTIONS.SET_EXPEND,
+    expend: false,
+});
 
-        type: EXECUTE_ACTIONS.SET_EXPEND,
-        expend: false,
-    };
-};
+export const getDefaultApplicationStore = (): IApplicationStore => ({
 
-export const getDefaultApplicationStore = (): IApplicationStore => {
-
-    return {
-
-        expend: false,
-    };
-};
+    expend: false,
+});

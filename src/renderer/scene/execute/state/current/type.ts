@@ -10,10 +10,16 @@ import { EXECUTE_ACTIONS } from "../declare";
 
 export interface ICurrentStore {
 
+    readonly command: string | null;
     readonly current: COMMAND_DECLARE;
 }
 
 export interface ICurrentReducerAction extends Action<EXECUTE_ACTIONS> {
 
     readonly current: COMMAND_DECLARE;
+}
+
+export interface ICommandReducerAction extends Action<EXECUTE_ACTIONS> {
+
+    readonly command: string;
 }

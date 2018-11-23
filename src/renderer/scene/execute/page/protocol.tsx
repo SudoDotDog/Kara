@@ -9,15 +9,27 @@ import { COMMAND_DECLARE } from '#P/declare';
 import { StyleBuilder } from '#R^util/style';
 import { AutoHorizontalExpend } from '#R~execute/components/auto-horizontal-expend';
 import { Panel } from '#R~execute/components/panel';
+import { IStore } from '#R~execute/state/declare';
 import * as styleExecute from '#S/scene/execute/execute.sass';
 import * as React from "react";
+import { connect, ConnectedComponentClass } from 'react-redux';
 import { ConnectedDetails } from './details';
 
 export interface IProtocolProps {
 
+    readonly command: string | null;
     readonly current: COMMAND_DECLARE;
-    readonly typeBuffer: string;
+    readonly input: string;
 }
+
+const mapStateProtocolCareAbout = (store: IStore): Partial<IProtocolProps> => ({
+
+    command: store.current.command,
+    current: store.current.current,
+    input: store.buffer.input,
+});
+
+const mapDispatchProtocolCareAbout: any = {};
 
 export const Protocol: React.SFC<IProtocolProps> = (props: IProtocolProps): JSX.Element => {
 
@@ -38,8 +50,9 @@ export const Protocol: React.SFC<IProtocolProps> = (props: IProtocolProps): JSX.
             <AutoHorizontalExpend className={styleExecute.titleRight}>
 
                 <Panel
+                    command={props.command}
                     current={props.current}
-                    typeBuffer={props.typeBuffer}
+                    input={props.input}
                 />
             </AutoHorizontalExpend>
         </div>
@@ -47,3 +60,5 @@ export const Protocol: React.SFC<IProtocolProps> = (props: IProtocolProps): JSX.
         <ConnectedDetails />
     </div>);
 };
+
+export const ConnectedProtocol: ConnectedComponentClass<typeof Protocol, any> = connect(mapStateProtocolCareAbout, mapDispatchProtocolCareAbout)(Protocol);

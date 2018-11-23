@@ -12,3 +12,8 @@ export const ErrorDeclareTooltip = (props: IComponentsPanelProps): JSX.Element =
 
     return (<div className={styleDecorate.textTooltip}>ERROR</div>);
 };
+
+export const InputDeclareTooltip = (props: IComponentsPanelProps): JSX.Element => {
+
+    return (<div className={styleDecorate.textTooltip}>Input: {props.command || 'UNKNOWN'}</div>);
+};

@@ -8,7 +8,7 @@ import { COMMAND_DECLARE, COMMAND_DECLARE_TYPE } from "#P/declare";
 import { Provider } from "#P/renderer";
 import { CommandDeclareTooltip } from "#R^components/panel/command";
 import { IComponentsPanelProps } from "#R^components/panel/declare";
-import { ErrorDeclareTooltip } from "#R^components/panel/info";
+import { ErrorDeclareTooltip, InputDeclareTooltip } from "#R^components/panel/info";
 import { StyleBuilder } from "#R^util/style";
 import * as styleDecorate from '#S/components/decorate.sass';
 import * as panelStyles from '#S/scene/execute/panel.sass';
@@ -20,14 +20,19 @@ const getToolTip = (current: COMMAND_DECLARE): (props: IComponentsPanelProps) =>
 
         case COMMAND_DECLARE_TYPE.COMMAND: return CommandDeclareTooltip;
         case COMMAND_DECLARE_TYPE.ERROR: return ErrorDeclareTooltip;
+        case COMMAND_DECLARE_TYPE.INPUT: return InputDeclareTooltip;
     }
-    return CommandDeclareTooltip;
+    return ErrorDeclareTooltip;
 };
 
-export const Panel = (props: {
-    typeBuffer: string;
+export interface IExecuteComponentPanelProps {
+
+    command: string | null;
     current: COMMAND_DECLARE;
-}): JSX.Element => {
+    input: string;
+}
+
+export const Panel: React.SFC<IExecuteComponentPanelProps> = (props: IExecuteComponentPanelProps): JSX.Element => {
 
     const ToolTipComponent: (props: IComponentsPanelProps) => JSX.Element = getToolTip(props.current);
     const provider: Provider = Provider.instance;
@@ -36,14 +41,15 @@ export const Panel = (props: {
 
         <div className={panelStyles.field}>
 
-            {props.typeBuffer}
+            {props.input}
         </div>
 
         <div className={StyleBuilder.init(panelStyles.tooltip, styleDecorate.tooltip).build()}>
-            <ToolTipComponent
 
+            <ToolTipComponent
+                command={props.command}
                 provider={provider}
-                input={props.typeBuffer}
+                input={props.input}
             />
         </div>
     </div>);

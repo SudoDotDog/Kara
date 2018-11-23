@@ -12,9 +12,9 @@ import { setCurrent } from '#R~execute/state/current/current';
 import { IStore } from '#R~execute/state/declare';
 import { hideExecuteWindow } from '#R~execute/util/trigger';
 import * as React from "react";
-import { connect } from "react-redux";
+import { connect, ConnectedComponentClass } from "react-redux";
 import { KEY } from '../../../declare/key';
-import { Protocol } from './protocol';
+import { ConnectedProtocol } from './protocol';
 
 export interface IBoxProps {
 
@@ -72,10 +72,7 @@ export class Box extends React.Component<IBoxProps, {}> {
 
     public render(): JSX.Element {
 
-        return (<Protocol
-            current={this.props.current}
-            typeBuffer={this.props.input}
-        />);
+        return (<ConnectedProtocol />);
     }
 
     private _nextState(next: COMMAND_DECLARE): void {
@@ -137,4 +134,4 @@ export class Box extends React.Component<IBoxProps, {}> {
     }
 }
 
-export const ConnectedBox = connect(mapStateBoxCareAbout, mapDispatchBoxCareAbout)(Box);
+export const ConnectedBox: ConnectedComponentClass<typeof Box, any> = connect(mapStateBoxCareAbout, mapDispatchBoxCareAbout)(Box);

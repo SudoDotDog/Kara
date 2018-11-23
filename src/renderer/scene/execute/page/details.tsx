@@ -18,14 +18,14 @@ export interface IDetailsProps {
     readonly input: string;
 }
 
-const mapStateBoxCareAbout = (store: IStore): Partial<IDetailsProps> => ({
+const mapStateDetailsCareAbout = (store: IStore): Partial<IDetailsProps> => ({
 
     current: store.current.current,
     expend: store.application.expend,
     input: store.buffer.input,
 });
 
-const mapDispatchBoxCareAbout: any = {};
+const mapDispatchDetailsCareAbout: any = {};
 
 export class Details extends React.Component<IDetailsProps, {}> {
 
@@ -54,4 +54,4 @@ export class Details extends React.Component<IDetailsProps, {}> {
     }
 }
 
-export const ConnectedDetails: ConnectedComponentClass<typeof Details, any> = connect(mapStateBoxCareAbout, mapDispatchBoxCareAbout)(Details);
+export const ConnectedDetails: ConnectedComponentClass<typeof Details, any> = connect(mapStateDetailsCareAbout, mapDispatchDetailsCareAbout)(Details);

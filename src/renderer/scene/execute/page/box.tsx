@@ -11,6 +11,7 @@ import { clearInput, setInput } from '#R~execute/state/buffer/buffer';
 import { setCurrent } from '#R~execute/state/current/current';
 import { IStore } from '#R~execute/state/declare';
 import { hideExecuteWindow } from '#R~execute/util/trigger';
+import { MutateInput } from '#U/input/mutate';
 import * as React from "react";
 import { connect, ConnectedComponentClass } from "react-redux";
 import { KEY } from '../../../declare/key';
@@ -108,8 +109,8 @@ export class Box extends React.Component<IBoxProps, {}> {
             }
             case KEY.TAB: {
 
-                const nearest: ICommand | null = provider.nearest(typeBuffer);
-                if (nearest) this.props.setInput(nearest.command);
+                const mutated: string = MutateInput.declare(this.props.current).input(typeBuffer);
+                this.props.setInput(mutated);
                 break;
             }
             case KEY.BACKSPACE: {

@@ -20,6 +20,7 @@
             "#M/*": ["src/main/*"],
             "#P/*": ["src/provide/*"],
             "#S/*": ["style/*"],
+            "#U/*": ["src/mutate/*"],
             "#R^components/*": ["src/renderer/components/*"],
             "#R^util/*": ["src/renderer/util/*"],
             "#R~center/*": ["src/renderer/scene/center/*"],

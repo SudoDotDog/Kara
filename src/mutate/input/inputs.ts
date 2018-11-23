@@ -7,7 +7,7 @@
 import { ICommand } from "#P/declare";
 import { Provider } from "#P/renderer";
 
-export const MutateInputCommand = (input: string): string => {
+export const mutateInputCommand = (input: string): string => {
 
     const provider: Provider = Provider.instance;
     const nearest: ICommand | null = provider.nearest(input);

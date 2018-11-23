@@ -4,7 +4,8 @@
  * @description Mutate
  */
 
-import { COMMAND_DECLARE } from "#P/declare";
+import { COMMAND_DECLARE, COMMAND_DECLARE_TYPE } from "#P/declare";
+import { mutateInputCommand } from "./inputs";
 
 export class MutateInput {
 
@@ -20,13 +21,12 @@ export class MutateInput {
         this._declare = declare;
     }
 
-    public declare(input: string): COMMAND_DECLARE {
-
-        return this._declare;
-    }
-
     public input(previous: string): string {
 
+        switch (this._declare.type) {
+
+            case COMMAND_DECLARE_TYPE.COMMAND: return mutateInputCommand(previous);
+        }
         return previous;
     }
 }

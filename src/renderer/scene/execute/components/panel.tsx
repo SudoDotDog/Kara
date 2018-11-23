@@ -5,13 +5,13 @@
  */
 
 import { COMMAND_DECLARE, COMMAND_DECLARE_TYPE } from "#P/declare";
+import { Provider } from "#P/renderer";
 import { CommandDeclareTooltip } from "#R^components/panel/command";
+import { IComponentsPanelProps } from "#R^components/panel/declare";
 import * as panelStyles from '#S/scene/execute/panel.sass';
 import * as React from "react";
 
-const getToolTip = (current: COMMAND_DECLARE): (props: {
-    typeBuffer: string;
-}) => JSX.Element => {
+const getToolTip = (current: COMMAND_DECLARE): (props: IComponentsPanelProps) => JSX.Element => {
 
     switch (current.type) {
 
@@ -25,9 +25,8 @@ export const Panel = (props: {
     current: COMMAND_DECLARE;
 }): JSX.Element => {
 
-    const ToolTipComponent: (props: {
-        typeBuffer: string;
-    }) => JSX.Element = getToolTip(props.current);
+    const ToolTipComponent: (props: IComponentsPanelProps) => JSX.Element = getToolTip(props.current);
+    const provider: Provider = Provider.instance;
 
     return (<div className={panelStyles.panel}>
 
@@ -36,7 +35,9 @@ export const Panel = (props: {
             {props.typeBuffer}
         </div>
         <ToolTipComponent
-            typeBuffer={props.typeBuffer}
+
+            provider={provider}
+            input={props.typeBuffer}
         />
     </div>);
 };

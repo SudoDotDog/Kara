@@ -1,6 +1,6 @@
 /**
  * @author WMXPY
- * @namespace Components_Current
+ * @namespace Components_Panel
  * @description Command
  */
 
@@ -10,13 +10,11 @@ import { KeyTooltip } from "#R^components/decorate";
 import { EmptyElement } from "#R^components/empty";
 import * as panelStyles from '#S/scene/execute/panel.sass';
 import * as React from "react";
+import { IComponentsPanelProps } from "./declare";
 
-export const CommandDeclareTooltip = (props: {
-    typeBuffer: string;
-}): JSX.Element => {
+export const CommandDeclareTooltip = (props: IComponentsPanelProps): JSX.Element => {
 
-    const provider: Provider = Provider.instance;
-    const matched: ICommand | null = provider.match(props.typeBuffer);
+    const matched: ICommand | null = props.provider.match(props.input);
 
     if (matched) {
         return (<div className={panelStyles.tooltip}>
@@ -25,7 +23,7 @@ export const CommandDeclareTooltip = (props: {
         </div>);
     }
 
-    const nearest: ICommand | null = provider.nearest(props.typeBuffer);
+    const nearest: ICommand | null = props.provider.nearest(props.input);
 
     if (nearest) {
         return (<div className={panelStyles.tooltip}>

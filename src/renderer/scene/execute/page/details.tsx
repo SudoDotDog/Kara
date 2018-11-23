@@ -6,14 +6,26 @@
 
 import { COMMAND_DECLARE } from '#P/declare';
 import { VerticalExpendable } from '#R~execute/components/vertical-expendable';
+import { IStore } from '#R~execute/state/declare';
 import { ExecuteResizer } from '#R~execute/util/resizer';
 import * as React from "react";
+import { connect, ConnectedComponentClass } from 'react-redux';
 
 export interface IDetailsProps {
 
     readonly current: COMMAND_DECLARE;
-    readonly typeBuffer: string;
+    readonly expend: boolean;
+    readonly input: string;
 }
+
+const mapStateBoxCareAbout = (store: IStore): Partial<IDetailsProps> => ({
+
+    current: store.current.current,
+    expend: store.application.expend,
+    input: store.buffer.input,
+});
+
+const mapDispatchBoxCareAbout: any = {};
 
 export class Details extends React.Component<IDetailsProps, {}> {
 
@@ -24,7 +36,7 @@ export class Details extends React.Component<IDetailsProps, {}> {
 
     public componentWillUpdate(nextProps: IDetailsProps): void {
 
-        if (false) {
+        if (nextProps.expend) {
 
             ExecuteResizer.extendExecute();
         } else {
@@ -35,9 +47,11 @@ export class Details extends React.Component<IDetailsProps, {}> {
 
     public render(): JSX.Element {
 
-        return (<VerticalExpendable expend={false}>
+        return (<VerticalExpendable expend={this.props.expend}>
 
             <div></div>
         </VerticalExpendable>);
     }
 }
+
+export const ConnectedDetails: ConnectedComponentClass<typeof Details, any> = connect(mapStateBoxCareAbout, mapDispatchBoxCareAbout)(Details);

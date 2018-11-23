@@ -11,7 +11,7 @@ import { AutoHorizontalExpend } from '#R~execute/components/auto-horizontal-expe
 import { Panel } from '#R~execute/components/panel';
 import * as styleExecute from '#S/scene/execute/execute.sass';
 import * as React from "react";
-import { Details } from './details';
+import { ConnectedDetails } from './details';
 
 export interface IProtocolProps {
 
@@ -44,9 +44,6 @@ export const Protocol: React.SFC<IProtocolProps> = (props: IProtocolProps): JSX.
             </AutoHorizontalExpend>
         </div>
 
-        <Details
-            current={props.current}
-            typeBuffer={props.typeBuffer}
-        />
+        <ConnectedDetails />
     </div>);
 };

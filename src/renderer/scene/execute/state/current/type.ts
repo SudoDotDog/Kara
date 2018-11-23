@@ -15,5 +15,5 @@ export interface ICurrentStore {
 
 export interface ICurrentReducerAction extends Action<EXECUTE_ACTIONS> {
 
-    current: COMMAND_DECLARE;
+    readonly current: COMMAND_DECLARE;
 }

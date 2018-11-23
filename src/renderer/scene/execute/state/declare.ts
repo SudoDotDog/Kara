@@ -4,16 +4,21 @@
  * @description Declare
  */
 
+import { IApplicationStore } from "./application/type";
 import { IBufferStore } from "./buffer/type";
 import { ICurrentStore } from "./current/type";
 
 export interface IStore {
 
+    readonly application: IApplicationStore;
     readonly buffer: IBufferStore;
     readonly current: ICurrentStore;
 }
 
 export enum EXECUTE_ACTIONS {
+
+    // application
+    SET_EXPEND = 'SET_EXPEND',
 
     // current
     SET_CURRENT = 'SET_CURRENT',

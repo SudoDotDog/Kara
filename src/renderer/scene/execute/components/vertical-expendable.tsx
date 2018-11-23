@@ -17,7 +17,7 @@ export interface IVerticalExpendableProps {
 }
 
 export const VerticalExpendable: React.SFC<IVerticalExpendableProps> = (props: IVerticalExpendableProps): JSX.Element => {
-
+    console.log(props);
     return (<div
         className={StyleBuilder
             .init(props.className)

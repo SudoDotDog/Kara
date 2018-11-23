@@ -6,10 +6,10 @@
 
 import { COMMAND_DECLARE, COMMAND_DECLARE_TYPE, ICommand } from '#P/declare';
 import { Provider } from '#P/renderer';
+import { expendDetails, shrinkDetails } from '#R~execute/state/application/application';
 import { clearInput, setInput } from '#R~execute/state/buffer/buffer';
 import { setCurrent } from '#R~execute/state/current/current';
 import { IStore } from '#R~execute/state/declare';
-import { ExecuteResizer } from '#R~execute/util/resizer';
 import { hideExecuteWindow } from '#R~execute/util/trigger';
 import * as React from "react";
 import { connect } from "react-redux";
@@ -34,6 +34,9 @@ const mapStateBoxCareAbout = (store: IStore): Partial<IBoxProps> => ({
 
 const mapDispatchBoxCareAbout: any = {
 
+    expendDetails,
+    shrinkDetails,
+
     setCurrent,
 
     clearInput,
@@ -53,6 +56,9 @@ export class Box extends React.Component<IBoxProps, {}> {
     }
 
     public componentDidMount(): void {
+
+
+        (window as any).test = this.props;
 
         document.addEventListener('keydown', this._handleKeyDown);
         document.addEventListener('keypress', this._handleKeyPress);

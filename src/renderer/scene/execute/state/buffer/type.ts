@@ -15,5 +15,5 @@ export interface IBufferStore {
 
 export interface ISetInputReducerAction extends Action<EXECUTE_ACTIONS> {
 
-    input: string;
+    readonly input: string;
 }

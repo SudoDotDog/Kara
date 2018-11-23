@@ -8,6 +8,9 @@ import { COMMAND_DECLARE, COMMAND_DECLARE_TYPE } from "#P/declare";
 import { Provider } from "#P/renderer";
 import { CommandDeclareTooltip } from "#R^components/panel/command";
 import { IComponentsPanelProps } from "#R^components/panel/declare";
+import { ErrorDeclareTooltip } from "#R^components/panel/info";
+import { StyleBuilder } from "#R^util/style";
+import * as styleDecorate from '#S/components/decorate.sass';
 import * as panelStyles from '#S/scene/execute/panel.sass';
 import * as React from "react";
 
@@ -16,6 +19,7 @@ const getToolTip = (current: COMMAND_DECLARE): (props: IComponentsPanelProps) =>
     switch (current.type) {
 
         case COMMAND_DECLARE_TYPE.COMMAND: return CommandDeclareTooltip;
+        case COMMAND_DECLARE_TYPE.ERROR: return ErrorDeclareTooltip;
     }
     return CommandDeclareTooltip;
 };
@@ -34,10 +38,13 @@ export const Panel = (props: {
 
             {props.typeBuffer}
         </div>
-        <ToolTipComponent
 
-            provider={provider}
-            input={props.typeBuffer}
-        />
+        <div className={StyleBuilder.init(panelStyles.tooltip, styleDecorate.tooltip).build()}>
+            <ToolTipComponent
+
+                provider={provider}
+                input={props.typeBuffer}
+            />
+        </div>
     </div>);
 };

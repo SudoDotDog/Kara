@@ -54,8 +54,6 @@ export class Box extends React.Component<IBoxProps, {}> {
 
     public componentDidMount(): void {
 
-        (window as any).test = ExecuteResizer;
-
         document.addEventListener('keydown', this._handleKeyDown);
         document.addEventListener('keypress', this._handleKeyPress);
     }
@@ -82,7 +80,6 @@ export class Box extends React.Component<IBoxProps, {}> {
         }
 
         this.props.setCurrent(next);
-        console.log(next);
     }
 
     private _handleKeyDown(event: KeyboardEvent): void {

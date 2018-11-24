@@ -23,6 +23,11 @@ export class Relative {
         this._model = model;
     }
 
+    public get type(): COMMAND_DECLARE_TYPE {
+
+        return this._model.type;
+    }
+
     public toolTip(): (props: IComponentsPanelProps) => JSX.Element {
 
         switch (this._model.type) {

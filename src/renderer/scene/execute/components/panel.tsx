@@ -6,9 +6,9 @@
 
 import { COMMAND_DECLARE, COMMAND_DECLARE_TYPE } from "#P/declare";
 import { Provider } from "#P/renderer";
-import { CommandDeclareTooltip } from "#R^components/panel/command";
-import { IComponentsPanelProps } from "#R^components/panel/declare";
-import { ErrorDeclareTooltip, InputDeclareTooltip } from "#R^components/panel/info";
+import { CommandDeclareTooltip } from "#R^relative/panel/command";
+import { IComponentsPanelProps } from "#R^relative/panel/declare";
+import { ErrorDeclareTooltip, InputDeclareTooltip } from "#R^relative/panel/info";
 import { StyleBuilder } from "#R^util/style";
 import * as styleDecorate from '#S/components/decorate.sass';
 import * as panelStyles from '#S/scene/execute/panel.sass';

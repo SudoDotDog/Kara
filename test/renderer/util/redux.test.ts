@@ -7,6 +7,7 @@
 import { Redux } from '#R^util/redux';
 import { expect } from 'chai';
 import * as Chance from 'chance';
+import { Store } from 'redux';
 
 describe('Given a {Redux} class', (): void => {
 
@@ -22,5 +23,14 @@ describe('Given a {Redux} class', (): void => {
 
         // tslint:disable-next-line
         expect(clazz).to.be.exist;
+    });
+
+    it('should be able to create store', (): void => {
+
+        const clazz: Redux<any, any> = redux();
+        const store: Store = clazz.createStore();
+
+        // tslint:disable-next-line
+        expect(store).to.be.exist;
     });
 });

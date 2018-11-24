@@ -26,6 +26,8 @@
             "#S/*": ["style/*"],
             "#U/*": ["src/mutate/*"],
             "#R^components/*": ["src/renderer/components/*"],
+            "#R^declare/*": ["src/renderer/declare/*"],
+            "#R^relative/*": ["src/renderer/relative/*"],
             "#R^util/*": ["src/renderer/util/*"],
             "#R~center/*": ["src/renderer/scene/center/*"],
             "#R~execute/*": ["src/renderer/scene/execute/*"]

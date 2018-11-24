@@ -66,6 +66,8 @@ const registerBinding = () => {
         "#S": Path.join(__dirname, '..', 'style'),
         "#U": Path.join(src, 'mutate'),
         "#R^components": Path.join(src, 'renderer', 'components'),
+        "#R^declare": Path.join(src, 'renderer', 'declare'),
+        "#R^relative": Path.join(src, 'renderer', 'relative'),
         "#R^util": Path.join(src, 'renderer', 'util'),
         "#R~center": Path.join(src, 'renderer', 'scene', 'center'),
         "#R~execute": Path.join(src, 'renderer', 'scene', 'execute'),

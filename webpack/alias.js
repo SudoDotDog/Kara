@@ -17,6 +17,8 @@ module.exports = {
     "#S": Path.join(__dirname, '..', 'style'),
     "#U": buildPath('mutate'),
     "#R^components": buildPath('renderer', 'components'),
+    "#R^declare": buildPath('renderer', 'declare'),
+    "#R^relative": buildPath('renderer', 'relative'),
     "#R^util": buildPath('renderer', 'util'),
     "#R~center": buildPath("renderer", "scene", "center"),
     "#R~execute": buildPath("renderer", "scene", "execute"),

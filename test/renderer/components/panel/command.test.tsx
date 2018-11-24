@@ -5,8 +5,8 @@
  */
 
 import { EmptyElement } from '#R^components/empty';
-import { CommandDeclareTooltip } from '#R^components/panel/command';
-import { IComponentsPanelProps } from '#R^components/panel/declare';
+import { IComponentsPanelProps } from '#R^declare/relative';
+import { CommandDeclareTooltip } from '#R^relative/panel/command';
 import { expect } from 'chai';
 import * as Chance from 'chance';
 import { shallow, ShallowWrapper } from 'enzyme';

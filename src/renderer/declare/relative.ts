@@ -1,7 +1,7 @@
 /**
  * @author WMXPY
- * @namespace Components_Panel
- * @description Declare
+ * @namespace Renderer_Declare
+ * @description Relative
  */
 
 import { Provider } from "#P/renderer";

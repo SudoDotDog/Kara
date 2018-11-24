@@ -7,9 +7,9 @@
 import { ICommand } from "#P/declare";
 import { KeyTooltip } from "#R^components/decorate";
 import { EmptyElement } from "#R^components/empty";
+import { IComponentsPanelProps } from "#R^declare/relative";
 import * as styleDecorate from '#S/components/decorate.sass';
 import * as React from "react";
-import { IComponentsPanelProps } from "./declare";
 
 export const CommandDeclareTooltip = (props: IComponentsPanelProps): JSX.Element => {
 

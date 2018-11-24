@@ -4,9 +4,9 @@
  * @description Info
  */
 
+import { IComponentsPanelProps } from '#R^declare/relative';
 import * as styleDecorate from '#S/components/decorate.sass';
 import * as React from "react";
-import { IComponentsPanelProps } from "./declare";
 
 export const ErrorDeclareTooltip = (props: IComponentsPanelProps): JSX.Element => {
 

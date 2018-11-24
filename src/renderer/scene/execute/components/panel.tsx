@@ -6,8 +6,8 @@
 
 import { COMMAND_DECLARE, COMMAND_DECLARE_TYPE } from "#P/declare";
 import { Provider } from "#P/renderer";
+import { IComponentsPanelProps } from "#R^declare/relative";
 import { CommandDeclareTooltip } from "#R^relative/panel/command";
-import { IComponentsPanelProps } from "#R^relative/panel/declare";
 import { ErrorDeclareTooltip, InputDeclareTooltip } from "#R^relative/panel/info";
 import { StyleBuilder } from "#R^util/style";
 import * as styleDecorate from '#S/components/decorate.sass';

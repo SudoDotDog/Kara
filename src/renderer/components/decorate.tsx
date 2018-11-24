@@ -13,6 +13,7 @@ export const KeyTooltip = (props: {
 
     return (
         <div className={styleDecorate.keyTooltip}>
+
             {props.text}
         </div>
     );

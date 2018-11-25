@@ -5,7 +5,7 @@
  */
 
 import { COMMAND_DECLARE, COMMAND_DECLARE_TYPE } from "#P/declare";
-import { mutateCommandCommand } from "./command/command";
+import { mutateCommandCommand } from "./command/commands";
 import { MutatedCommandSideEffectFunction } from "./declare";
 import { mutateInputCommand } from "./input/inputs";
 import { createDefaultCommandMutateFunction } from "./util/default";

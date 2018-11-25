@@ -44,9 +44,9 @@ export class Construable {
         return this._called;
     }
 
-    public when(name: string, thenReturn: any): void {
+    public when(name: string, thenReturn: any): Construable {
 
         this._shouldReturn.set(name, thenReturn);
-        return;
+        return this;
     }
 }

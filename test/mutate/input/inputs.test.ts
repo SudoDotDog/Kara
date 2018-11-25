@@ -9,7 +9,7 @@ import { expect } from 'chai';
 import * as Chance from 'chance';
 import { MockProvider } from '../../mock/clazz/provider';
 
-describe('Given [Mutate-Input] help methods', (): void => {
+describe('Given [Mutate-Inputs] help methods', (): void => {
 
     const chance: Chance.Chance = new Chance('mutate-input-inputs');
 

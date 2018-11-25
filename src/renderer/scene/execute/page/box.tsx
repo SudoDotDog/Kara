@@ -4,14 +4,14 @@
  * @description Box
  */
 
-import { COMMAND_DECLARE, COMMAND_DECLARE_TYPE, ICommand } from '#P/declare';
-import { Provider } from '#P/renderer';
+import { COMMAND_DECLARE, COMMAND_DECLARE_TYPE } from '#P/declare';
 import { expendDetails, shrinkDetails } from '#R~execute/state/application/application';
 import { clearInput, setInput } from '#R~execute/state/buffer/buffer';
 import { setCurrent } from '#R~execute/state/current/current';
 import { IStore } from '#R~execute/state/declare';
 import { hideExecuteWindow } from '#R~execute/util/trigger';
-import { MutateInput } from '#U/input/mutate';
+import { MutatedCommandSideEffectFunction } from '#U/declare';
+import { Mutate } from '#U/mutate';
 import * as React from "react";
 import { connect, ConnectedComponentClass } from "react-redux";
 import { KEY } from '../../../declare/key';
@@ -88,18 +88,15 @@ export class Box extends React.Component<IBoxProps, {}> {
 
     private _handleKeyDown(event: KeyboardEvent): void {
 
-        const provider: Provider = Provider.instance;
-        const typeBuffer: string = this.props.input;
+        const input: string = this.props.input;
+        const mutate: Mutate = Mutate.declare(this.props.current);
 
         switch (event.key) {
 
             case KEY.ENTER: {
 
-                const matched: ICommand | null = provider.match(typeBuffer);
-                if (matched) {
-
-                    provider.execute(matched.declare).then(this._nextState);
-                }
+                const mutated: MutatedCommandSideEffectFunction = mutate.command(input);
+                mutated().then(this._nextState);
                 break;
             }
             case KEY.ESCAPE: {
@@ -109,13 +106,13 @@ export class Box extends React.Component<IBoxProps, {}> {
             }
             case KEY.TAB: {
 
-                const mutated: string = MutateInput.declare(this.props.current).input(typeBuffer);
+                const mutated: string = mutate.input(input);
                 this.props.setInput(mutated);
                 break;
             }
             case KEY.BACKSPACE: {
 
-                this.props.setInput(typeBuffer.substring(0, typeBuffer.length - 1));
+                this.props.setInput(input.substring(0, input.length - 1));
                 break;
             }
         }

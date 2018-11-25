@@ -1,7 +1,7 @@
 /**
  * @author WMXPY
  * @namespace Mutate_Input
- * @description Command
+ * @description Inputs
  */
 
 import { ICommand } from "#P/declare";

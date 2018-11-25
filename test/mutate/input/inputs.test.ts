@@ -1,7 +1,7 @@
 /**
  * @author WMXPY
  * @namespace Mutate_Input
- * @description Input Test
+ * @description Inputs Test
  */
 
 import { mutateInputCommand } from '#U/input/inputs';
@@ -11,7 +11,7 @@ import { MockProvider } from '../../mock/clazz/provider';
 
 describe('Given [Mutate-Input] help methods', (): void => {
 
-    const chance: Chance.Chance = new Chance('mutate-input');
+    const chance: Chance.Chance = new Chance('mutate-input-inputs');
 
     it('should be able to mutate input - not matched', (): void => {
 

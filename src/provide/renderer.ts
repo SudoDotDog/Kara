@@ -5,7 +5,7 @@
  */
 
 import { PROVIDER_IPC } from "#C/ipc";
-import { CommandDeclare, COMMAND_DECLARE_TYPE, ICommand, ICommandDeclareScript } from "#P/declare";
+import { COMMAND_DECLARE, COMMAND_DECLARE_TYPE, ICommand, ICommandDeclareScript } from "#P/declare";
 import { END_SIGNAL, MarkedResult } from "@sudoo/marked";
 import Connor, { ErrorCreationFunction } from "connor";
 import { IpcMessageEvent, ipcRenderer } from "electron";
@@ -61,7 +61,7 @@ export class Provider {
         return this.length === 0;
     }
 
-    public async execute(current: CommandDeclare): Promise<CommandDeclare> {
+    public async execute(current: COMMAND_DECLARE): Promise<COMMAND_DECLARE> {
 
         switch (current.type) {
 

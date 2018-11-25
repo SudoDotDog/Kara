@@ -4,7 +4,7 @@
  * @description Box
  */
 
-import { CommandDeclare, COMMAND_DECLARE_TYPE, ICommand } from '#P/declare';
+import { COMMAND_DECLARE, COMMAND_DECLARE_TYPE, ICommand } from '#P/declare';
 import { Provider } from '#P/renderer';
 import { expendDetails, shrinkDetails } from '#R~execute/state/application/application';
 import { clearInput, setInput } from '#R~execute/state/buffer/buffer';
@@ -19,8 +19,8 @@ import { ConnectedProtocol } from './protocol';
 
 export interface IBoxProps {
 
-    readonly current: CommandDeclare;
-    readonly setCurrent: (current: CommandDeclare) => void;
+    readonly current: COMMAND_DECLARE;
+    readonly setCurrent: (current: COMMAND_DECLARE) => void;
 
     readonly input: string;
     readonly clearInput: () => void;
@@ -76,7 +76,7 @@ export class Box extends React.Component<IBoxProps, {}> {
         return (<ConnectedProtocol />);
     }
 
-    private _nextState(next: CommandDeclare): void {
+    private _nextState(next: COMMAND_DECLARE): void {
 
         if (next.type === COMMAND_DECLARE_TYPE.DONE) {
 

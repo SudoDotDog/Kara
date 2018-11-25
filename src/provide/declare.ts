@@ -8,7 +8,7 @@ export interface ICommand {
 
     command: string;
     description: string;
-    declare: CommandDeclare;
+    declare: COMMAND_DECLARE;
     key: string;
     name: string;
 }
@@ -23,7 +23,7 @@ export enum COMMAND_DECLARE_TYPE {
     SELECT = 'SELECT',
 }
 
-export type CommandDeclare
+export type COMMAND_DECLARE
     = ICommandDeclareCommand
     | ICommandDeclareDone
     | ICommandDeclareError
@@ -57,7 +57,7 @@ export interface ICommandDeclareInput extends ICommandDeclareArguments {
 
     type: COMMAND_DECLARE_TYPE.INPUT;
 
-    next: CommandDeclare;
+    next: COMMAND_DECLARE;
 }
 
 export interface ICommandDeclareScript extends ICommandDeclareArguments {
@@ -65,7 +65,7 @@ export interface ICommandDeclareScript extends ICommandDeclareArguments {
     type: COMMAND_DECLARE_TYPE.SCRIPT;
 
     script: string;
-    next: CommandDeclare;
+    next: COMMAND_DECLARE;
 }
 
 export interface ICommandDeclareSelect extends ICommandDeclareArguments {
@@ -79,5 +79,5 @@ export interface ICommandDeclareSelectElement {
 
     name: string;
     key: string;
-    next: CommandDeclare;
+    next: COMMAND_DECLARE;
 }

@@ -4,7 +4,7 @@
  * @description Details
  */
 
-import { CommandDeclare } from '#P/declare';
+import { COMMAND_DECLARE } from '#P/declare';
 import { VerticalExpendable } from '#R~execute/components/vertical-expendable';
 import { IStore } from '#R~execute/state/declare';
 import { ExecuteResizer } from '#R~execute/util/resizer';
@@ -13,7 +13,7 @@ import { connect, ConnectedComponentClass } from 'react-redux';
 
 export interface IDetailsProps {
 
-    readonly current: CommandDeclare;
+    readonly current: COMMAND_DECLARE;
     readonly expend: boolean;
     readonly input: string;
 }

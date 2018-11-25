@@ -4,7 +4,7 @@
  * @description Panel
  */
 
-import { CommandDeclare } from "#P/declare";
+import { COMMAND_DECLARE } from "#P/declare";
 import { Provider } from "#P/renderer";
 import { PanelComponent } from "#R^declare/relative";
 import { Relative } from "#R^relative/relative";
@@ -16,7 +16,7 @@ import * as React from "react";
 export interface IExecuteComponentPanelProps {
 
     command: string | null;
-    current: CommandDeclare;
+    current: COMMAND_DECLARE;
     input: string;
 }
 

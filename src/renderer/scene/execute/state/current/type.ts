@@ -4,19 +4,19 @@
  * @description Type
  */
 
-import { CommandDeclare } from "#P/declare";
+import { COMMAND_DECLARE } from "#P/declare";
 import { Action } from "redux";
 import { EXECUTE_ACTIONS } from "../declare";
 
 export interface ICurrentStore {
 
     readonly command: string | null;
-    readonly current: CommandDeclare;
+    readonly current: COMMAND_DECLARE;
 }
 
 export interface ICurrentReducerAction extends Action<EXECUTE_ACTIONS> {
 
-    readonly current: CommandDeclare;
+    readonly current: COMMAND_DECLARE;
 }
 
 export interface ICommandReducerAction extends Action<EXECUTE_ACTIONS> {

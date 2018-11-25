@@ -5,7 +5,7 @@
  */
 
 import { BUILD_MODE } from '#C/declare';
-import { COMMAND_DECLARE } from '#P/declare';
+import { CommandDeclare } from '#P/declare';
 import { StyleBuilder } from '#R^util/style';
 import { AutoHorizontalExpend } from '#R~execute/components/auto-horizontal-expend';
 import { Panel } from '#R~execute/components/panel';
@@ -18,7 +18,7 @@ import { ConnectedDetails } from './details';
 export interface IProtocolProps {
 
     readonly command: string | null;
-    readonly current: COMMAND_DECLARE;
+    readonly current: CommandDeclare;
     readonly input: string;
 }
 

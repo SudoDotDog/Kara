@@ -4,31 +4,31 @@
  * @description Declare
  */
 
-import { COMMAND_DECLARE, COMMAND_DECLARE_TYPE, ICommandDeclareSelectElement } from "#P/declare";
+import { CommandDeclare, COMMAND_DECLARE_TYPE, ICommandDeclareSelectElement } from "#P/declare";
 
-export const createCommandCommandDeclare = (): COMMAND_DECLARE => ({
+export const createCommandCommandDeclare = (): CommandDeclare => ({
 
     type: COMMAND_DECLARE_TYPE.COMMAND,
 });
 
-export const createDoneCommandDeclare = (): COMMAND_DECLARE => ({
+export const createDoneCommandDeclare = (): CommandDeclare => ({
 
     type: COMMAND_DECLARE_TYPE.DONE,
 });
 
-export const createErrorCommandDeclare = (): COMMAND_DECLARE => ({
+export const createErrorCommandDeclare = (): CommandDeclare => ({
 
     type: COMMAND_DECLARE_TYPE.ERROR,
 });
 
-export const createInputCommandDeclare = (next: COMMAND_DECLARE): COMMAND_DECLARE => ({
+export const createInputCommandDeclare = (next: CommandDeclare): CommandDeclare => ({
 
     type: COMMAND_DECLARE_TYPE.INPUT,
 
     next,
 });
 
-export const createScriptCommandDeclare = (script: string, next: COMMAND_DECLARE): COMMAND_DECLARE => ({
+export const createScriptCommandDeclare = (script: string, next: CommandDeclare): CommandDeclare => ({
 
     type: COMMAND_DECLARE_TYPE.SCRIPT,
 
@@ -36,7 +36,7 @@ export const createScriptCommandDeclare = (script: string, next: COMMAND_DECLARE
     next,
 });
 
-export const createSelectCommandDeclare = (from: ICommandDeclareSelectElement[]): COMMAND_DECLARE => ({
+export const createSelectCommandDeclare = (from: ICommandDeclareSelectElement[]): CommandDeclare => ({
 
     type: COMMAND_DECLARE_TYPE.SELECT,
 

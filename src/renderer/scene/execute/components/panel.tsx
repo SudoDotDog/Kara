@@ -4,9 +4,9 @@
  * @description Panel
  */
 
-import { COMMAND_DECLARE } from "#P/declare";
+import { CommandDeclare } from "#P/declare";
 import { Provider } from "#P/renderer";
-import { IComponentsPanelProps } from "#R^declare/relative";
+import { PanelComponent } from "#R^declare/relative";
 import { Relative } from "#R^relative/relative";
 import { StyleBuilder } from "#R^util/style";
 import * as styleDecorate from '#S/components/decorate.sass';
@@ -16,14 +16,14 @@ import * as React from "react";
 export interface IExecuteComponentPanelProps {
 
     command: string | null;
-    current: COMMAND_DECLARE;
+    current: CommandDeclare;
     input: string;
 }
 
 export const Panel: React.SFC<IExecuteComponentPanelProps> = (props: IExecuteComponentPanelProps): JSX.Element => {
 
     const relative: Relative = Relative.declare(props.current);
-    const ToolTipComponent: (props: IComponentsPanelProps) => JSX.Element = relative.toolTip();
+    const ToolTipComponent: PanelComponent = relative.toolTip();
     const provider: Provider = Provider.instance;
 
     return (<div className={panelStyles.panel}>

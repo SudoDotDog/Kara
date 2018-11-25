@@ -4,19 +4,19 @@
  * @description Mutate
  */
 
-import { COMMAND_DECLARE, COMMAND_DECLARE_TYPE } from "#P/declare";
+import { CommandDeclare, COMMAND_DECLARE_TYPE } from "#P/declare";
 import { mutateInputCommand } from "./inputs";
 
 export class MutateInput {
 
-    public static declare(declare: COMMAND_DECLARE): MutateInput {
+    public static declare(declare: CommandDeclare): MutateInput {
 
         return new MutateInput(declare);
     }
 
-    private _declare: COMMAND_DECLARE;
+    private _declare: CommandDeclare;
 
-    private constructor(declare: COMMAND_DECLARE) {
+    private constructor(declare: CommandDeclare) {
 
         this._declare = declare;
     }

@@ -4,21 +4,21 @@
  * @description Relative
  */
 
-import { COMMAND_DECLARE, COMMAND_DECLARE_TYPE } from "#P/declare";
-import { IComponentsPanelProps } from "../declare/relative";
+import { CommandDeclare, COMMAND_DECLARE_TYPE } from "#P/declare";
+import { PanelComponent } from "../declare/relative";
 import { CommandDeclareTooltip } from "./panel/command";
 import { ErrorDeclareTooltip, InputDeclareTooltip } from "./panel/info";
 
 export class Relative {
 
-    public static declare(model: COMMAND_DECLARE): Relative {
+    public static declare(model: CommandDeclare): Relative {
 
         return new Relative(model);
     }
 
-    private _model: COMMAND_DECLARE;
+    private _model: CommandDeclare;
 
-    private constructor(model: COMMAND_DECLARE) {
+    private constructor(model: CommandDeclare) {
 
         this._model = model;
     }
@@ -28,7 +28,7 @@ export class Relative {
         return this._model.type;
     }
 
-    public toolTip(): (props: IComponentsPanelProps) => JSX.Element {
+    public toolTip(): PanelComponent {
 
         switch (this._model.type) {
 

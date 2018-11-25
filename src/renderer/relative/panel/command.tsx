@@ -7,11 +7,11 @@
 import { ICommand } from "#P/declare";
 import { KeyTooltip } from "#R^components/decorate";
 import { EmptyElement } from "#R^components/empty";
-import { IComponentsPanelProps } from "#R^declare/relative";
+import { IComponentsPanelProps, PanelComponent } from "#R^declare/relative";
 import * as styleDecorate from '#S/components/decorate.sass';
 import * as React from "react";
 
-export const CommandDeclareTooltip = (props: IComponentsPanelProps): JSX.Element => {
+export const CommandDeclareTooltip: PanelComponent = (props: IComponentsPanelProps): JSX.Element => {
 
     const matched: ICommand | null = props.provider.match(props.input);
 

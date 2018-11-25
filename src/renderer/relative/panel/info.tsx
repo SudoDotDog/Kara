@@ -4,16 +4,16 @@
  * @description Info
  */
 
-import { IComponentsPanelProps } from '#R^declare/relative';
+import { IComponentsPanelProps, PanelComponent } from '#R^declare/relative';
 import * as styleDecorate from '#S/components/decorate.sass';
 import * as React from "react";
 
-export const ErrorDeclareTooltip = (props: IComponentsPanelProps): JSX.Element => {
+export const ErrorDeclareTooltip: PanelComponent = (props: IComponentsPanelProps): JSX.Element => {
 
     return (<div className={styleDecorate.textTooltip}>ERROR</div>);
 };
 
-export const InputDeclareTooltip = (props: IComponentsPanelProps): JSX.Element => {
+export const InputDeclareTooltip: PanelComponent = (props: IComponentsPanelProps): JSX.Element => {
 
     return (<div className={styleDecorate.textTooltip}>Input: {props.command || 'UNKNOWN'}</div>);
 };

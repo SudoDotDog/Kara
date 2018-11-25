@@ -4,7 +4,7 @@
  * @description Reducer
  */
 
-import { COMMAND_DECLARE } from '#P/declare';
+import { CommandDeclare } from '#P/declare';
 import { createCommandCommandDeclare } from '#P/util/declare';
 import { Reducer } from 'redux';
 import { EXECUTE_ACTIONS, IStore } from '../declare';
@@ -42,7 +42,7 @@ export const setCommand = (command: string): ICommandReducerAction => ({
     command,
 });
 
-export const setCurrent = (current: COMMAND_DECLARE): ICurrentReducerAction => ({
+export const setCurrent = (current: CommandDeclare): ICurrentReducerAction => ({
 
     type: EXECUTE_ACTIONS.SET_CURRENT,
     current,

@@ -5,6 +5,7 @@
  */
 
 import { Provider } from "#P/renderer";
+import { SFC } from "react";
 
 export interface IComponentsPanelProps {
 
@@ -12,3 +13,5 @@ export interface IComponentsPanelProps {
     command: string | null;
     provider: Provider;
 }
+
+export type PanelComponent = SFC<IComponentsPanelProps>;

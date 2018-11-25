@@ -38,7 +38,7 @@ interface ICommandDeclareArguments {
     };
 }
 
-export interface ICommandDeclareCommand {
+export interface ICommandDeclareCommand extends ICommandDeclareArguments {
 
     type: COMMAND_DECLARE_TYPE.COMMAND;
 }
@@ -75,7 +75,7 @@ export interface ICommandDeclareSelect extends ICommandDeclareArguments {
     from: ICommandDeclareSelectElement[];
 }
 
-export interface ICommandDeclareSelectElement {
+export interface ICommandDeclareSelectElement extends ICommandDeclareArguments {
 
     name: string;
     key: string;

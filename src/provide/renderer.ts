@@ -11,6 +11,7 @@ import Connor, { ErrorCreationFunction } from "connor";
 import { IpcMessageEvent, ipcRenderer } from "electron";
 import { initProvideErrorDictionary, PROVIDE_ERROR_CODE, PROVIDE_MODULE_NAME } from "./declare/error";
 import { executeScript } from "./module/marked";
+import { passThroughArguments } from "./util/arguments";
 import { md5Encode } from "./util/crypto";
 import { createErrorCommandDeclare } from "./util/declare";
 import { findNearestCommand } from "./util/nearest";
@@ -67,21 +68,21 @@ export class Provider {
 
             case COMMAND_DECLARE_TYPE.SCRIPT: {
 
-                const result: MarkedResult = await this.executeScript(current);
+                const result: MarkedResult = await executeScript(current.script);
                 if (result.signal === END_SIGNAL.SUCCEED) {
 
-                    return current.next;
+                    return passThroughArguments(current, current.next);
                 }
                 break;
+            }
+
+            case COMMAND_DECLARE_TYPE.INPUT: {
+
+                return passThroughArguments(current, current.next);
             }
         }
 
         return createErrorCommandDeclare();
-    }
-
-    public async executeScript(declare: ICommandDeclareScript): Promise<MarkedResult> {
-
-        return executeScript(declare.script);
     }
 
     public match(command: string): ICommand | null {

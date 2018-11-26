@@ -32,7 +32,7 @@ describe('Given [Mutate-Commands] help methods', (): void => {
 
             const result: COMMAND_DECLARE = await mutated.func();
             expect(result.type).to.be.equal(type);
-            expect(mutated.signals).to.be.deep.equal([]);
+            expect(mutated.actions).to.be.deep.equal([]);
         });
 
         it('should be able to mutate command - matched', async (): Promise<void> => {
@@ -54,7 +54,10 @@ describe('Given [Mutate-Commands] help methods', (): void => {
 
             const result: COMMAND_DECLARE = await mutated.func();
             expect(result.type).to.be.equal(newType);
-            expect(mutated.signals).to.be.deep.equal([MUTATE_SIGNAL.CLEAR_INPUT]);
+            expect(mutated.actions).to.be.deep.equal([
+                { type: MUTATE_SIGNAL.CLEAR_INPUT },
+                { type: MUTATE_SIGNAL.SET_COMMAND, command: newInput },
+            ]);
         });
     });
 
@@ -75,7 +78,9 @@ describe('Given [Mutate-Commands] help methods', (): void => {
 
             const result: COMMAND_DECLARE = await mutated.func();
             expect(result.type).to.be.equal(newType);
-            expect(mutated.signals).to.be.deep.equal([MUTATE_SIGNAL.CLEAR_INPUT]);
+            expect(mutated.actions).to.be.deep.equal([
+                { type: MUTATE_SIGNAL.CLEAR_INPUT },
+            ]);
         });
     });
 });

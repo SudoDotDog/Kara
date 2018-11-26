@@ -10,5 +10,5 @@ import { IMutateCommandResult, MutatedCommandSideEffectFunction } from "#U/decla
 export const createDefaultCommandMutateFunction = (resolve: COMMAND_DECLARE): MutatedCommandSideEffectFunction => async () => resolve;
 export const createEmptySignalMutateResult = (func: MutatedCommandSideEffectFunction): IMutateCommandResult => ({
     func,
-    signals: [],
+    actions: [],
 });

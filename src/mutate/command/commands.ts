@@ -19,7 +19,10 @@ export const mutateCommandCommand = (previous: ICommandDeclareCommand, input: st
         return {
 
             func: async () => matched.declare,
-            signals: [MUTATE_SIGNAL.CLEAR_INPUT],
+            actions: [
+                { type: MUTATE_SIGNAL.CLEAR_INPUT },
+                { type: MUTATE_SIGNAL.SET_COMMAND, command: matched.command },
+            ],
         };
     }
 
@@ -30,5 +33,7 @@ export const mutateCommandInput = (previous: ICommandDeclareInput, input: string
     func: async () => extendThroughArguments(previous, previous.next, {
         input,
     }),
-    signals: [MUTATE_SIGNAL.CLEAR_INPUT],
+    actions: [
+        { type: MUTATE_SIGNAL.CLEAR_INPUT },
+    ],
 });

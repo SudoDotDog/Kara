@@ -5,12 +5,13 @@
  */
 
 import { COMMAND_DECLARE, COMMAND_DECLARE_TYPE } from '#P/declare';
+import { createCommandCommandDeclare } from '#P/util/declare';
 import { expendDetails, shrinkDetails } from '#R~execute/state/application/application';
 import { clearInput, setInput } from '#R~execute/state/buffer/buffer';
-import { setCurrent } from '#R~execute/state/current/current';
+import { setCommand, setCurrent } from '#R~execute/state/current/current';
 import { IStore } from '#R~execute/state/declare';
 import { hideExecuteWindow } from '#R~execute/util/trigger';
-import { ImmediateCommandSideEffectFunction, IMutateCommandResult, MUTATE_SIGNAL } from '#U/declare';
+import { ImmediateCommandSideEffectFunction, IMutateCommandResult, MUTATE_ACTION, MUTATE_SIGNAL } from '#U/declare';
 import { Mutate } from '#U/mutate';
 import * as React from "react";
 import { connect, ConnectedComponentClass } from "react-redux";
@@ -20,6 +21,7 @@ import { ConnectedProtocol } from './protocol';
 export interface IBoxProps {
 
     readonly current: COMMAND_DECLARE;
+    readonly setCommand: (command: string) => void;
     readonly setCurrent: (current: COMMAND_DECLARE) => void;
 
     readonly input: string;
@@ -38,6 +40,7 @@ const mapDispatchBoxCareAbout: any = {
     expendDetails,
     shrinkDetails,
 
+    setCommand,
     setCurrent,
 
     clearInput,
@@ -77,13 +80,14 @@ export class Box extends React.Component<IBoxProps, {}> {
         return (<ConnectedProtocol />);
     }
 
-    private _processMutateSignal(signals: MUTATE_SIGNAL[]): void {
+    private _processMutateAction(signals: MUTATE_ACTION[]): void {
 
-        signals.forEach((signal: MUTATE_SIGNAL): void => {
+        signals.forEach((action: MUTATE_ACTION): void => {
 
-            switch (signal) {
+            switch (action.type) {
 
-                case MUTATE_SIGNAL.CLEAR_INPUT: this.props.clearInput();
+                case MUTATE_SIGNAL.CLEAR_INPUT: return this.props.clearInput();
+                case MUTATE_SIGNAL.SET_COMMAND: return this.props.setCommand(action.command);
             }
         });
     }
@@ -101,9 +105,11 @@ export class Box extends React.Component<IBoxProps, {}> {
             if (next.type === COMMAND_DECLARE_TYPE.DONE) {
 
                 hideExecuteWindow();
-            }
+                this.props.setCurrent(createCommandCommandDeclare());
+            } else {
 
-            this.props.setCurrent(next);
+                this.props.setCurrent(next);
+            }
         }
     }
 
@@ -117,7 +123,7 @@ export class Box extends React.Component<IBoxProps, {}> {
             case KEY.ENTER: {
 
                 const mutated: IMutateCommandResult = mutate.command(input);
-                this._processMutateSignal(mutated.signals);
+                this._processMutateAction(mutated.actions);
                 mutated.func().then(this._nextState);
                 break;
             }

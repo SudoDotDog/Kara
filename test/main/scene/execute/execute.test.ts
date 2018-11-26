@@ -11,7 +11,7 @@ import { BrowserWindow, Menu } from '../../../mock/global/electron';
 
 describe('Given an {Execute} scene class', (): void => {
 
-    const chance: Chance.Chance = new Chance('main-scene-execute');
+    const chance: Chance.Chance = new Chance('main-scene-execute-execute');
 
     afterEach((): void => {
 

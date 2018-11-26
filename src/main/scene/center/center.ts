@@ -7,9 +7,10 @@
 import Config from '#C/config';
 import { BUILD_MODE } from '#C/declare';
 import Connor, { ErrorCreationFunction } from 'connor';
-import { BrowserWindow, BrowserWindowConstructorOptions } from 'electron';
+import { BrowserWindow } from 'electron';
 import { ERROR_CODE, MODULE_NAME } from '../../declare/error';
 import { IScene } from '../../declare/scene';
+import { getCenterWindowSetting } from './window-setting';
 
 export class Center implements IScene {
 
@@ -122,7 +123,7 @@ export class Center implements IScene {
 
     private _createBrowserWindow(): BrowserWindow {
 
-        const windows: BrowserWindow = new BrowserWindow(this._getWindowSetting());
+        const windows: BrowserWindow = new BrowserWindow(getCenterWindowSetting());
         windows.setMenu(null);
         windows.loadURL(Config.center.prodURL);
         return windows;
@@ -130,30 +131,11 @@ export class Center implements IScene {
 
     private _createDebugBrowserWindow(): BrowserWindow {
 
-        const windows: BrowserWindow = new BrowserWindow({
-            ...this._getWindowSetting(),
-            alwaysOnTop: false,
-        });
+        const windows: BrowserWindow = new BrowserWindow(getCenterWindowSetting());
         windows.setMenu(null);
         windows.loadURL(Config.center.devURL);
         windows.webContents.openDevTools();
         return windows;
-    }
-
-    private _getWindowSetting(): BrowserWindowConstructorOptions {
-
-        return {
-
-            width: 600,
-            height: 600,
-
-            maximizable: false,
-            resizable: false,
-            fullscreenable: false,
-
-            show: false,
-            backgroundColor: Config.backgroundColor,
-        };
     }
 
     private _getBrowserWindow(): BrowserWindow {

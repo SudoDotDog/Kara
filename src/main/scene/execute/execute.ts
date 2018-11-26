@@ -9,9 +9,10 @@ import { BUILD_MODE } from '#C/declare';
 import { SCENE_EXECUTE_IPC } from '#C/ipc';
 import { MainProvider } from '#P/main';
 import Connor, { ErrorCreationFunction } from 'connor';
-import { BrowserWindow, BrowserWindowConstructorOptions, ipcMain } from 'electron';
+import { BrowserWindow, ipcMain } from 'electron';
 import { ERROR_CODE, MODULE_NAME } from '../../declare/error';
 import { IScene } from '../../declare/scene';
+import { getExecuteWindowSetting } from './window-setting';
 
 export class Execute implements IScene {
 
@@ -131,42 +132,17 @@ export class Execute implements IScene {
 
     private _createBrowserWindow(): BrowserWindow {
 
-        const windows: BrowserWindow = new BrowserWindow(this._getWindowSetting());
+        const windows: BrowserWindow = new BrowserWindow(getExecuteWindowSetting());
         windows.loadURL(Config.execute.prodURL);
         return windows;
     }
 
     private _createDebugBrowserWindow(): BrowserWindow {
 
-        const windows: BrowserWindow = new BrowserWindow({
-            ...this._getWindowSetting(),
-        });
+        const windows: BrowserWindow = new BrowserWindow(getExecuteWindowSetting());
         windows.loadURL(Config.execute.devURL);
         windows.webContents.openDevTools();
         return windows;
-    }
-
-    private _getWindowSetting(): BrowserWindowConstructorOptions {
-
-        return {
-
-            width: 480,
-            height: 80,
-
-            x: 30,
-            y: 30,
-
-            frame: false,
-            hasShadow: false,
-            show: false,
-            transparent: true,
-
-            alwaysOnTop: true,
-            resizable: false,
-            fullscreenable: false,
-            maximizable: false,
-            minimizable: false,
-        };
     }
 
     private _getBrowserWindow(): BrowserWindow {

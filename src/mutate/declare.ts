@@ -7,3 +7,4 @@
 import { COMMAND_DECLARE } from "#P/declare";
 
 export type MutatedCommandSideEffectFunction = () => Promise<COMMAND_DECLARE>;
+export type ImmediateCommandSideEffectFunction = () => Promise<COMMAND_DECLARE>;

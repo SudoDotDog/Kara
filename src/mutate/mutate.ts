@@ -6,7 +6,8 @@
 
 import { COMMAND_DECLARE, COMMAND_DECLARE_TYPE } from "#P/declare";
 import { mutateCommandCommand, mutateCommandInput } from "./command/commands";
-import { MutatedCommandSideEffectFunction } from "./declare";
+import { ImmediateCommandSideEffectFunction, MutatedCommandSideEffectFunction } from "./declare";
+import { mutateImmediateScript } from "./immediate/immediate";
 import { mutateInputCommand } from "./input/inputs";
 import { createDefaultCommandMutateFunction } from "./util/default";
 
@@ -42,5 +43,14 @@ export class Mutate {
         }
 
         return createDefaultCommandMutateFunction(this._declare);
+    }
+
+    public immediate(): ImmediateCommandSideEffectFunction | null {
+
+        switch (this._declare.type) {
+            case COMMAND_DECLARE_TYPE.SCRIPT: return mutateImmediateScript(this._declare);
+        }
+
+        return null;
     }
 }

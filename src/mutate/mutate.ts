@@ -5,7 +5,7 @@
  */
 
 import { COMMAND_DECLARE, COMMAND_DECLARE_TYPE } from "#P/declare";
-import { mutateCommandCommand } from "./command/commands";
+import { mutateCommandCommand, mutateCommandInput } from "./command/commands";
 import { MutatedCommandSideEffectFunction } from "./declare";
 import { mutateInputCommand } from "./input/inputs";
 import { createDefaultCommandMutateFunction } from "./util/default";
@@ -38,6 +38,7 @@ export class Mutate {
         switch (this._declare.type) {
 
             case COMMAND_DECLARE_TYPE.COMMAND: return mutateCommandCommand(this._declare, input);
+            case COMMAND_DECLARE_TYPE.INPUT: return mutateCommandInput(this._declare, input);
         }
 
         return createDefaultCommandMutateFunction(this._declare);

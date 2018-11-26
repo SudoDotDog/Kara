@@ -60,6 +60,7 @@ export class Box extends React.Component<IBoxProps, {}> {
 
 
         (window as any).test = this.props;
+        (window as any).test2 = () => console.log(this.props);
 
         document.addEventListener('keydown', this._handleKeyDown);
         document.addEventListener('keypress', this._handleKeyPress);

@@ -19,3 +19,24 @@ export const passThroughArguments = (current: COMMAND_DECLARE, next: COMMAND_DEC
         arguments: current.arguments,
     };
 };
+
+export const extendThroughArguments = (current: COMMAND_DECLARE, next: COMMAND_DECLARE, extendArguments: {
+    [key: string]: any;
+}): COMMAND_DECLARE => {
+
+    if (!current.arguments) {
+
+        return {
+            ...next,
+            arguments: extendArguments,
+        };
+    }
+
+    return {
+        ...next,
+        arguments: {
+            ...current.arguments,
+            ...extendArguments,
+        },
+    };
+};

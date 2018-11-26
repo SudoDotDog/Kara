@@ -20,3 +20,9 @@ export const openExternal = async (url: string): Promise<void> => {
     shell.openExternal(url);
     return;
 };
+
+export const buildURL = async (domain: string, query: any): Promise<string> => {
+
+    console.log(domain, query);
+    return domain;
+};

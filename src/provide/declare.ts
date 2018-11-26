@@ -62,6 +62,8 @@ export interface ICommandDeclareInput extends ICommandDeclareArguments {
 
     type: COMMAND_DECLARE_TYPE.INPUT;
 
+    variable: string;
+
     next: COMMAND_DECLARE;
 }
 
@@ -70,6 +72,7 @@ export interface ICommandDeclareScript extends ICommandDeclareArguments {
     type: COMMAND_DECLARE_TYPE.SCRIPT;
 
     script: string;
+
     next: COMMAND_DECLARE;
 }
 
@@ -84,5 +87,6 @@ export interface ICommandDeclareSelectElement extends ICommandDeclareArguments {
 
     name: string;
     key: string;
+
     next: COMMAND_DECLARE;
 }

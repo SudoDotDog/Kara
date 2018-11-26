@@ -10,7 +10,7 @@ import { COMMAND_DECLARE_TYPE } from "../declare";
 import { Provider } from "../renderer";
 
 export const initRendererProvider = (): void => {
-    const provider: Provider = Provider.instance;
+    Provider.init();
     console.log('init renderer provider');
 };
 
@@ -29,9 +29,10 @@ export const initMainProvider = (): void => {
             description: 'google',
             declare: {
                 type: COMMAND_DECLARE_TYPE.INPUT,
+                variable: 'search',
                 next: {
                     type: COMMAND_DECLARE_TYPE.SCRIPT,
-                    script: `import {openExternal} from 'io';import {input} from 'arguments';openExternal('https://google.com/search?q=' + input)`,
+                    script: `import {openExternal} from 'io';import {search} from 'arguments';openExternal('https://google.com/search?q=' + search)`,
                     next: createDoneCommandDeclare(),
                 },
             },
@@ -39,16 +40,6 @@ export const initMainProvider = (): void => {
             name: 'someLongName',
             command: 'someLongName',
             key: 's',
-            description: 'google',
-            declare: {
-                type: COMMAND_DECLARE_TYPE.SCRIPT,
-                script: `import {openExternal} from 'io';openExternal('https://google.com')`,
-                next: createDoneCommandDeclare(),
-            },
-        }).register({
-            name: 'someName',
-            command: 'someName',
-            key: 'o',
             description: 'google',
             declare: {
                 type: COMMAND_DECLARE_TYPE.SCRIPT,

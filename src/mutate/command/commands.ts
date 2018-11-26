@@ -10,7 +10,7 @@ import { extendThroughArguments } from "#P/util/arguments";
 import { IMutateCommandResult, MUTATE_SIGNAL } from "#U/declare";
 import { createDefaultCommandMutateFunction, createEmptySignalMutateResult } from "#U/util/default";
 
-export const mutateCommandCommand = (previous: ICommandDeclareCommand, input: string, provider: Provider = Provider.instance): IMutateCommandResult => {
+export const mutateCommandCommand = (declare: ICommandDeclareCommand, input: string, provider: Provider = Provider.instance): IMutateCommandResult => {
 
     const matched: ICommand | null = provider.match(input);
 
@@ -26,12 +26,13 @@ export const mutateCommandCommand = (previous: ICommandDeclareCommand, input: st
         };
     }
 
-    return createEmptySignalMutateResult(createDefaultCommandMutateFunction(previous));
+    return createEmptySignalMutateResult(createDefaultCommandMutateFunction(declare));
 };
 
-export const mutateCommandInput = (previous: ICommandDeclareInput, input: string): IMutateCommandResult => ({
-    func: async () => extendThroughArguments(previous, previous.next, {
-        input,
+export const mutateCommandInput = (declare: ICommandDeclareInput, input: string): IMutateCommandResult => ({
+
+    func: async () => extendThroughArguments(declare, declare.next, {
+        [declare.variable]: input,
     }),
     actions: [
         { type: MUTATE_SIGNAL.CLEAR_INPUT },

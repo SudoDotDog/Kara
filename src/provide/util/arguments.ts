@@ -4,7 +4,7 @@
  * @description Arguments
  */
 
-import { COMMAND_DECLARE } from "#P/declare";
+import { COMMAND_DECLARE, ICommandArguments } from "#P/declare";
 
 export const passThroughArguments = (current: COMMAND_DECLARE, next: COMMAND_DECLARE): COMMAND_DECLARE => {
 
@@ -20,9 +20,7 @@ export const passThroughArguments = (current: COMMAND_DECLARE, next: COMMAND_DEC
     };
 };
 
-export const extendThroughArguments = (current: COMMAND_DECLARE, next: COMMAND_DECLARE, extendArguments: {
-    [key: string]: any;
-}): COMMAND_DECLARE => {
+export const extendThroughArguments = (current: COMMAND_DECLARE, next: COMMAND_DECLARE, extendArguments: ICommandArguments): COMMAND_DECLARE => {
 
     if (!current.arguments) {
 
@@ -40,3 +38,5 @@ export const extendThroughArguments = (current: COMMAND_DECLARE, next: COMMAND_D
         },
     };
 };
+
+export const checkArgumentExist = (args: ICommandArguments, variable: string): boolean => Object.keys(args).includes(variable);

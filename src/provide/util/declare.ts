@@ -21,9 +21,11 @@ export const createErrorCommandDeclare = (): COMMAND_DECLARE => ({
     type: COMMAND_DECLARE_TYPE.ERROR,
 });
 
-export const createInputCommandDeclare = (next: COMMAND_DECLARE): COMMAND_DECLARE => ({
+export const createInputCommandDeclare = (next: COMMAND_DECLARE, variable: string): COMMAND_DECLARE => ({
 
     type: COMMAND_DECLARE_TYPE.INPUT,
+
+    variable,
 
     next,
 });

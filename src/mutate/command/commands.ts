@@ -16,23 +16,13 @@ export const mutateCommandCommand = (previous: ICommandDeclareCommand, input: st
 
     if (matched) {
 
-        return async () => {
-
-            return matched.declare;
-        };
+        return async () => matched.declare;
     }
 
     return createDefaultCommandMutateFunction(previous);
 };
 
-export const mutateCommandInput = (previous: ICommandDeclareInput, input: string): MutatedCommandSideEffectFunction => {
-
-    return async () => {
-
-        const next: COMMAND_DECLARE = extendThroughArguments(previous, previous.next, {
-            input,
-        });
-
-        return next;
-    };
-};
+export const mutateCommandInput = (previous: ICommandDeclareInput, input: string): MutatedCommandSideEffectFunction =>
+    async () => extendThroughArguments(previous, previous.next, {
+        input,
+    });

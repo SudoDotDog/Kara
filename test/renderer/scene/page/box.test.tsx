@@ -21,6 +21,7 @@ describe('Given a <Box /> Component', (): void => {
 
         input: chance.string(),
         current: createCommandCommandDeclare(),
+        setCommand: new Sandbox().func(),
         setCurrent: new Sandbox().func(),
         clearInput: new Sandbox().func(),
         setInput: new Sandbox().func(),

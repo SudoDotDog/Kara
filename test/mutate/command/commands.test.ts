@@ -67,9 +67,12 @@ describe('Given [Mutate-Commands] help methods', (): void => {
 
             const input: string = chance.string();
             const newType: string = chance.string();
+            const variable: string = chance.string();
 
             const mockDeclare: ICommandDeclareInput = {
+
                 type: COMMAND_DECLARE_TYPE.INPUT,
+                variable,
                 next: createMockCommandDeclare(newType),
             };
 
@@ -78,6 +81,9 @@ describe('Given [Mutate-Commands] help methods', (): void => {
 
             const result: COMMAND_DECLARE = await mutated.func();
             expect(result.type).to.be.equal(newType);
+            expect(result.arguments).to.be.deep.equal({
+                [variable]: input,
+            });
             expect(mutated.actions).to.be.deep.equal([
                 { type: MUTATE_SIGNAL.CLEAR_INPUT },
             ]);

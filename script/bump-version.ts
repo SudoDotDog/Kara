@@ -37,12 +37,12 @@ const newVersion: IPackageVersion = {
 const stringifiedPackage: string = JSON.stringify({
     ...parsedPackage,
     version: writeVersion(newVersion),
-}, null, 4);
+}, null, "\t");
 
 const stringifiedAppPackage: string = JSON.stringify({
     ...parsedAppPackage,
     version: writeVersion(newVersion),
-}, null, 4);
+}, null, "\t");
 
 Fs.writeFileSync(packagePath, stringifiedPackage, 'utf8');
 Fs.writeFileSync(appPackagePath, stringifiedAppPackage, 'utf8');

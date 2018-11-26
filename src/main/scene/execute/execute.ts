@@ -140,7 +140,6 @@ export class Execute implements IScene {
 
         const windows: BrowserWindow = new BrowserWindow({
             ...this._getWindowSetting(),
-            alwaysOnTop: false,
         });
         windows.loadURL(Config.execute.devURL);
         windows.webContents.openDevTools();

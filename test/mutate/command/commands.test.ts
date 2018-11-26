@@ -4,9 +4,9 @@
  * @description Commands Test
  */
 
-import { COMMAND_DECLARE } from '#P/declare';
-import { mutateCommandCommand } from '#U/command/commands';
-import { MutatedCommandSideEffectFunction } from '#U/declare';
+import { COMMAND_DECLARE, COMMAND_DECLARE_TYPE, ICommandDeclareInput } from '#P/declare';
+import { mutateCommandCommand, mutateCommandInput } from '#U/command/commands';
+import { IMutateCommandResult, MUTATE_SIGNAL } from '#U/declare';
 import { expect } from 'chai';
 import * as Chance from 'chance';
 import { MockProvider } from '../../mock/clazz/provider';
@@ -19,37 +19,63 @@ describe('Given [Mutate-Commands] help methods', (): void => {
         type,
     });
 
-    it('should be able to mutate command - not matched', async (): Promise<void> => {
+    describe('Given [Mutate-Commands-Command] help method', (): void => {
 
-        const mockProvider: MockProvider = new MockProvider();
-        const input: string = chance.string();
-        const type: string = chance.string();
+        it('should be able to mutate command - not matched', async (): Promise<void> => {
 
-        const mutated: MutatedCommandSideEffectFunction =
-            mutateCommandCommand(createMockCommandDeclare(type), input, mockProvider as any);
+            const mockProvider: MockProvider = new MockProvider();
+            const input: string = chance.string();
+            const type: string = chance.string();
 
-        const result: COMMAND_DECLARE = await mutated();
-        expect(result.type).to.be.equal(type);
-    });
+            const mutated: IMutateCommandResult =
+                mutateCommandCommand(createMockCommandDeclare(type), input, mockProvider as any);
 
-    it('should be able to mutate command - matched', async (): Promise<void> => {
-
-        const mockProvider: MockProvider = new MockProvider();
-        const input: string = chance.string();
-        const type: string = chance.string();
-        const newType: string = chance.string();
-        const newInput: string = chance.string();
-
-        mockProvider.when('match', {
-
-            command: newInput,
-            declare: createMockCommandDeclare(newType),
+            const result: COMMAND_DECLARE = await mutated.func();
+            expect(result.type).to.be.equal(type);
+            expect(mutated.signals).to.be.deep.equal([]);
         });
 
-        const mutated: MutatedCommandSideEffectFunction =
-            mutateCommandCommand(createMockCommandDeclare(type), input, mockProvider as any);
+        it('should be able to mutate command - matched', async (): Promise<void> => {
 
-        const result: COMMAND_DECLARE = await mutated();
-        expect(result.type).to.be.equal(newType);
+            const mockProvider: MockProvider = new MockProvider();
+            const input: string = chance.string();
+            const type: string = chance.string();
+            const newType: string = chance.string();
+            const newInput: string = chance.string();
+
+            mockProvider.when('match', {
+
+                command: newInput,
+                declare: createMockCommandDeclare(newType),
+            });
+
+            const mutated: IMutateCommandResult =
+                mutateCommandCommand(createMockCommandDeclare(type), input, mockProvider as any);
+
+            const result: COMMAND_DECLARE = await mutated.func();
+            expect(result.type).to.be.equal(newType);
+            expect(mutated.signals).to.be.deep.equal([MUTATE_SIGNAL.CLEAR_INPUT]);
+        });
+    });
+
+    describe('Given [Mutate-Commands-Input] help method', (): void => {
+
+        it('should be able to mutate input', async (): Promise<void> => {
+
+            const input: string = chance.string();
+            const newType: string = chance.string();
+
+            const mockDeclare: ICommandDeclareInput = {
+                type: COMMAND_DECLARE_TYPE.INPUT,
+                next: createMockCommandDeclare(newType),
+            };
+
+            const mutated: IMutateCommandResult =
+                mutateCommandInput(mockDeclare, input);
+
+            const result: COMMAND_DECLARE = await mutated.func();
+            expect(result.type).to.be.equal(newType);
+            expect(mutated.signals).to.be.deep.equal([MUTATE_SIGNAL.CLEAR_INPUT]);
+        });
     });
 });

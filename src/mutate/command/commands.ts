@@ -26,7 +26,9 @@ export const mutateCommandCommand = (previous: ICommandDeclareCommand, input: st
     return createEmptySignalMutateResult(createDefaultCommandMutateFunction(previous));
 };
 
-export const mutateCommandInput = (previous: ICommandDeclareInput, input: string): IMutateCommandResult =>
-    createEmptySignalMutateResult(async () => extendThroughArguments(previous, previous.next, {
+export const mutateCommandInput = (previous: ICommandDeclareInput, input: string): IMutateCommandResult => ({
+    func: async () => extendThroughArguments(previous, previous.next, {
         input,
-    }));
+    }),
+    signals: [MUTATE_SIGNAL.CLEAR_INPUT],
+});

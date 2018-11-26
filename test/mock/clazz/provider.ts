@@ -9,12 +9,6 @@ import { Construable } from "../construable";
 
 export class MockProvider extends Construable {
 
-    public execute(declare: COMMAND_DECLARE): Promise<COMMAND_DECLARE> {
-
-        this._called.push(['execute', declare]);
-        return this._shouldReturn.get('execute');
-    }
-
     public match(command: string): ICommand | null {
 
         this._called.push(['match', command]);

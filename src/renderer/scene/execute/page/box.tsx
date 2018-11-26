@@ -10,7 +10,7 @@ import { clearInput, setInput } from '#R~execute/state/buffer/buffer';
 import { setCurrent } from '#R~execute/state/current/current';
 import { IStore } from '#R~execute/state/declare';
 import { hideExecuteWindow } from '#R~execute/util/trigger';
-import { MutatedCommandSideEffectFunction } from '#U/declare';
+import { ImmediateCommandSideEffectFunction, MutatedCommandSideEffectFunction } from '#U/declare';
 import { Mutate } from '#U/mutate';
 import * as React from "react";
 import { connect, ConnectedComponentClass } from "react-redux";
@@ -60,6 +60,7 @@ export class Box extends React.Component<IBoxProps, {}> {
 
 
         (window as any).test = this.props;
+        (window as any).test2 = () => console.log(this.props);
 
         document.addEventListener('keydown', this._handleKeyDown);
         document.addEventListener('keypress', this._handleKeyPress);
@@ -78,12 +79,21 @@ export class Box extends React.Component<IBoxProps, {}> {
 
     private _nextState(next: COMMAND_DECLARE): void {
 
-        if (next.type === COMMAND_DECLARE_TYPE.DONE) {
+        const mutate: Mutate = Mutate.declare(next);
+        const immediate: ImmediateCommandSideEffectFunction | null = mutate.immediate();
 
-            hideExecuteWindow();
+        if (immediate) {
+
+            immediate().then(this._nextState);
+        } else {
+
+            if (next.type === COMMAND_DECLARE_TYPE.DONE) {
+
+                hideExecuteWindow();
+            }
+
+            this.props.setCurrent(next);
         }
-
-        this.props.setCurrent(next);
     }
 
     private _handleKeyDown(event: KeyboardEvent): void {

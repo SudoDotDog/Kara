@@ -4,12 +4,13 @@
  * @description Commands
  */
 
-import { COMMAND_DECLARE, ICommand } from "#P/declare";
+import { COMMAND_DECLARE, ICommand, ICommandDeclareCommand, ICommandDeclareInput } from "#P/declare";
 import { Provider } from "#P/renderer";
+import { extendThroughArguments } from "#P/util/arguments";
 import { MutatedCommandSideEffectFunction } from "#U/declare";
 import { createDefaultCommandMutateFunction } from "#U/util/default";
 
-export const mutateCommandCommand = (previous: COMMAND_DECLARE, input: string, provider: Provider = Provider.instance): MutatedCommandSideEffectFunction => {
+export const mutateCommandCommand = (previous: ICommandDeclareCommand, input: string, provider: Provider = Provider.instance): MutatedCommandSideEffectFunction => {
 
     const matched: ICommand | null = provider.match(input);
 
@@ -17,10 +18,21 @@ export const mutateCommandCommand = (previous: COMMAND_DECLARE, input: string, p
 
         return async () => {
 
-            const next: COMMAND_DECLARE = await provider.execute(matched.declare);
-            return next;
+            return matched.declare;
         };
     }
 
     return createDefaultCommandMutateFunction(previous);
+};
+
+export const mutateCommandInput = (previous: ICommandDeclareInput, input: string): MutatedCommandSideEffectFunction => {
+
+    return async () => {
+
+        const next: COMMAND_DECLARE = extendThroughArguments(previous, previous.next, {
+            input,
+        });
+
+        return next;
+    };
 };

@@ -48,6 +48,7 @@ describe('Given [Mutate-Commands] help methods', (): void => {
             mutateCommandCommand(createMockCommandDeclare(type), input, mockProvider as any);
 
         const result: COMMAND_DECLARE = await mutated();
+        console.log(mutated, result);
         expect(result.type).to.be.equal(newType);
     });
 });

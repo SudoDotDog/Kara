@@ -7,10 +7,4 @@
 import { COMMAND_DECLARE } from "#P/declare";
 import { MutatedCommandSideEffectFunction } from "#U/declare";
 
-export const createDefaultCommandMutateFunction = (resolve: COMMAND_DECLARE): MutatedCommandSideEffectFunction => {
-
-    return async () => {
-
-        return resolve;
-    };
-};
+export const createDefaultCommandMutateFunction = (resolve: COMMAND_DECLARE): MutatedCommandSideEffectFunction => async () => resolve;

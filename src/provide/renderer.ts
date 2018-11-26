@@ -62,29 +62,6 @@ export class Provider {
         return this.length === 0;
     }
 
-    public async execute(current: COMMAND_DECLARE): Promise<COMMAND_DECLARE> {
-
-        switch (current.type) {
-
-            case COMMAND_DECLARE_TYPE.SCRIPT: {
-
-                const result: MarkedResult = await executeScript(current.script);
-                if (result.signal === END_SIGNAL.SUCCEED) {
-
-                    return passThroughArguments(current, current.next);
-                }
-                break;
-            }
-
-            case COMMAND_DECLARE_TYPE.INPUT: {
-
-                return passThroughArguments(current, current.next);
-            }
-        }
-
-        return createErrorCommandDeclare();
-    }
-
     public match(command: string): ICommand | null {
 
         if (Boolean(this._commandMap[command])) {

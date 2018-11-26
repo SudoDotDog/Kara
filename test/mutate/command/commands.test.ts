@@ -41,8 +41,10 @@ describe('Given [Mutate-Commands] help methods', (): void => {
         const newInput: string = chance.string();
 
         mockProvider.when('match', {
+
             command: newInput,
-        }).when('execute', createMockCommandDeclare(newType));
+            declare: createMockCommandDeclare(newType),
+        });
 
         const mutated: MutatedCommandSideEffectFunction =
             mutateCommandCommand(createMockCommandDeclare(type), input, mockProvider as any);

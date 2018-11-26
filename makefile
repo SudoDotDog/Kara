@@ -30,7 +30,7 @@ kara: dev
 
 dev: r-scepter electron
 
-pack: build
+pack: build install-app electron-builder
 
 electron-builder:
 	@cd app && $(electron_builder)
@@ -39,6 +39,7 @@ build: renderer-build electron-build
 	@echo "[INFO] Build Complete"
 
 bump-version: compile-script
+	@echo "[INFO] Bumping version"
 	@node ./script-dist/bump-version.js
 
 renderer-build: r-scepter-build r-execute-build r-center-build
@@ -68,6 +69,7 @@ r-execute-build:
 	@$(webpack) --config $(renderer_execute_build)
 
 compile-script:
+	@echo "[INFO] Compiling Scripts"
 	@$(tsc) --p $(script_tsconfig)
 
 electron:
@@ -109,6 +111,10 @@ install:
 install-prod:
 	@echo "[INFO] Installing Dependencies"
 	@yarn install --production=true
+
+install-app:
+	@echo "[INFO] Installing app Dependencies"
+	@cd app && yarn install --production=true
 
 clean:
 ifeq ($(OS), Windows_NT)

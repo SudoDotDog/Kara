@@ -80,6 +80,7 @@
 			".tsx"
 		],
 		"include": [
+			"script/**/*.ts",
 			"src/**/*.ts",
 			"src/**/*.tsx"
 		],

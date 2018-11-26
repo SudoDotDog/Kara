@@ -5,6 +5,10 @@
  */
 
 import { COMMAND_DECLARE } from "#P/declare";
-import { MutatedCommandSideEffectFunction } from "#U/declare";
+import { IMutateCommandResult, MutatedCommandSideEffectFunction } from "#U/declare";
 
 export const createDefaultCommandMutateFunction = (resolve: COMMAND_DECLARE): MutatedCommandSideEffectFunction => async () => resolve;
+export const createEmptySignalMutateResult = (func: MutatedCommandSideEffectFunction): IMutateCommandResult => ({
+    func,
+    signals: [],
+});

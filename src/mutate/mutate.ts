@@ -6,23 +6,23 @@
 
 import { COMMAND_DECLARE, COMMAND_DECLARE_TYPE } from "#P/declare";
 import { mutateCommandCommand, mutateCommandInput } from "./command/commands";
-import { ImmediateCommandSideEffectFunction, MutatedCommandSideEffectFunction } from "./declare";
+import { ImmediateCommandSideEffectFunction, IMutateCommandResult } from "./declare";
 import { mutateImmediateScript } from "./immediate/immediate";
 import { mutateInputCommand } from "./input/inputs";
-import { createDefaultCommandMutateFunction } from "./util/default";
+import { createDefaultCommandMutateFunction, createEmptySignalMutateResult } from "./util/default";
 
 export class Mutate {
 
-    public static declare(declare: COMMAND_DECLARE): Mutate {
+    public static declare(target: COMMAND_DECLARE): Mutate {
 
-        return new Mutate(declare);
+        return new Mutate(target);
     }
 
     private _declare: COMMAND_DECLARE;
 
-    private constructor(declare: COMMAND_DECLARE) {
+    private constructor(target: COMMAND_DECLARE) {
 
-        this._declare = declare;
+        this._declare = target;
     }
 
     public input(previous: string): string {
@@ -34,7 +34,7 @@ export class Mutate {
         return previous;
     }
 
-    public command(input: string): MutatedCommandSideEffectFunction {
+    public command(input: string): IMutateCommandResult {
 
         switch (this._declare.type) {
 
@@ -42,7 +42,7 @@ export class Mutate {
             case COMMAND_DECLARE_TYPE.INPUT: return mutateCommandInput(this._declare, input);
         }
 
-        return createDefaultCommandMutateFunction(this._declare);
+        return createEmptySignalMutateResult(createDefaultCommandMutateFunction(this._declare));
     }
 
     public immediate(): ImmediateCommandSideEffectFunction | null {

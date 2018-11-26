@@ -13,7 +13,7 @@ import { END_SIGNAL, MarkedResult } from "@sudoo/marked";
 
 export const mutateImmediateScript = (current: ICommandDeclareScript): ImmediateCommandSideEffectFunction => async () => {
 
-    const result: MarkedResult = await executeScript(current.script);
+    const result: MarkedResult = await executeScript(current.script, current.arguments);
 
     if (result.signal === END_SIGNAL.SUCCEED) {
 

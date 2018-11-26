@@ -13,6 +13,11 @@ export interface ICommand {
     name: string;
 }
 
+export interface ICommandArguments {
+
+    [key: string]: string;
+}
+
 export enum COMMAND_DECLARE_TYPE {
 
     COMMAND = 'COMMAND',

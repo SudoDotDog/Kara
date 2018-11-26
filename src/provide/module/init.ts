@@ -31,7 +31,7 @@ export const initMainProvider = (): void => {
                 type: COMMAND_DECLARE_TYPE.INPUT,
                 next: {
                     type: COMMAND_DECLARE_TYPE.SCRIPT,
-                    script: `import {openExternal} from 'io';openExternal('https://google.com')`,
+                    script: `import {openExternal} from 'io';import {input} from 'arguments';openExternal('https://google.com/' + input)`,
                     next: createDoneCommandDeclare(),
                 },
             },

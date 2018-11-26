@@ -10,7 +10,7 @@ import { clearInput, setInput } from '#R~execute/state/buffer/buffer';
 import { setCurrent } from '#R~execute/state/current/current';
 import { IStore } from '#R~execute/state/declare';
 import { hideExecuteWindow } from '#R~execute/util/trigger';
-import { ImmediateCommandSideEffectFunction, MutatedCommandSideEffectFunction } from '#U/declare';
+import { ImmediateCommandSideEffectFunction, IMutateCommandResult, MUTATE_SIGNAL } from '#U/declare';
 import { Mutate } from '#U/mutate';
 import * as React from "react";
 import { connect, ConnectedComponentClass } from "react-redux";
@@ -77,6 +77,17 @@ export class Box extends React.Component<IBoxProps, {}> {
         return (<ConnectedProtocol />);
     }
 
+    private _processMutateSignal(signals: MUTATE_SIGNAL[]): void {
+
+        signals.forEach((signal: MUTATE_SIGNAL): void => {
+
+            switch (signal) {
+
+                case MUTATE_SIGNAL.CLEAR_INPUT: this.props.clearInput();
+            }
+        });
+    }
+
     private _nextState(next: COMMAND_DECLARE): void {
 
         const mutate: Mutate = Mutate.declare(next);
@@ -105,8 +116,9 @@ export class Box extends React.Component<IBoxProps, {}> {
 
             case KEY.ENTER: {
 
-                const mutated: MutatedCommandSideEffectFunction = mutate.command(input);
-                mutated().then(this._nextState);
+                const mutated: IMutateCommandResult = mutate.command(input);
+                this._processMutateSignal(mutated.signals);
+                mutated.func().then(this._nextState);
                 break;
             }
             case KEY.ESCAPE: {

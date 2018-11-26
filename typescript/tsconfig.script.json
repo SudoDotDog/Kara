@@ -2,7 +2,7 @@
     "compileOnSave": false,
     "compilerOptions": {
         "alwaysStrict": true,
-        "baseUrl": "../",
+        "outDir": "../script-dist",
         "downlevelIteration": true,
         "emitDecoratorMetadata": true,
         "experimentalDecorators": true,
@@ -18,19 +18,6 @@
         "noImplicitAny": true,
         "noImplicitReturns": true,
         "noImplicitThis": true,
-        "paths": {
-            "#C/*": ["src/config/*"],
-            "#M/*": ["src/main/*"],
-            "#P/*": ["src/provide/*"],
-            "#S/*": ["style/*"],
-            "#U/*": ["src/mutate/*"],
-            "#R^components/*": ["src/renderer/components/*"],
-            "#R^declare/*": ["src/renderer/declare/*"],
-            "#R^relative/*": ["src/renderer/relative/*"],
-            "#R^util/*": ["src/renderer/util/*"],
-            "#R~center/*": ["src/renderer/scene/center/*"],
-            "#R~execute/*": ["src/renderer/scene/execute/*"]
-        },
         "removeComments": true,
         "resolveJsonModule": true,
         "strict": true,
@@ -38,12 +25,11 @@
         "target": "es5",
     },
     "exclude": [
-        "node_modules",
-        "test",
-        "script"
+        "../node_modules",
+        "../test",
+        "../src"
     ],
     "include": [
-        "src/config/**/*",
-        "src/main/**/*"
+        "../script/**/*"
     ]
 }

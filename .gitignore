@@ -25,6 +25,7 @@ app/main
 app/renderer
 
 # temp
+script-dist
 dist
 temp
 

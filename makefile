@@ -9,6 +9,8 @@ renderer_scepter_dev := webpack/scepter/webpack.renderer.dev.js
 renderer_execute_build := webpack/execute/webpack.renderer.build.js
 renderer_execute_dev := webpack/execute/webpack.renderer.dev.js
 
+script_tsconfig := typescript/tsconfig.script.json
+
 # NPX functions
 ifeq ($(OS), Windows_NT)
 	tsc := .\node_modules\.bin\tsc
@@ -36,6 +38,9 @@ electron-builder:
 build: renderer-build electron-build
 	@echo "[INFO] Build Complete"
 
+bump-version: compile-script
+	@node ./script-dist/bump-version.js
+
 renderer-build: r-scepter-build r-execute-build r-center-build
 
 r-center:
@@ -61,6 +66,9 @@ r-execute:
 r-execute-build:
 	@echo "[INFO] Starting execute renderer production build"
 	@$(webpack) --config $(renderer_execute_build)
+
+compile-script:
+	@$(tsc) --p $(script_tsconfig)
 
 electron:
 	@echo "[INFO] Starting electron development"

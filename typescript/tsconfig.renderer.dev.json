@@ -40,7 +40,8 @@
     },
     "exclude": [
         "node_modules",
-        "test"
+        "test",
+        "script"
     ],
     "include": [
         "src/config/**/*",

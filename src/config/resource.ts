@@ -8,5 +8,5 @@ import * as Path from 'path';
 
 export default {
 
-    tray: Path.join(__dirname, '..', '..', 'binary', 'icon.png'),
+    tray: Path.join(__dirname, '..', '..', 'binary', 'tray.png'),
 };

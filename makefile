@@ -42,6 +42,10 @@ bump-version: compile-script
 	@echo "[INFO] Bumping version"
 	@node ./script-dist/bump-version.js
 
+download-binaries: compile-script
+	@echo "[INFO] Downloading binaries"
+	@node ./script-dist/download-binaries.js
+
 renderer-build: r-scepter-build r-execute-build r-center-build
 
 r-center:

@@ -12,10 +12,25 @@
     
     height: 100%
     .left
+        display: flex
+        flex-direction: column
         flex: 2
 
         height: 100%
-        background-color: $red
+        background-color: $navy
+        button
+            background-color: $navy
+            border: 5px solid $navy
+            color: $white
+            cursor: pointer
+            
+            height: 10%
+            transition: 0.3s all
+            outline: 0
+        button:hover
+            border: 5px solid $lime
+        button:focus
+            color: $lime
     .right
         flex: 5
 

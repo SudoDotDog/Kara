@@ -8,16 +8,19 @@ import { StorageFile } from "#C/storage/file";
 import { Storage } from "#C/storage/storage";
 import { ICommand } from "#P/declare";
 import { MainProvider } from "#P/main";
-import { initMainProvider } from "#P/module/init";
 
-export const bindingMainProvider = (): void => {
-
-    const providerResource: StorageFile<ICommand[]> = Storage.instance.resource('Provider');
+export const bindingMainProvider = async (): Promise<void> => {
 
     const provider: MainProvider = MainProvider.instance;
     if (!provider.isEmpty()) {
         return;
     }
-    initMainProvider();
+
+    const providerResource: StorageFile<ICommand[]> = Storage.instance.resource('Provider');
+    await providerResource.initialize([]);
+    const commands: ICommand[] = await providerResource.get();
+    commands.forEach((value: ICommand) => provider.register(value));
+
+    provider.flush();
     return;
 };

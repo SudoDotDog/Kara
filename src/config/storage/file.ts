@@ -20,6 +20,32 @@ export class StorageFile<T> {
         this._path = path;
     }
 
+    public async initialize(content: T): Promise<void> {
+
+        return new Promise<void>((
+            resolve: () => any,
+            reject: (reason: any) => any,
+        ) => {
+
+            Fs.exists(this._path, (exists: boolean) => {
+
+                if (exists) {
+                    resolve();
+                } else {
+
+                    this.put(content).then((result: true) => {
+
+                        if (result) {
+                            resolve();
+                        } else {
+                            reject(null);
+                        }
+                    }).catch(reject);
+                }
+            });
+        });
+    }
+
     public put(content: T): Promise<true> {
 
         return new Promise<true>((

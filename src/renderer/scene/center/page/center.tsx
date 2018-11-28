@@ -41,4 +41,16 @@ export class Center extends React.Component<{}, ICenterState> {
             </div>
         );
     }
+
+    private _renderPage(): JSX.Element {
+
+        switch (this.state.frame) {
+            case CENTER_FRAME.SCRIPT_MANAGER:
+                return (<div></div>);
+            case CENTER_FRAME.APPLICATION:
+                return (<div></div>);
+        }
+
+        return (<div></div>);
+    }
 }

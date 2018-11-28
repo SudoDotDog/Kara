@@ -29,7 +29,14 @@ export class Center extends React.Component<{}, ICenterState> {
 
         return (
             <div className={styleCenter.center}>
-                <div className={styleCenter.left}>1</div>
+                <div className={styleCenter.left}>
+                    <button>
+                        Script Manager
+                    </button>
+                    <button>
+                        Application
+                    </button>
+                </div>
                 <div className={styleCenter.right}>2</div>
             </div>
         );

@@ -44,7 +44,12 @@ export class Provider {
 
         initProvideErrorDictionary();
 
-        ipcRenderer.on(PROVIDER_IPC.CHECKSUM, this._handleProviderRendererUpdate);
+        this.mount();
+    }
+
+    public get commands(): ICommand[] {
+
+        return Object.keys(this._commandMap).map((key: string) => this._commandMap[key]);
     }
 
     public get length(): number {
@@ -96,6 +101,16 @@ export class Provider {
             this._commandMap = map;
         });
         ipcRenderer.send(PROVIDER_IPC.REQUEST_UPDATE);
+    }
+
+    protected mount(): void {
+
+        ipcRenderer.on(PROVIDER_IPC.CHECKSUM, this._handleProviderRendererUpdate);
+    }
+
+    protected unmount(): void {
+
+        ipcRenderer.removeListener(PROVIDER_IPC.CHECKSUM, this._handleProviderRendererUpdate);
     }
 
     private _checkEmpty(): void {

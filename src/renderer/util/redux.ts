@@ -4,7 +4,7 @@
  * @description Redux
  */
 
-import { AnyAction, createStore, Store } from "redux";
+import { AnyAction, createStore, Reducer, Store } from "redux";
 
 export class Redux<TStore, TAction> {
 
@@ -19,7 +19,8 @@ export class Redux<TStore, TAction> {
 
     public createStore(): Store<TStore> {
 
-        return createStore(this._reducer.bind(this));
+        const reducer: Reducer<TStore, AnyAction> = this._reducer.bind(this) as Reducer<TStore, AnyAction>;
+        return createStore(reducer);
     }
 
     public reducer(action: TAction, reducer: ((current: TStore, reducer: any) => TStore)): Redux<TStore, TAction> {

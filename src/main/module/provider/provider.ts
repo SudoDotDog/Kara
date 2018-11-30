@@ -4,10 +4,9 @@
  * @description Provider
 */
 
-import { StorageFile } from "#C/storage/file";
-import { Storage } from "#C/storage/storage";
 import { ICommand } from "#P/declare";
 import { MainProvider } from "#P/main/main";
+import { readAllCommandsFromResource } from "#P/main/register";
 
 export const bindingMainProvider = async (): Promise<void> => {
 
@@ -16,9 +15,8 @@ export const bindingMainProvider = async (): Promise<void> => {
         return;
     }
 
-    const providerResource: StorageFile<ICommand[]> = Storage.instance.resource('Provider');
-    await providerResource.initialize([]);
-    const commands: ICommand[] = await providerResource.get();
+    const commands: ICommand[] = await readAllCommandsFromResource();
+
     commands.forEach((value: ICommand) => provider.register(value));
 
     provider.flush();

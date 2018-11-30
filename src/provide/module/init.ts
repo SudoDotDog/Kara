@@ -4,7 +4,7 @@
  * @description Init
  */
 
-import { MainProvider } from "#P/main";
+import { MainProvider } from "#P/main/main";
 import { createDoneCommandDeclare } from "#P/util/declare";
 import { COMMAND_DECLARE_TYPE } from "../declare";
 import { Provider } from "../renderer";

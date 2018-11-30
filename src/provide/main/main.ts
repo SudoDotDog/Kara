@@ -6,8 +6,8 @@
 
 import { PROVIDER_IPC } from "#C/ipc";
 import { ipcMain, IpcMessageEvent, webContents } from "electron";
-import { ICommand } from "./declare";
-import { md5Encode } from "./util/crypto";
+import { ICommand } from "../declare";
+import { md5Encode } from "../util/crypto";
 
 export class MainProvider {
 

@@ -26,7 +26,7 @@ export class Storage {
 
     private constructor() {
 
-        if (this._isRenderer) {
+        if (this._isRenderer()) {
             this._path = remote.app.getPath('userData');
         } else {
             this._path = app.getPath('userData');

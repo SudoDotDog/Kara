@@ -7,7 +7,7 @@
 import { StorageFile } from "#C/storage/file";
 import { Storage } from "#C/storage/storage";
 import { ICommand } from "#P/declare";
-import { MainProvider } from "#P/main";
+import { MainProvider } from "#P/main/main";
 
 export const bindingMainProvider = async (): Promise<void> => {
 

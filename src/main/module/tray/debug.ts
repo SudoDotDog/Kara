@@ -4,7 +4,7 @@
  * @description Debug
  */
 
-import { MainProvider } from "#P/main";
+import { MainProvider } from "#P/main/main";
 import { dialog, MenuItemConstructorOptions, webContents } from "electron";
 
 export const debugMenuFilter = (menu: MenuItemConstructorOptions[]): MenuItemConstructorOptions[] => {
@@ -18,6 +18,7 @@ export const debugMenuFilter = (menu: MenuItemConstructorOptions[]): MenuItemCon
 
                     const information: string[][] = [
                         ['WebContents', webContents.getAllWebContents().length.toString()],
+                        ['Provider', MainProvider.instance.length.toString()],
                     ];
                     dialog.showErrorBox('Debug', information.map((item: string[]) => item.join(': ')).join('\n'));
                 },

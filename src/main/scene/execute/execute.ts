@@ -7,7 +7,7 @@
 import Config from '#C/config';
 import { BUILD_MODE } from '#C/declare';
 import { SCENE_EXECUTE_IPC } from '#C/ipc';
-import { MainProvider } from '#P/main';
+import { MainProvider } from '#P/main/main';
 import Connor, { ErrorCreationFunction } from 'connor';
 import { BrowserWindow, ipcMain } from 'electron';
 import { ERROR_CODE, MODULE_NAME } from '../../declare/error';

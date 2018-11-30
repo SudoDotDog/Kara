@@ -14,6 +14,8 @@ export enum SCENE_EXECUTE_IPC {
 export enum PROVIDER_IPC {
 
     CHECKSUM = 'provider-renderer-checksum',
+    REQUEST_REPLACE = 'provider-main-request-replace',
+    REQUEST_REPLACE_RESPONSE = 'provider-main-request-replace-response',
     REQUEST_UPDATE = 'provider-main-request-update',
     REQUEST_UPDATE_RESPONSE = 'provider-main-request-update-response',
 }

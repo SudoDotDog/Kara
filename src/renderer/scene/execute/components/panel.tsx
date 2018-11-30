@@ -5,7 +5,7 @@
  */
 
 import { COMMAND_DECLARE } from "#P/declare";
-import { Provider } from "#P/renderer";
+import { Provider } from "#P/renderer/renderer";
 import { PanelComponent } from "#R^declare/relative";
 import { Relative } from "#R^relative/relative";
 import { StyleBuilder } from "#R^util/style";

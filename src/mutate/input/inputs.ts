@@ -5,7 +5,7 @@
  */
 
 import { ICommand } from "#P/declare";
-import { Provider } from "#P/renderer";
+import { Provider } from "#P/renderer/renderer";
 
 export const mutateInputCommand = (input: string, provider: Provider = Provider.instance): string => {
 

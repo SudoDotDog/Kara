@@ -8,9 +8,9 @@ import { PROVIDER_IPC } from "#C/ipc";
 import { ICommand } from "#P/declare";
 import Connor, { ErrorCreationFunction } from "connor";
 import { IpcMessageEvent, ipcRenderer } from "electron";
-import { initProvideErrorDictionary, PROVIDE_ERROR_CODE, PROVIDE_MODULE_NAME } from "./declare/error";
-import { md5Encode } from "./util/crypto";
-import { findNearestCommand } from "./util/nearest";
+import { initProvideErrorDictionary, PROVIDE_ERROR_CODE, PROVIDE_MODULE_NAME } from "../declare/error";
+import { md5Encode } from "../util/crypto";
+import { findNearestCommand } from "../util/nearest";
 
 export class Provider {
 

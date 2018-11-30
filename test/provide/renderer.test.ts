@@ -5,7 +5,7 @@
  */
 
 import { COMMAND_DECLARE_TYPE, ICommand } from '#P/declare';
-import { Provider } from '#P/renderer';
+import { Provider } from '#P/renderer/renderer';
 import { createCommandCommandDeclare } from '#P/util/declare';
 import { expect } from 'chai';
 import * as Chance from 'chance';

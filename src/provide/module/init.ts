@@ -4,7 +4,7 @@
  * @description Init
  */
 
-import { Provider } from "../renderer";
+import { Provider } from "../renderer/renderer";
 
 export const initRendererProvider = (): void => {
     Provider.init();

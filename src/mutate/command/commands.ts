@@ -5,7 +5,7 @@
  */
 
 import { ICommand, ICommandDeclareCommand, ICommandDeclareInput } from "#P/declare";
-import { Provider } from "#P/renderer";
+import { Provider } from "#P/renderer/renderer";
 import { extendThroughArguments } from "#P/util/arguments";
 import { IMutateCommandResult, MUTATE_SIGNAL } from "#U/declare";
 import { createDefaultCommandMutateFunction, createEmptySignalMutateResult } from "#U/util/default";

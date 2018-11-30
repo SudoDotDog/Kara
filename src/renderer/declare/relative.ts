@@ -4,7 +4,7 @@
  * @description Relative
  */
 
-import { Provider } from "#P/renderer";
+import { Provider } from "#P/renderer/renderer";
 import { SFC } from "react";
 
 export interface IComponentsPanelProps {

@@ -6,19 +6,10 @@
 
 import * as React from "react";
 
-export class CenterScriptManager extends React.Component<{}, {}> {
+export const CenterScriptManager: React.SFC<{}> = (props: {}) => {
 
-    public constructor(props: {}) {
+    return (<div>
 
-        super(props);
-    }
-
-    public render(): JSX.Element {
-
-        return (
-            <div>
-                Script Manager
-            </div>
-        );
-    }
-}
+        Script Manager
+    </div>);
+};

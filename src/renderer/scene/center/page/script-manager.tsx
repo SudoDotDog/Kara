@@ -5,7 +5,8 @@
  */
 
 import { ICommand } from "#P/declare";
-import { readProviderResource } from "#R~center/action/resources";
+import { initialCommand } from "#P/renderer/command";
+import { readProviderResource, writeProviderResource } from "#R~center/action/resources";
 import { SingleScript } from "#R~center/components/script";
 import * as React from "react";
 
@@ -30,8 +31,34 @@ export class CenterScriptManager extends React.Component<{}, ICenterScriptManage
 
         return (<div>
 
-            {this.state.commands.map((command: ICommand) => <SingleScript command={command} />)}
+            {this.state.commands.map((command: ICommand, index: number) => <SingleScript
+                command={command}
+                updateCommand={this._getCommandUpdateFunc(index)}
+            />)}
+
+            <button onClick={() => this.setState({
+                commands: [
+                    ...this.state.commands,
+                    initialCommand(),
+                ],
+            })}>Add</button>
+
+            <button onClick={() => writeProviderResource(this.state.commands)}>Update</button>
         </div>);
+    }
+
+    private _getCommandUpdateFunc(position: number): (command: ICommand) => void {
+
+        return (command: ICommand) => {
+
+            const commands: ICommand[] = [...this.state.commands];
+
+            commands[position] = command;
+
+            this.setState({
+                commands,
+            });
+        };
     }
 
     private async _updateCommandsFromProvider(): Promise<void> {

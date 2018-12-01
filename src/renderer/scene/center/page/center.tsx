@@ -57,6 +57,8 @@ export class Center extends React.Component<{}, ICenterState> {
 
     private _renderPage(): JSX.Element {
 
+        console.log(this.state);
+
         switch (this.state.frame) {
 
             case CENTER_FRAME.SCRIPT_MANAGER:

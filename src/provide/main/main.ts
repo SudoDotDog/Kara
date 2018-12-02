@@ -5,6 +5,7 @@
  */
 
 import { PROVIDER_IPC } from "#C/ipc";
+import { _Map } from "@sudoo/bark";
 import { ipcMain, IpcMessageEvent, webContents } from "electron";
 import { ICommand } from "../declare";
 import { md5Encode } from "../util/crypto";
@@ -39,7 +40,7 @@ export class MainProvider {
 
     public get length(): number {
 
-        return Object.keys(this._commandMap).length;
+        return _Map.keys(this._commandMap).length;
     }
 
     public clean(): MainProvider {

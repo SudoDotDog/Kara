@@ -5,7 +5,7 @@
  */
 
 import { ICommand } from "#P/declare";
-import { _String } from "@sudoo/bark";
+import { _Map, _String } from "@sudoo/bark";
 
 export const findNearestCommand = (commandMap: { [key: string]: ICommand; }, command: string): {
     command: ICommand;
@@ -15,7 +15,7 @@ export const findNearestCommand = (commandMap: { [key: string]: ICommand; }, com
     const result: {
         command: ICommand;
         length: number;
-    } = Object.keys(commandMap).reduce<any>(
+    } = _Map.keys(commandMap).reduce<any>(
         (nearest: { command: ICommand; length: number; }, key: string) => {
 
             const current: ICommand = commandMap[key];

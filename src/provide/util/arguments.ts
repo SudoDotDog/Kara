@@ -5,6 +5,7 @@
  */
 
 import { COMMAND_DECLARE, ICommandArguments } from "#P/declare";
+import { _Map } from "@sudoo/bark";
 
 export const passThroughArguments = (current: COMMAND_DECLARE, next: COMMAND_DECLARE): COMMAND_DECLARE => {
 
@@ -39,4 +40,4 @@ export const extendThroughArguments = (current: COMMAND_DECLARE, next: COMMAND_D
     };
 };
 
-export const checkArgumentExist = (args: ICommandArguments, variable: string): boolean => Object.keys(args).includes(variable);
+export const checkArgumentExist = (args: ICommandArguments, variable: string): boolean => _Map.keys(args).includes(variable);

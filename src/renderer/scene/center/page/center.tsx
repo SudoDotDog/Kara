@@ -7,7 +7,6 @@
 import { CENTER_FRAME } from '#R~center/declare/center';
 import * as styleCenter from '#S/scene/center/center.sass';
 import * as React from "react";
-import { CenterScriptManager } from './script-manager';
 
 interface ICenterState {
 
@@ -33,10 +32,6 @@ export class Center extends React.Component<{}, ICenterState> {
 
                 <div className={styleCenter.left}>
 
-                    <button onClick={this._getSwitchToPageFunc(CENTER_FRAME.SCRIPT_MANAGER)}>
-
-                        Script Manager
-                    </button>
                     <button onClick={this._getSwitchToPageFunc(CENTER_FRAME.APPLICATION)}>
 
                         Application
@@ -57,12 +52,8 @@ export class Center extends React.Component<{}, ICenterState> {
 
     private _renderPage(): JSX.Element {
 
-        console.log(this.state);
-
         switch (this.state.frame) {
 
-            case CENTER_FRAME.SCRIPT_MANAGER:
-                return (<CenterScriptManager />);
             case CENTER_FRAME.APPLICATION:
                 return (<div></div>);
         }

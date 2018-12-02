@@ -7,7 +7,6 @@
 import { ICommand } from "#P/declare";
 import { initialCommand } from "#P/renderer/command";
 import { readProviderResource, writeProviderResource } from "#R~center/action/resources";
-import { SingleScript } from "#R~center/components/script";
 import * as React from "react";
 
 interface ICenterScriptManagerState {
@@ -31,10 +30,10 @@ export class CenterScriptManager extends React.Component<{}, ICenterScriptManage
 
         return (<div>
 
-            {this.state.commands.map((command: ICommand, index: number) => <SingleScript
+            {/* {this.state.commands.map((command: ICommand, index: number) => <SingleScript
                 command={command}
                 updateCommand={this._getCommandUpdateFunc(index)}
-            />)}
+            />)} */}
 
             <button onClick={() => this.setState({
                 commands: [

@@ -6,6 +6,7 @@
 
 import * as React from "react";
 import { Route } from "react-router-dom";
+import { Scepter } from "./page/scepter";
 
 class Hello extends React.Component<{}, {}> {
 
@@ -16,7 +17,7 @@ class Hello extends React.Component<{}, {}> {
     public render(): JSX.Element {
         return (
             <React.Fragment>
-                <Route path="/" exact component={() => <div>123</div>} />
+                <Route path="/" exact component={Scepter} />
             </React.Fragment>
         );
     }

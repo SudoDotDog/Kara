@@ -7,25 +7,25 @@
 import { COMMAND_DECLARE } from '#P/declare';
 import { createCommandCommandDeclare } from '#P/util/declare';
 import { Reducer } from 'redux';
-import { EXECUTE_ACTIONS, IStore } from '../declare';
+import { EXECUTE_ACTIONS, IExecuteStore } from '../declare';
 import { ICommandReducerAction, ICurrentReducerAction, ICurrentStore } from './type';
 
-const reduceCommand: Reducer<IStore, ICommandReducerAction> = (state: IStore | undefined, action: ICommandReducerAction): IStore => ({
+const reduceCommand: Reducer<IExecuteStore, ICommandReducerAction> = (state: IExecuteStore | undefined, action: ICommandReducerAction): IExecuteStore => ({
 
-    ...state as IStore,
+    ...state as IExecuteStore,
     current: {
 
-        ...(state as IStore).current,
+        ...(state as IExecuteStore).current,
         command: action.command,
     },
 });
 
-const reduceCurrent: Reducer<IStore, ICurrentReducerAction> = (state: IStore | undefined, action: ICurrentReducerAction): IStore => ({
+const reduceCurrent: Reducer<IExecuteStore, ICurrentReducerAction> = (state: IExecuteStore | undefined, action: ICurrentReducerAction): IExecuteStore => ({
 
-    ...state as IStore,
+    ...state as IExecuteStore,
     current: {
 
-        ...(state as IStore).current,
+        ...(state as IExecuteStore).current,
         current: action.current,
     },
 });

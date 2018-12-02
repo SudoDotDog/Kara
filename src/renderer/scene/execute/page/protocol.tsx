@@ -9,7 +9,7 @@ import { COMMAND_DECLARE } from '#P/declare';
 import { StyleBuilder } from '#R^util/style';
 import { AutoHorizontalExpend } from '#R~execute/components/auto-horizontal-expend';
 import { Panel } from '#R~execute/components/panel';
-import { IStore } from '#R~execute/state/declare';
+import { IExecuteStore } from '#R~execute/state/declare';
 import * as styleExecute from '#S/scene/execute/execute.sass';
 import * as React from "react";
 import { connect, ConnectedComponentClass } from 'react-redux';
@@ -22,7 +22,7 @@ export interface IProtocolProps {
     readonly input: string;
 }
 
-const mapStateProtocolCareAbout = (store: IStore): Partial<IProtocolProps> => ({
+const mapStateProtocolCareAbout = (store: IExecuteStore): Partial<IProtocolProps> => ({
 
     command: store.current.command,
     current: store.current.current,

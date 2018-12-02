@@ -9,17 +9,17 @@ import { Store } from "redux";
 import { applicationReducers, getDefaultApplicationStore } from "./application/application";
 import { bufferReducers, getDefaultBufferStore } from './buffer/buffer';
 import { currentReducers, getDefaultCurrentStore } from './current/current';
-import { EXECUTE_ACTIONS, IStore } from "./declare";
+import { EXECUTE_ACTIONS, IExecuteStore } from "./declare";
 
-export const ExecuteStore: IStore = {
+export const ExecuteStore: IExecuteStore = {
 
     application: getDefaultApplicationStore(),
     buffer: getDefaultBufferStore(),
     current: getDefaultCurrentStore(),
 };
 
-export const getStore = (): Store<IStore> =>
-    new Redux<IStore, EXECUTE_ACTIONS>(ExecuteStore)
+export const getStore = (): Store<IExecuteStore> =>
+    new Redux<IExecuteStore, EXECUTE_ACTIONS>(ExecuteStore)
         .reducers(applicationReducers)
         .reducers(bufferReducers)
         .reducers(currentReducers)

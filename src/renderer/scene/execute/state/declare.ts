@@ -8,7 +8,7 @@ import { IApplicationStore } from "./application/type";
 import { IBufferStore } from "./buffer/type";
 import { ICurrentStore } from "./current/type";
 
-export interface IStore {
+export interface IExecuteStore {
 
     readonly application: IApplicationStore;
     readonly buffer: IBufferStore;

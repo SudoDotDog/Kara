@@ -5,12 +5,12 @@
  */
 
 import { Reducer } from 'redux';
-import { EXECUTE_ACTIONS, IStore } from '../declare';
+import { EXECUTE_ACTIONS, IExecuteStore } from '../declare';
 import { IBufferStore, ISetInputReducerAction } from './type';
 
-const reduceSetInput: Reducer<IStore, ISetInputReducerAction> = (state: IStore | undefined, action: ISetInputReducerAction): IStore => ({
+const reduceSetInput: Reducer<IExecuteStore, ISetInputReducerAction> = (state: IExecuteStore | undefined, action: ISetInputReducerAction): IExecuteStore => ({
 
-    ...state as IStore,
+    ...state as IExecuteStore,
     buffer: {
 
         input: action.input,

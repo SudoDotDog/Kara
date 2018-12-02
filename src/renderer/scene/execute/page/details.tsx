@@ -6,7 +6,7 @@
 
 import { COMMAND_DECLARE } from '#P/declare';
 import { VerticalExpendable } from '#R~execute/components/vertical-expendable';
-import { IStore } from '#R~execute/state/declare';
+import { IExecuteStore } from '#R~execute/state/declare';
 import { ExecuteResizer } from '#R~execute/util/resizer';
 import * as React from "react";
 import { connect, ConnectedComponentClass } from 'react-redux';
@@ -18,7 +18,7 @@ export interface IDetailsProps {
     readonly input: string;
 }
 
-const mapStateDetailsCareAbout = (store: IStore): Partial<IDetailsProps> => ({
+const mapStateDetailsCareAbout = (store: IExecuteStore): Partial<IDetailsProps> => ({
 
     current: store.current.current,
     expend: store.application.expend,

@@ -9,7 +9,7 @@ import { createCommandCommandDeclare } from '#P/util/declare';
 import { expendDetails, shrinkDetails } from '#R~execute/state/application/application';
 import { clearInput, setInput } from '#R~execute/state/buffer/buffer';
 import { setCommand, setCurrent } from '#R~execute/state/current/current';
-import { IStore } from '#R~execute/state/declare';
+import { IExecuteStore } from '#R~execute/state/declare';
 import { hideExecuteWindow } from '#R~execute/util/trigger';
 import { ImmediateCommandSideEffectFunction, IMutateCommandResult, MUTATE_ACTION, MUTATE_SIGNAL } from '#U/declare';
 import { Mutate } from '#U/mutate';
@@ -29,7 +29,7 @@ export interface IBoxProps {
     readonly setInput: (input: string) => void;
 }
 
-const mapStateBoxCareAbout = (store: IStore): Partial<IBoxProps> => ({
+const mapStateBoxCareAbout = (store: IExecuteStore): Partial<IBoxProps> => ({
 
     current: store.current.current,
     input: store.buffer.input,

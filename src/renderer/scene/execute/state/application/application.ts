@@ -5,12 +5,12 @@
  */
 
 import { Reducer } from 'redux';
-import { EXECUTE_ACTIONS, IStore } from '../declare';
+import { EXECUTE_ACTIONS, IExecuteStore } from '../declare';
 import { IApplicationStore, ISetExpendReducerAction } from './type';
 
-const reduceExpend: Reducer<IStore, ISetExpendReducerAction> = (state: IStore | undefined, action: ISetExpendReducerAction): IStore => ({
+const reduceExpend: Reducer<IExecuteStore, ISetExpendReducerAction> = (state: IExecuteStore | undefined, action: ISetExpendReducerAction): IExecuteStore => ({
 
-    ...state as IStore,
+    ...state as IExecuteStore,
     application: {
 
         expend: action.expend,

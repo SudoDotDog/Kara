@@ -19,10 +19,14 @@ describe('Given a <Box /> Component', (): void => {
 
     const getDefaultProps = (): IBoxProps => ({
 
-        input: chance.string(),
+        expendDetails: new Sandbox().func(),
+        shrinkDetails: new Sandbox().func(),
+
         current: createCommandCommandDeclare(),
         setCommand: new Sandbox().func(),
         setCurrent: new Sandbox().func(),
+
+        input: chance.string(),
         clearInput: new Sandbox().func(),
         setInput: new Sandbox().func(),
     });

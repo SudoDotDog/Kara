@@ -36,13 +36,13 @@ export const currentReducers = {
     [EXECUTE_ACTIONS.SET_CURRENT]: reduceCurrent,
 };
 
-export const setCommand = (command: string): ICommandReducerAction => ({
+export const execute_setCommand = (command: string): ICommandReducerAction => ({
 
     type: EXECUTE_ACTIONS.SET_COMMAND,
     command,
 });
 
-export const setCurrent = (current: COMMAND_DECLARE): ICurrentReducerAction => ({
+export const execute_setCurrent = (current: COMMAND_DECLARE): ICurrentReducerAction => ({
 
     type: EXECUTE_ACTIONS.SET_CURRENT,
     current,

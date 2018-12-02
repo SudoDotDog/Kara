@@ -7,8 +7,8 @@
 import { COMMAND_DECLARE, COMMAND_DECLARE_TYPE } from '#P/declare';
 import { createCommandCommandDeclare } from '#P/util/declare';
 import { expendDetails, shrinkDetails } from '#R~execute/state/application/application';
-import { clearInput, setInput } from '#R~execute/state/buffer/buffer';
-import { setCommand, setCurrent } from '#R~execute/state/current/current';
+import { execute_clearInput, execute_setInput } from '#R~execute/state/buffer/buffer';
+import { execute_setCommand, execute_setCurrent } from '#R~execute/state/current/current';
 import { IExecuteStore } from '#R~execute/state/declare';
 import { hideExecuteWindow } from '#R~execute/util/trigger';
 import { ImmediateCommandSideEffectFunction, IMutateCommandResult, MUTATE_ACTION, MUTATE_SIGNAL } from '#U/declare';
@@ -19,6 +19,9 @@ import { KEY } from '../../../declare/key';
 import { ConnectedProtocol } from './protocol';
 
 export interface IBoxProps {
+
+    readonly expendDetails: () => void;
+    readonly shrinkDetails: () => void;
 
     readonly current: COMMAND_DECLARE;
     readonly setCommand: (command: string) => void;
@@ -35,16 +38,16 @@ const mapStateBoxCareAbout = (store: IExecuteStore): Partial<IBoxProps> => ({
     input: store.buffer.input,
 });
 
-const mapDispatchBoxCareAbout: any = {
+const mapDispatchBoxCareAbout: Partial<IBoxProps> = {
 
     expendDetails,
     shrinkDetails,
 
-    setCommand,
-    setCurrent,
+    setCommand: execute_setCommand,
+    setCurrent: execute_setCurrent,
 
-    clearInput,
-    setInput,
+    clearInput: execute_clearInput,
+    setInput: execute_setInput,
 };
 
 export class Box extends React.Component<IBoxProps, {}> {
@@ -160,4 +163,5 @@ export class Box extends React.Component<IBoxProps, {}> {
     }
 }
 
-export const ConnectedBox: ConnectedComponentClass<typeof Box, any> = connect(mapStateBoxCareAbout, mapDispatchBoxCareAbout)(Box);
+export const ConnectedBox: ConnectedComponentClass<typeof Box, any> =
+    connect(mapStateBoxCareAbout, mapDispatchBoxCareAbout as any)(Box);

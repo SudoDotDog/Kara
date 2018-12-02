@@ -22,13 +22,13 @@ export const bufferReducers = {
     [EXECUTE_ACTIONS.SET_INPUT]: reduceSetInput,
 };
 
-export const setInput = (input: string): ISetInputReducerAction => ({
+export const execute_setInput = (input: string): ISetInputReducerAction => ({
 
     type: EXECUTE_ACTIONS.SET_INPUT,
     input,
 });
 
-export const clearInput = (): ISetInputReducerAction => ({
+export const execute_clearInput = (): ISetInputReducerAction => ({
 
     type: EXECUTE_ACTIONS.SET_INPUT,
     input: '',

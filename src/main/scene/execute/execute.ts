@@ -121,6 +121,17 @@ export class Execute implements IScene {
         return this;
     }
 
+    public createOrFocus(): IScene {
+
+        if (this.isCreated) {
+            this.focus();
+        } else {
+            this.create();
+        }
+
+        return this;
+    }
+
     private _bind(windows: BrowserWindow): void {
 
         windows.on('ready-to-show', (): void => {

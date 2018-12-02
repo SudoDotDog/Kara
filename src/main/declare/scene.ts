@@ -18,4 +18,6 @@ export interface IScene {
 
     focus: () => IScene;
     blur: () => IScene;
+
+    createOrFocus: () => IScene;
 }

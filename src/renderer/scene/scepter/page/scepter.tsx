@@ -4,33 +4,59 @@
  * @description Scepter
  */
 
-import { CENTER_FRAME } from '#R~center/declare/center';
+import { ICommand } from '#P/declare';
 import * as styleScepter from '#S/scene/scepter/scepter.sass';
 import * as React from "react";
+import { connect, ConnectedComponentClass } from 'react-redux';
+import { scepter_setCommands, scepter_setCurrent, scepter_setPath } from '../state/command/command';
+import { IScepterStore } from '../state/declare';
 
-interface IScepterState {
+export interface IScepterScepterProps {
 
-    readonly frame: CENTER_FRAME;
+    readonly commands: ICommand[];
+    readonly current: ICommand | null;
+    readonly path: string[];
+
+    readonly setCommands: (commands: ICommand[]) => void;
+    readonly setCurrent: (current: ICommand) => void;
+    readonly setPath: (path: string[]) => void;
 }
 
-export class Scepter extends React.Component<{}, IScepterState> {
+const mapStates = (store: IScepterStore): Partial<IScepterScepterProps> => ({
 
-    public readonly state = {
+    commands: store.command.commands,
+    current: store.command.current,
+    path: store.command.path,
+});
 
-        frame: CENTER_FRAME.NONE,
-    };
+const mapDispatches: Partial<IScepterScepterProps> = {
+
+    setCommands: scepter_setCommands,
+    setCurrent: scepter_setCurrent,
+    setPath: scepter_setPath,
+};
+
+export class Scepter$Scepter extends React.Component<{}, {}> {
 
     public constructor(props: {}) {
 
         super(props);
     }
 
+    public componentDidMount(): void {
+
+        console.log(this.props);
+    }
+
     public render(): JSX.Element {
 
         return (
             <div className={styleScepter.title}>
-                123
+                {JSON.stringify(this.props)}
             </div>
         );
     }
 }
+
+export const Scepter$ConnectedScepter: ConnectedComponentClass<typeof Scepter$Scepter, any> =
+    connect(mapStates, mapDispatches as any)(Scepter$Scepter);

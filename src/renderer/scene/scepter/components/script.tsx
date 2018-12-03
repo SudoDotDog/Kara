@@ -1,6 +1,6 @@
 /**
  * @author WMXPY
- * @namespace Scene_Center_Component
+ * @namespace Scene_Scepter_Component
  * @description Script
  */
 

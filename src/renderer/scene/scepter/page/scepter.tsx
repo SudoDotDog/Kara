@@ -51,8 +51,17 @@ export class Scepter$Scepter extends React.Component<{}, {}> {
     public render(): JSX.Element {
 
         return (
-            <div className={styleScepter.title}>
-                {JSON.stringify(this.props)}
+            <div className={styleScepter.wrapper}>
+                <div className={styleScepter.nav}>
+
+                </div>
+
+                <div className={styleScepter.contents}>
+
+                    <div className={styleScepter.menu}>Save</div>
+                    <div className={styleScepter.breadcrumb}>1 > 2 > 3</div>
+                    <div className={styleScepter.query}>{JSON.stringify(this.props)}</div>
+                </div>
             </div>
         );
     }

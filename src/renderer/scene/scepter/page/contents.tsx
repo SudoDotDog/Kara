@@ -8,6 +8,10 @@ import { ICommand } from '#P/declare';
 import * as styleScepter from '#S/scene/scepter/scepter.sass';
 import * as React from "react";
 import { connect, ConnectedComponentClass } from 'react-redux';
+import { writeProviderResource } from '../action/resources';
+import { Scepter$Breadcrumb } from '../components/contents/breadcrumb';
+import { Scepter$Menu } from '../components/contents/menu';
+import { Scepter$Query } from '../components/contents/query';
 import { scepter_setCommands, scepter_setCurrent, scepter_setPath } from '../state/command/command';
 import { IScepterStore } from '../state/declare';
 
@@ -38,7 +42,27 @@ const mapDispatches: Partial<IScepterContentsProps> = {
 
 export const Scepter$Contents: React.SFC<IScepterContentsProps> = (props: IScepterContentsProps) => {
 
+    const updateCommand = async (): Promise<boolean> => await writeProviderResource(props.commands);
+
+    const addPath = (path: string) => props.setPath([...props.path, path]);
+
     return (<div className={styleScepter.contents}>
+
+        <Scepter$Menu
+
+            updateCommand={updateCommand}
+        />
+        <Scepter$Breadcrumb
+
+            path={props.path}
+            setPath={props.setPath}
+        />
+        <Scepter$Query
+
+            command={props.current}
+            addPath={addPath}
+            setCommand={props.setCurrent}
+        />
     </div>);
 };
 

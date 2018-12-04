@@ -6,19 +6,14 @@
 
 import * as styleScepter from '#S/scene/scepter/scepter.sass';
 import * as React from "react";
+import { Scepter$ConnectedContents } from './contents';
+import { Scepter$ConnectedNav } from './nav';
 
-export class Scepter$Scepter extends React.Component<{}, {}> {
+export const Scepter$Scepter: React.SFC<{}> = () => (
 
-    public constructor(props: {}) {
+    <div className={styleScepter.wrapper}>
 
-        super(props);
-    }
-
-    public render(): JSX.Element {
-
-        return (
-            <div className={styleScepter.wrapper}>
-            </div>
-        );
-    }
-}
+        <Scepter$ConnectedContents />
+        <Scepter$ConnectedNav />
+    </div>
+);

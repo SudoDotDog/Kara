@@ -10,7 +10,7 @@ import * as React from "react";
 
 interface IScepterQueryProps {
 
-    readonly command: ICommand;
+    readonly command: ICommand | null;
 
     readonly addPath: (path: string) => void;
     readonly setCommand: (command: ICommand) => void;

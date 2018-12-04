@@ -4,3 +4,7 @@
 [![codecov](https://codecov.io/gh/SudoDotDog/Kara/branch/master/graph/badge.svg)](https://codecov.io/gh/SudoDotDog/Kara)
 
 :anchor: "It's as simple as that."
+
+# Config file
+
+> `app-data`/kara/.kara/*

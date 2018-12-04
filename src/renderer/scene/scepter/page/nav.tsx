@@ -34,6 +34,11 @@ export const Scepter$Nav: React.SFC<IScepterNavProps> = (props: IScepterNavProps
 
     return (<div className={styleScepter.nav}>
 
+        {props.commands.map((command: ICommand) =>
+            (<button>
+                {command.name}
+            </button>),
+        )}
     </div>);
 };
 

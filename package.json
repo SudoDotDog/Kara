@@ -50,7 +50,7 @@
 		"@types/webpack": "^4.4.20",
 		"awesome-typescript-loader": "^5.2.1",
 		"chai": "^4.2.0",
-		"chance": "^1.0.17",
+		"chance": "^1.0.18",
 		"css-loader": "^1.0.1",
 		"electron": "^3.0.10",
 		"electron-builder": "^20.38.2",

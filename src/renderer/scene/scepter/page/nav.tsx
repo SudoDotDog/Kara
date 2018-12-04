@@ -5,11 +5,11 @@
  */
 
 import { ICommand } from '#P/declare';
+import { scepter_setCurrent } from '#R~scepter/state/command/command';
+import { IScepterStore } from '#R~scepter/state/declare';
 import * as styleScepter from '#S/scene/scepter/scepter.sass';
 import * as React from "react";
 import { connect, ConnectedComponentClass } from 'react-redux';
-import { scepter_setCurrent } from '../state/command/command';
-import { IScepterStore } from '../state/declare';
 
 interface IScepterNavProps {
 

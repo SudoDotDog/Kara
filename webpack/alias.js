@@ -22,4 +22,5 @@ module.exports = {
     "#R^util": buildPath('renderer', 'util'),
     "#R~center": buildPath("renderer", "scene", "center"),
     "#R~execute": buildPath("renderer", "scene", "execute"),
+    "#R~scepter": buildPath("renderer", "scene", "scepter"),
 };

@@ -26,7 +26,8 @@
             "#R^relative/*": ["src/renderer/relative/*"],
             "#R^util/*": ["src/renderer/util/*"],
             "#R~center/*": ["src/renderer/scene/center/*"],
-            "#R~execute/*": ["src/renderer/scene/execute/*"]
+            "#R~execute/*": ["src/renderer/scene/execute/*"],
+            "#R~scepter/*": ["src/renderer/scene/scepter/*"]
         },
         "sourceMap": true,
         "strict": true,

@@ -71,6 +71,7 @@ const registerBinding = () => {
         "#R^util": Path.join(src, 'renderer', 'util'),
         "#R~center": Path.join(src, 'renderer', 'scene', 'center'),
         "#R~execute": Path.join(src, 'renderer', 'scene', 'execute'),
+        "#R~scepter": Path.join(src, 'renderer', 'scene', 'scepter'),
     });
 };
 

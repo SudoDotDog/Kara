@@ -5,10 +5,10 @@
  */
 
 import { ICommand } from "#P/declare";
-import { readProviderResource } from "#R~center/action/resources";
+import { readProviderResource } from "#R~scepter/action/resources";
 import * as React from "react";
 import { connect, ConnectedComponentClass } from "react-redux";
-import { scepter_setCommands, scepter_setCurrent, scepter_setPath } from './state/command/command';
+import { scepter_setCommands } from './state/command/command';
 
 export interface IScepterInitProps {
 

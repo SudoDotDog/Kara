@@ -13,7 +13,7 @@ export const Scepter$Scepter: React.SFC<{}> = () => (
 
     <div className={styleScepter.wrapper}>
 
-        <Scepter$ConnectedContents />
         <Scepter$ConnectedNav />
+        <Scepter$ConnectedContents />
     </div>
 );

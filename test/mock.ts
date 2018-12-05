@@ -25,11 +25,13 @@ const registerSass = (): void => {
 
     require.extensions['.sass'] = (module: NodeModule, filename: string) => {
         const css: string = Sass.renderSync({
+
             file: filename,
         }).css.toString();
 
         const matches: string[] | null = css.match(/\.\S+ {/g);
         if (!matches) {
+
             module.exports = {};
             return;
         }
@@ -38,6 +40,7 @@ const registerSass = (): void => {
             [key: string]: string;
         } = {};
         matches.forEach((current: string) => {
+
             const text: string = current.split(' ')[0];
             const value: string = text.substring(1, text.length);
             result[value] = value;
@@ -51,6 +54,7 @@ const registerElectron = (): void => {
     const test: string = Path.join(__dirname, '..', 'test');
 
     ModuleAlias.addAliases({
+
         electron: Path.join(test, 'mock', 'global', 'electron.ts'),
     });
 };
@@ -60,6 +64,7 @@ const registerBinding = () => {
     const src: string = Path.join(__dirname, '..', 'src');
 
     ModuleAlias.addAliases({
+
         "#C": Path.join(src, 'config'),
         "#M": Path.join(src, 'main'),
         "#P": Path.join(src, 'provide'),

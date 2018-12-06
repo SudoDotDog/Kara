@@ -11,7 +11,7 @@ import { expect } from 'chai';
 import * as Chance from 'chance';
 import { shallow, ShallowWrapper } from 'enzyme';
 import * as React from "react";
-import { Sandbox } from '../../../mock/sandbox/sandbox';
+import { Sandbox } from '../../../../mock/sandbox/sandbox';
 
 describe('Given a <Box /> Component', (): void => {
 

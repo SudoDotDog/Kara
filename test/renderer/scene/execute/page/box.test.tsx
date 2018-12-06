@@ -1,6 +1,6 @@
 /**
  * @author WMXPY
- * @namespace Scene_Execute_Page
+ * @namespace Renderer_Scene_Execute_Page
  * @description Box Test
  */
 
@@ -15,7 +15,7 @@ import { Sandbox } from '../../../../mock/sandbox/sandbox';
 
 describe('Given a <Box /> Component', (): void => {
 
-    const chance: Chance.Chance = new Chance('renderer-scene-page-box');
+    const chance: Chance.Chance = new Chance('renderer-scene-execute-page-box');
 
     const getDefaultProps = (): IBoxProps => ({
 

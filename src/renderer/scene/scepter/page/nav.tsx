@@ -12,7 +12,7 @@ import * as styleScepter from '#S/scene/scepter/scepter.sass';
 import * as React from "react";
 import { connect, ConnectedComponentClass } from 'react-redux';
 
-interface IScepterNavProps {
+export interface IScepterNavProps {
 
     readonly commands: ICommand[];
     readonly current: ICommand | null;

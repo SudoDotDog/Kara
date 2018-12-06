@@ -8,6 +8,11 @@ import { Call } from "./call";
 
 export class Sandbox {
 
+    public static create(): Sandbox {
+
+        return new Sandbox();
+    }
+
     private _called: Call[];
 
     public constructor() {

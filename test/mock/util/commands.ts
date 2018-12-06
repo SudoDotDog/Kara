@@ -6,11 +6,11 @@
 
 import { COMMAND_DECLARE } from "#P/declare";
 
-export const createMockedCommandDeclare = (args: {
+export const createMockedCommandDeclare = (args?: {
     [key: string]: string;
-} = {}): COMMAND_DECLARE => ({
+}): COMMAND_DECLARE => ({
     ...{
         type: 'MOCKED' as any,
-        arguments: args,
     },
+    ...(args ? { arguments: args } : {}),
 });

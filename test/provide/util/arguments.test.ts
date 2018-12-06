@@ -8,7 +8,7 @@ import { COMMAND_DECLARE } from '#P/declare';
 import { extendThroughArguments, passThroughArguments } from '#P/util/arguments';
 import { expect } from 'chai';
 import * as Chance from 'chance';
-import { createMockedCommandDeclare } from 'test/mock/util/commands';
+import { createMockedCommandDeclare } from '../../mock/util/commands';
 
 describe('Given [Arguments] help methods', (): void => {
 

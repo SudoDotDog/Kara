@@ -62,7 +62,7 @@
 		"module-alias": "^2.1.0",
 		"node-sass": "^4.10.0",
 		"optimize-css-assets-webpack-plugin": "^5.0.1",
-		"react-hot-loader": "^4.5.2",
+		"react-hot-loader": "^4.6.0",
 		"sass-loader": "^7.1.0",
 		"source-map-loader": "^0.2.4",
 		"style-loader": "^0.23.1",

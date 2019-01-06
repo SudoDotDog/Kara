@@ -14,17 +14,16 @@ script_tsconfig := typescript/tsconfig.script.json
 # NPX functions
 ifeq ($(OS), Windows_NT)
 	tsc := .\node_modules\.bin\tsc
-	mocha := .\node_modules\.bin\mocha
 	webpack := .\node_modules\.bin\webpack
 	webpack_dev_server := .\node_modules\.bin\webpack-dev-server
 	electron_builder := ../node_modules/.bin/electron-builder
 else
 	tsc := node_modules/.bin/tsc
-	mocha := node_modules/.bin/mocha
 	webpack := node_modules/.bin/webpack
 	webpack_dev_server := node_modules/.bin/webpack-dev-server
 	electron_builder := ../node_modules/.bin/electron-builder
 endif
+mocha := node_modules/.bin/mocha
 
 kara: dev
 
@@ -78,13 +77,8 @@ compile-script:
 
 electron:
 	@echo "[INFO] Starting electron development"
-ifeq ($(OS), Windows_NT)
-	@-setx NODE_ENV development
-else
-	@-export NODE_ENV=development
-endif
 	@$(webpack) --config $(main_dev)
-	@electron app
+	@NODE_ENV=development electron app
 
 electron-build:
 	@echo "[INFO] Starting electron production build"
@@ -92,21 +86,12 @@ electron-build:
 
 tests:
 	@echo "[INFO] Testing with Mocha"
-ifeq ($(OS), Windows_NT)
-	@-setx NODE_ENV test
-else
-	@-export NODE_ENV=test
-endif
-	@$(mocha)
+	@NODE_ENV=test $(mocha)
 
 cov:
 	@echo "[INFO] Testing with Nyc and Mocha"
-ifeq ($(OS), Windows_NT)
-	@-setx NODE_ENV test
-else
-	@-export NODE_ENV=test
-endif
-	@nyc $(mocha)
+	@NODE_ENV=test \
+	nyc $(mocha)
 
 install:
 	@echo "[INFO] Installing dev Dependencies"

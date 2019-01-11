@@ -34,11 +34,12 @@
 		"redux": "^4.0.1"
 	},
 	"devDependencies": {
-		"@sudoo/triforce": "^1.1.0",
 		"@sudoo/react-force-dev": "^1.1.0",
+		"@sudoo/triforce": "^1.1.0",
 		"@sudoo/webpack-react": "^1.2.0",
 		"@types/module-alias": "^2.0.0",
 		"@types/node": "^10.12.10",
+		"@types/node-sass": "^3.10.32",
 		"@types/react-redux": "^6.0.10",
 		"@types/react-router-dom": "^4.3.1",
 		"@types/webpack": "^4.4.22",

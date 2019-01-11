@@ -24,7 +24,7 @@
 	},
 	"homepage": "https://github.com/sudodotdog/kara#readme",
 	"dependencies": {
-		"@sudoo/bark": "^1.2.1",
+		"@sudoo/bark": "^1.2.2",
 		"@sudoo/command": "^1.2.0",
 		"@sudoo/marked": "^1.4.2",
 		"connor": "^2.0.0",

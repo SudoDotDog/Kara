@@ -26,7 +26,7 @@
 	"dependencies": {
 		"@sudoo/bark": "^1.2.2",
 		"@sudoo/command": "^1.2.0",
-		"@sudoo/marked": "^1.4.2",
+		"@sudoo/marked": "^1.4.3",
 		"@sudoo/react-force": "^1.1.0",
 		"connor": "^2.0.0",
 		"react-redux": "^6.0.0",

@@ -20,12 +20,14 @@
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/@sudoo/command/-/command-1.2.0.tgz#645df61e142494bd7f1f925a71548ff154fbc6c9"
 
-"@sudoo/marked@^1.4.2":
-  version "1.4.2"
-  resolved "https://registry.yarnpkg.com/@sudoo/marked/-/marked-1.4.2.tgz#ef48f9617a02472e54f24420b1d542a99352c6a3"
+"@sudoo/marked@^1.4.3":
+  version "1.4.3"
+  resolved "https://registry.yarnpkg.com/@sudoo/marked/-/marked-1.4.3.tgz#4515887249ac2d9ffe36ad6d22d82f5b1bd76733"
+  integrity sha512-WmUiqcSoLKrkgbd4naRdc/5WvV9gX7Tgouh32vnd/Ow1/Q16ufYzhLhrL6VVr/XyNZHlKNsjczq9oJAMRMsFwA==
   dependencies:
+    "@sudoo/bark" "^1.2.2"
     "@types/estree" "0.0.39"
-    acorn "^6.0.4"
+    acorn "^6.0.5"
 
 "@sudoo/react-force-dev@^1.1.0":
   version "1.1.0"
@@ -369,9 +371,10 @@ acorn@^5.0.0, acorn@^5.6.2:
   version "5.7.3"
   resolved "https://registry.yarnpkg.com/acorn/-/acorn-5.7.3.tgz#67aa231bf8812974b85235a96771eb6bd07ea279"
 
-acorn@^6.0.4:
-  version "6.0.4"
-  resolved "https://registry.yarnpkg.com/acorn/-/acorn-6.0.4.tgz#77377e7353b72ec5104550aa2d2097a2fd40b754"
+acorn@^6.0.5:
+  version "6.0.5"
+  resolved "https://registry.yarnpkg.com/acorn/-/acorn-6.0.5.tgz#81730c0815f3f3b34d8efa95cb7430965f4d887a"
+  integrity sha512-i33Zgp3XWtmZBMNvCr4azvOFeWVw1Rk6p3hfi3LUDvIFraOMywb1kAtrbi+med14m4Xfpqm3zRZMT+c0FNE7kg==
 
 ajv-errors@^1.0.0:
   version "1.0.0"

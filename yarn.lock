@@ -68,10 +68,10 @@
   resolved "https://registry.yarnpkg.com/@sudoo/tslint-config/-/tslint-config-1.1.0.tgz#f8712fb5a5d26e531af911d25d4c5ce3618c9198"
   integrity sha512-nYvQthhovGpRSNz8YKTDy64ICJjINlDCJ0umqXifwZUwNAv9TEIpM4K5zsoBmLowMgg0XCZ2cyUV0DBAjqg26Q==
 
-"@sudoo/webpack-react@^1.2.0":
-  version "1.2.0"
-  resolved "https://registry.yarnpkg.com/@sudoo/webpack-react/-/webpack-react-1.2.0.tgz#54c9f2ef35c14c5097ea4fe0123edbf270c81753"
-  integrity sha512-jqIMKeANYqI4sMQxH33N8EOZ7U0vivw7Jmo86h6iwyO0OCQ8sKdITmmbAkJhN+uXN7owYS0v6pLQ7VP/sE0tMw==
+"@sudoo/webpack-react@^1.3.0":
+  version "1.3.0"
+  resolved "https://registry.yarnpkg.com/@sudoo/webpack-react/-/webpack-react-1.3.0.tgz#d587cbe062f1d19e26563d8a12f3ce884c5b330a"
+  integrity sha512-sE9WnZePEdkFflzocfp967eyxZ8USe7Z1iN+t8Y9k6PMUozEu1UBiPmch7CWPAMpZwZfmPLGmoHW3WtsylbODA==
   dependencies:
     awesome-typescript-loader "^5.2.1"
     css-loader "^1.0.1"
@@ -83,8 +83,8 @@
     source-map-loader "^0.2.4"
     style-loader "^0.23.1"
     typings-for-css-modules-loader "^1.7.0"
-    webpack "^4.28.2"
-    webpack-cli "^3.1.2"
+    webpack "^4.28.4"
+    webpack-cli "^3.2.1"
     webpack-dev-server "^3.1.14"
 
 "@types/anymatch@*":
@@ -6328,7 +6328,7 @@ wbuf@^1.1.0, wbuf@^1.7.3:
   dependencies:
     minimalistic-assert "^1.0.0"
 
-webpack-cli@^3.1.2:
+webpack-cli@^3.2.1:
   version "3.2.1"
   resolved "https://registry.yarnpkg.com/webpack-cli/-/webpack-cli-3.2.1.tgz#779c696c82482491f0803907508db2e276ed3b61"
   integrity sha512-jeJveHwz/vwpJ3B8bxEL5a/rVKIpRNJDsKggfKnxuYeohNDW4Y/wB9N/XHJA093qZyS0r6mYL+/crLsIol4WKA==
@@ -6415,7 +6415,7 @@ webpack-sources@^1.1.0, webpack-sources@^1.3.0:
     source-list-map "^2.0.0"
     source-map "~0.6.1"
 
-webpack@^4.28.2:
+webpack@^4.28.4:
   version "4.28.4"
   resolved "https://registry.yarnpkg.com/webpack/-/webpack-4.28.4.tgz#1ddae6c89887d7efb752adf0c3cd32b9b07eacd0"
   integrity sha512-NxjD61WsK/a3JIdwWjtIpimmvE6UrRi3yG54/74Hk9rwNj5FPkA4DJCf1z4ByDWLkvZhTZE+P3C/eh6UD5lDcw==

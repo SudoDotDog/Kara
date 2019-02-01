@@ -46,7 +46,7 @@
 		"electron": "^4.0.2",
 		"electron-builder": "^20.38.5",
 		"module-alias": "^2.1.0",
-		"react-hot-loader": "^4.6.3"
+		"react-hot-loader": "^4.6.5"
 	},
 	"nyc": {
 		"extension": [

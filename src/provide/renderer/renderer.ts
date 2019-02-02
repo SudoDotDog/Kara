@@ -6,7 +6,7 @@
 
 import { PROVIDER_IPC } from "#C/ipc";
 import { ICommand } from "#P/declare";
-import { _Map } from "@sudoo/bark";
+import { _Map } from "@sudoo/bark/map";
 import Connor, { ErrorCreationFunction } from "connor";
 import { IpcMessageEvent, ipcRenderer } from "electron";
 import { initProvideErrorDictionary, PROVIDE_ERROR_CODE, PROVIDE_MODULE_NAME } from "../declare/error";
@@ -31,9 +31,7 @@ export class Provider {
         return this._instance;
     }
 
-    private _commandMap: {
-        [key: string]: ICommand;
-    };
+    private _commandMap: Record<string, ICommand>;
     private _error: ErrorCreationFunction;
 
     private constructor() {

@@ -5,7 +5,7 @@
  */
 
 import { PROVIDER_IPC } from "#C/ipc";
-import { _Map } from "@sudoo/bark";
+import { _Map } from "@sudoo/bark/map";
 import { ipcMain, IpcMessageEvent, webContents } from "electron";
 import { ICommand } from "../declare";
 import { md5Encode } from "../util/crypto";
@@ -24,9 +24,7 @@ export class MainProvider {
         return this._instance;
     }
 
-    private _commandMap: {
-        [key: string]: ICommand;
-    };
+    private _commandMap: Record<string, ICommand>;
 
     private constructor() {
 

@@ -93,6 +93,10 @@ cov:
 	@NODE_ENV=test \
 	nyc $(mocha)
 
+c-install:
+	@echo "[INFO] Installing dev Dependencies"
+	@yarn install --production=false --registry=https://registry.npm.taobao.org
+
 install:
 	@echo "[INFO] Installing dev Dependencies"
 	@yarn install --production=false

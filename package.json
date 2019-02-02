@@ -1,6 +1,6 @@
 {
 	"name": "@sudoo/kara",
-	"version": "0.0.0",
+	"private": true,
 	"description": ":anchor: \"It's as simple as that.\"",
 	"main": "dist/index.js",
 	"directories": {

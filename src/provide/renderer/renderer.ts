@@ -6,7 +6,7 @@
 
 import { PROVIDER_IPC } from "#C/ipc";
 import { ICommand } from "#P/declare";
-import { _Map } from "@sudoo/bark";
+import { _Map } from "@sudoo/bark/map";
 import Connor, { ErrorCreationFunction } from "connor";
 import { IpcMessageEvent, ipcRenderer } from "electron";
 import { initProvideErrorDictionary, PROVIDE_ERROR_CODE, PROVIDE_MODULE_NAME } from "../declare/error";
@@ -50,7 +50,7 @@ export class Provider {
 
     public get commands(): ICommand[] {
 
-        return _Map.keys(this._commandMap).map((key: string) => this._commandMap[key]);
+        return _Map.keys(this._commandMap).map((key: any) => this._commandMap[key]);
     }
 
     public get length(): number {

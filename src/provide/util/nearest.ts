@@ -8,7 +8,7 @@ import { ICommand } from "#P/declare";
 import { _Map } from "@sudoo/bark/map";
 import { _String } from "@sudoo/bark/string";
 
-export const findNearestCommand = (commandMap: { [key: string]: ICommand; }, command: string): {
+export const findNearestCommand = (commandMap: Record<string, ICommand>, command: string): {
     command: ICommand;
     length: number;
 } => {

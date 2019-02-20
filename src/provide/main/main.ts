@@ -24,9 +24,7 @@ export class MainProvider {
         return this._instance;
     }
 
-    private _commandMap: {
-        [key: string]: ICommand;
-    };
+    private _commandMap: Record<string, ICommand>;
 
     private constructor() {
 

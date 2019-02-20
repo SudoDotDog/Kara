@@ -40,4 +40,4 @@ export const extendThroughArguments = (current: COMMAND_DECLARE, next: COMMAND_D
     };
 };
 
-export const checkArgumentExist = (args: ICommandArguments, variable: string): boolean => _Map.keys(args).includes(variable);
+export const checkArgumentExist = (args: ICommandArguments, variable: string): boolean => _Map.keys(args as Record<string, string>).includes(variable);
